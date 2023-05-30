@@ -14,13 +14,21 @@ namespace Music_Player.ViewModels
 {
     public class MinViewModel: INotifyPropertyChanged
     {
+        #region Vistas 
+        VerCancionesView vercancion_view = new () { DataContext = new CancionesViewModel()};
+        CancionesMeGustanView cancionesmegustan_view = new() { DataContext = new CancionesViewModel()};
+        VerUsuariosView verusuarios_view = new();
+        HomeView home_view = new();
+        CategoriasCancionesView categorias_view = new();
+        #endregion
 
         public MinViewModel()
         {
             NavegarHome();
+
         }
 
-       public UserControl VistaPrincipal { get; set; }
+       public UserControl? VistaPrincipal { get; set; }
 
         #region COMANDOS
         public ICommand NavegarCategoriasCommand => new RelayCommand(NavegarCategorias);
@@ -33,34 +41,33 @@ namespace Music_Player.ViewModels
 
         private void NavegarCancionesMegustan()
         {
-            VistaPrincipal = new CancionesMeGustanView();
+            VistaPrincipal = cancionesmegustan_view;
             PropertyChange();
         }
 
 
         private void NavegarUsuarios()
         {
-            VistaPrincipal = new VerUsuariosView();
+            VistaPrincipal = verusuarios_view;
             PropertyChange();
         }
 
 
         private void NavegarHome()
         {
-            VistaPrincipal = new HomeView();
-
+            VistaPrincipal = home_view;
             PropertyChange();
         }
 
         private void NavegarCategorias()
         {
-            VistaPrincipal = new CategoriasCancionesView();
+            VistaPrincipal = categorias_view;
             PropertyChange();
         }
 
         private void NavegarVerCanciones()
         {
-            VistaPrincipal = new VerCancionesView();
+            VistaPrincipal = vercancion_view;
             PropertyChange();
         }
 

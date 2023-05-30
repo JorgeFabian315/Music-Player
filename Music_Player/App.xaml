@@ -3,103 +3,117 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Music_Player"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:mat="http://metro.mahapps.com/winfx/xaml/iconpacks"
              StartupUri="./Views/MainView.xaml">
     <Application.Resources>
-        <SolidColorBrush x:Key="color1" Color="#2d2e37"/>
-        <SolidColorBrush x:Key="color2" Color="#c4c4c4"/>
-        <SolidColorBrush x:Key="color3" Color="#3c3abe"/>
-        <SolidColorBrush x:Key="color4" Color="#fcfcff"/>
-        <!--#REGION ESTILOS ICONOS MENU-->
-        <Style TargetType="{x:Type mat:PackIconFontAwesome}"
-               x:Key="IconosMenu_mat">
-            <Setter Property="Foreground"
-                    Value="{StaticResource color2}" />
-            <Setter Property="Height"
-                    Value="25" />
-            <Setter Property="Width"
-                    Value="25" />
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver"
-                         Value="True">
-                    <Setter Property="Foreground"
-                            Value="{StaticResource color4}" />
-                </Trigger>
-                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}, Path=IsChecked}"
-                         Value="True">
-                    <Setter Property="Foreground"
-                            Value="{StaticResource color4}" />
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-        <Style TargetType="{x:Type fa:ImageAwesome}"
-               x:Key="IconosMenu_fa">
-            <Setter Property="Foreground"
-                    Value="{StaticResource color2}" />
-            <Setter Property="Height"
-                    Value="25" />
-            <Setter Property="Width"
-                    Value="25" />
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver"
-                         Value="True">
-                    <Setter Property="Foreground"
-                            Value="{StaticResource color4}" />
-                </Trigger>
-                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}, Path=IsChecked}"
-                         Value="True">
-                    <Setter Property="Foreground"
-                            Value="{StaticResource color4}" />
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-        <!--#ENDREGION ESTILOS ICONOS MENU-->
-        <!--#REGION ESTILOS BOTONES MENU-->
-        <Style TargetType="RadioButton"
-               x:Key="BotonesMenu">
-            <Setter Property="Background"
-                    Value="Transparent" />
-            <Setter Property="Margin"
-                    Value="0,8" />
-            <Setter Property="Height"
-                    Value="40" />
-            <Setter Property="Cursor"
-                    Value="Hand" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="RadioButton">
-                        <Grid>
-                            <Border Height="{TemplateBinding Height}"
-                                    x:Name="border"
-                                    Background="{TemplateBinding Background}">
-                                <Border.Resources>
-                                    <Style TargetType="Border">
-                                        <Setter Property="BorderBrush"
-                                                Value="Transparent" />
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="color1"
+                             Color="#2d2e37" />
+            <SolidColorBrush x:Key="color2"
+                             Color="#c4c4c4" />
+            <SolidColorBrush x:Key="color3"
+                             Color="#3c3abe" />
+            <SolidColorBrush x:Key="color4"
+                             Color="#fcfcff" />
+            <!--#REGION ESTILOS ICONOS MENU-->
+            <Style TargetType="{x:Type mat:PackIconFontAwesome}"
+                   x:Key="IconosMenu_mat">
+                <Setter Property="Foreground"
+                        Value="{StaticResource color2}" />
+                <Setter Property="Height"
+                        Value="25" />
+                <Setter Property="Width"
+                        Value="25" />
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver"
+                             Value="True">
+                        <Setter Property="Foreground"
+                                Value="{StaticResource color4}" />
+                    </Trigger>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}, Path=IsChecked}"
+                                 Value="True">
+                        <Setter Property="Foreground"
+                                Value="{StaticResource color4}" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style TargetType="{x:Type fa:ImageAwesome}"
+                   x:Key="IconosMenu_fa">
+                <Setter Property="Foreground"
+                        Value="{StaticResource color2}" />
+                <Setter Property="Height"
+                        Value="25" />
+                <Setter Property="Width"
+                        Value="25" />
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver"
+                             Value="True">
+                        <Setter Property="Foreground"
+                                Value="{StaticResource color4}" />
+                    </Trigger>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}, Path=IsChecked}"
+                                 Value="True">
+                        <Setter Property="Foreground"
+                                Value="{StaticResource color4}" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <!--#ENDREGION ESTILOS ICONOS MENU-->
+            <!--#REGION ESTILOS BOTONES MENU-->
+            <Style TargetType="RadioButton"
+                   x:Key="BotonesMenu">
+                <Setter Property="Background"
+                        Value="Transparent" />
+                <Setter Property="Margin"
+                        Value="0,8" />
+                <Setter Property="Height"
+                        Value="40" />
+                <Setter Property="Cursor"
+                        Value="Hand" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="RadioButton">
+                            <Grid>
+                                <Border Height="{TemplateBinding Height}"
+                                        x:Name="border"
+                                        Background="{TemplateBinding Background}">
+                                    <Border.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="BorderBrush"
+                                                    Value="Transparent" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}
                                                 ,Path=IsMouseOver}"
-                                                         Value="True">
-                                                <Setter Property="BorderBrush"
-                                                        Value="red" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}
+                                                             Value="True">
+                                                    <Setter Property="BorderBrush"
+                                                            Value="red" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}
                                                 ,Path=IsChecked}"
-                                                         Value="True">
-                                                <Setter Property="BorderBrush"
-                                                        Value="Red" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Border.Resources>
-                                <ContentPresenter HorizontalAlignment="Center"
-                                                  VerticalAlignment="Center" />
-                            </Border>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <!--#ENDREGION BOTONES MENU-->
+                                                             Value="True">
+                                                    <Setter Property="BorderBrush"
+                                                            Value="Red" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Resources>
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center" />
+                                </Border>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!--#ENDREGION BOTONES MENU-->
+            
+            <ResourceDictionary.MergedDictionaries>
+                <materialDesign:BundledTheme BaseTheme="Light"
+                                             PrimaryColor="Blue"
+                                             SecondaryColor="Blue" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
