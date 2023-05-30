@@ -1,0 +1,91 @@
+﻿<Window x:Class="Music_Player.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Music_Player.Views"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        xmlns:mat="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:cancionesviews="clr-namespace:Music_Player.Views.CancionesViews"
+        xmlns:viewmodels="clr-namespace:Music_Player.ViewModels"
+        mc:Ignorable="d"
+        Title="MainView"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStyle="None"
+        Height="700"
+        Width="1200">
+    <Window.DataContext>
+        <viewmodels:MinViewModel />
+    </Window.DataContext>
+    
+    <Border Background="#2d2e37"
+            CornerRadius="10">
+        <Grid Background="Transparent"
+              Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".05*" />
+                <ColumnDefinition Width=".95*" />
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="1"
+                    Background="#fcfcff"
+                    CornerRadius="10"></Border>
+            <StackPanel HorizontalAlignment="Left"
+                        Margin="4,0,0,0">
+                <Grid VerticalAlignment="Center"
+                      HorizontalAlignment="Center"
+                      Margin="0,8,0,60">
+                    <Ellipse Width="40"
+                             Height="40"
+                             Fill="{StaticResource color3}" />
+                    <mat:PackIconFontAwesome Kind="RecordVinylSolid"
+                                             Foreground="{StaticResource color4}"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Center"
+                                             Style="{StaticResource IconosMenu_mat}" />
+                </Grid>
+                <RadioButton Style="{StaticResource BotonesMenu}"
+                             Command="{Binding NavegarHomeCommand}">
+                    <fa:ImageAwesome Icon="Home"
+                                     Width="30"
+                                     Style="{StaticResource IconosMenu_fa}" />
+                </RadioButton>
+                <RadioButton Style="{StaticResource BotonesMenu}"
+                             Command="{Binding NavegarUsuariosCommand}">
+                    <mat:PackIconFontAwesome Kind="UserAltSolid"
+                                             Style="{StaticResource IconosMenu_mat}" />
+                </RadioButton>
+                <RadioButton Style="{StaticResource BotonesMenu}"
+                             Command="{Binding NavegarVerCancionesCommand}">
+                    <fa:ImageAwesome Icon="Music"
+                                     Style="{StaticResource IconosMenu_fa}" />
+                </RadioButton>
+                <RadioButton Style="{StaticResource BotonesMenu}"
+                             Command="{Binding NavegarCancionesMegustanCommand}">
+                    <fa:ImageAwesome Icon="Heart"
+                                     Tag="red"
+                                     Style="{StaticResource IconosMenu_fa}" />
+                </RadioButton>
+                <RadioButton Style="{StaticResource BotonesMenu}"
+                             Command="{Binding NavegarCategoriasCommand}">
+                    <fa:ImageAwesome Icon="Folder"
+                                     Tag="red"
+                                     Style="{StaticResource IconosMenu_fa}" />
+                </RadioButton>
+                <RadioButton Style="{StaticResource BotonesMenu}"
+                             Margin="0,250,0,8"
+                             Name="btnCerrar"
+                             Click="btnCerrar_Click">
+                    <fa:ImageAwesome Icon="PowerOff"
+                                     Style="{StaticResource IconosMenu_fa}" />
+                </RadioButton>
+            </StackPanel>
+            <ContentControl Grid.Column="1"
+                            Margin="10"
+                            Content="{Binding VistaPrincipal}">
+          
+            </ContentControl>
+        </Grid>
+    </Border>
+</Window>
