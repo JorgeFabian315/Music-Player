@@ -82,9 +82,7 @@ public partial class MusicPlayerContext : DbContext
             entity.Property(e => e.FechaAgregada)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("datetime");
-            entity.Property(e => e.MeGusta)
-                .HasDefaultValueSql("b'0'")
-                .HasColumnType("bit(1)");
+            entity.Property(e => e.MeGusta).HasDefaultValueSql("'0'");
             entity.Property(e => e.Titulo).HasMaxLength(100);
 
             entity.HasOne(d => d.IdArtistaNavigation).WithMany(p => p.Cancion)

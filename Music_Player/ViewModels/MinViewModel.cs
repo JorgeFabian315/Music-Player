@@ -14,25 +14,33 @@ namespace Music_Player.ViewModels
 {
     public class MinViewModel: INotifyPropertyChanged
     {
-        #region Vistas 
-        VerCancionesView vercancion_view = new () { DataContext = new CancionesViewModel()};
-        CancionesMeGustanView cancionesmegustan_view = new() { DataContext = new CancionesViewModel()};
-        VerUsuariosView verusuarios_view = new();
-        HomeView home_view = new();
-        CategoriasCancionesView categorias_view = new();
-        #endregion
+
+
+        CancionesViewModel cancionesviewmodel = new();
+        UsuariosViewModel usuariosviewmodel = new();
+        GenerosViewModel generosviewmodel = new();
+        ArtistasViewModel artistasviewmodel = new();
+
+
+        private object _miviewmodel;
+
+        public object ViewModelAactual
+        {
+            get { return _miviewmodel; }
+            set { _miviewmodel = value; }
+        }
+
+
 
         public MinViewModel()
         {
-            NavegarHome();
-
+            ViewModelAactual = cancionesviewmodel;
         }
 
-       public UserControl? VistaPrincipal { get; set; }
 
         #region COMANDOS
-        public ICommand NavegarCategoriasCommand => new RelayCommand(NavegarCategorias);
-        public ICommand NavegarHomeCommand => new RelayCommand(NavegarHome);
+        public ICommand NavegarCategoriasCommand => new RelayCommand(NavegarGeneros);
+        //public ICommand NavegarHomeCommand => new RelayCommand(NavegarHome);
         public ICommand NavegarVerCancionesCommand => new RelayCommand(NavegarVerCanciones);
         public ICommand NavegarCancionesMegustanCommand => new RelayCommand(NavegarCancionesMegustan);
         public ICommand NavegarUsuariosCommand => new RelayCommand(NavegarUsuarios);
@@ -41,33 +49,33 @@ namespace Music_Player.ViewModels
 
         private void NavegarCancionesMegustan()
         {
-            VistaPrincipal = cancionesmegustan_view;
+            ViewModelAactual = cancionesviewmodel;
             PropertyChange();
         }
 
 
         private void NavegarUsuarios()
         {
-            VistaPrincipal = verusuarios_view;
+            ViewModelAactual  = usuariosviewmodel;
             PropertyChange();
         }
 
 
-        private void NavegarHome()
-        {
-            VistaPrincipal = home_view;
-            PropertyChange();
-        }
+        //private void NavegarHome()
+        //{
+        //    VistaPrincipal = home_view;
+        //    PropertyChange();
+        //}
 
-        private void NavegarCategorias()
+        private void NavegarGeneros()
         {
-            VistaPrincipal = categorias_view;
+            ViewModelAactual = generosviewmodel;
             PropertyChange();
         }
 
         private void NavegarVerCanciones()
         {
-            VistaPrincipal = vercancion_view;
+            ViewModelAactual = cancionesviewmodel;
             PropertyChange();
         }
 

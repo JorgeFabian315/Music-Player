@@ -38,7 +38,7 @@ namespace Music_Player.ViewModels
         public void GetCancionesMeGusta()
         {
             ListaCancionesMegusta = new();
-            var lista = _canciones.GetCanciones().Where(x => x.MeGusta == 0);
+            var lista = _canciones.GetCanciones().Where(x => x.MeGusta == true);
 
             foreach (var item in lista)
             {

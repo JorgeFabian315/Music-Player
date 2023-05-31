@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Music_Player.Catalogos;
+using Music_Player.Models;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -11,11 +14,28 @@ namespace Music_Player.ViewModels
     {
 
 
+        public ObservableCollection<Genero> ListaGeneros { get; set; } = new();
+
+        GenerosCatalogo cgenero = new();
+        public GenerosViewModel()
+        {
+            GetGeneros();
+        }
+
+
+        private void GetGeneros()
+        {
+            ListaGeneros.Clear();
 
 
 
+            foreach (var item in cgenero.GetGeneros())
+            {
+                ListaGeneros.Add(item);
+            }
 
-
+            PropertyChange();
+        }
 
 
 

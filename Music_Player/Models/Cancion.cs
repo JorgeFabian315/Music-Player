@@ -9,7 +9,7 @@ public partial class Cancion
 
     public string Titulo { get; set; } = null!;
 
-    public ulong? MeGusta { get; set; }
+    public bool? MeGusta { get; set; }
 
     public int IdArtista { get; set; }
 

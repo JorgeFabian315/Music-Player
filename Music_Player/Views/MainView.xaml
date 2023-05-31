@@ -19,7 +19,20 @@
     <Window.DataContext>
         <viewmodels:MinViewModel />
     </Window.DataContext>
-    
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewmodels:ArtistasViewModel}">
+            <local:IndexArtistasView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:GenerosViewModel}">
+            <local:IndexGenerosView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:UsuariosViewModel}">
+            <local:IndexUsuariosView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:CancionesViewModel}">
+            <local:IndexCancionesView />
+        </DataTemplate>
+    </Window.Resources>
     <Border Background="#2d2e37"
             CornerRadius="10">
         <Grid Background="Transparent"
@@ -83,7 +96,7 @@
             </StackPanel>
             <ContentControl Grid.Column="1"
                             Margin="10"
-                            Content="{Binding VistaPrincipal}">
+                            Content="{Binding ViewModelAactual}">
           
             </ContentControl>
         </Grid>
