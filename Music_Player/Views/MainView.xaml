@@ -13,6 +13,7 @@
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="True"
         Background="Transparent"
+        FontFamily="{StaticResource MaterialDesignFont}"
         WindowStyle="None"
         Height="700"
         Width="1200">

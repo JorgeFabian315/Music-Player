@@ -1,4 +1,5 @@
-﻿using Music_Player.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Music_Player.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Music_Player.Catalogos
 
         public IEnumerable<Cancion> GetCanciones()
         {
-           return context.Cancion.OrderBy(can => can.Titulo);
+           return context.Cancion.Include(c => c.IdArtistaNavigation).OrderBy(can => can.Titulo);
         }
     }
 }

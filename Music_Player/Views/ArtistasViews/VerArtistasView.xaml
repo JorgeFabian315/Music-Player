@@ -30,6 +30,7 @@
         </ScrollViewer>
         <Button Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
                 Width="300"
+                Background="Green"
                 ToolTip="Resource name: MaterialDesignRaisedSecondaryLightButton"
                 Content="LIGHT"
                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
