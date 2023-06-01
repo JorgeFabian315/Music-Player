@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Music_Player.Views"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
-        xmlns:mat="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:cancionesviews="clr-namespace:Music_Player.Views.CancionesViews"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:viewmodels="clr-namespace:Music_Player.ViewModels"
         mc:Ignorable="d"
         Title="MainView"
@@ -52,22 +52,28 @@
                     <Ellipse Width="40"
                              Height="40"
                              Fill="{StaticResource color3}" />
-                    <mat:PackIconFontAwesome Kind="RecordVinylSolid"
+                    <materialDesign:PackIcon Kind="Disc"
+                                             Width="40"
+                                             Height="40"
                                              Foreground="{StaticResource color4}"
                                              VerticalAlignment="Center"
                                              HorizontalAlignment="Center"
-                                             Style="{StaticResource IconosMenu_mat}" />
+                                             Style="{StaticResource IconosMenu_materialde}" />
                 </Grid>
                 <RadioButton Style="{StaticResource BotonesMenu}"
                              Command="{Binding NavegarHomeCommand}">
-                    <fa:ImageAwesome Icon="Home"
-                                     Width="30"
-                                     Style="{StaticResource IconosMenu_fa}" />
+                    <materialDesign:PackIcon Kind="Home"
+                                             Style="{StaticResource IconosMenu_materialde}" />
                 </RadioButton>
                 <RadioButton Style="{StaticResource BotonesMenu}"
                              Command="{Binding NavegarUsuariosCommand}">
-                    <mat:PackIconFontAwesome Kind="UserAltSolid"
-                                             Style="{StaticResource IconosMenu_mat}" />
+                    <materialDesign:PackIcon Kind="AccountGroup"
+                                             Style="{StaticResource IconosMenu_materialde}" />
+                </RadioButton>
+                <RadioButton Style="{StaticResource BotonesMenu}"
+                             Command="{Binding NavegarArtistasCommand}">
+                    <materialDesign:PackIcon Kind="AccountMusic"
+                                             Style="{StaticResource IconosMenu_materialde}" />
                 </RadioButton>
                 <RadioButton Style="{StaticResource BotonesMenu}"
                              Command="{Binding NavegarVerCancionesCommand}">
@@ -87,7 +93,7 @@
                                      Style="{StaticResource IconosMenu_fa}" />
                 </RadioButton>
                 <RadioButton Style="{StaticResource BotonesMenu}"
-                             Margin="0,250,0,8"
+                             Margin="0,150,0,8"
                              Name="btnCerrar"
                              Click="btnCerrar_Click">
                     <fa:ImageAwesome Icon="PowerOff"
@@ -96,9 +102,7 @@
             </StackPanel>
             <ContentControl Grid.Column="1"
                             Margin="10"
-                            Content="{Binding ViewModelAactual}">
-          
-            </ContentControl>
+                            Content="{Binding ViewModelAactual}"></ContentControl>
         </Grid>
     </Border>
 </Window>

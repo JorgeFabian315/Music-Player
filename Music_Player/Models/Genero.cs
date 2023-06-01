@@ -11,5 +11,7 @@ public partial class Genero
 
     public int? TotalCanciones { get; set; }
 
+    public virtual ICollection<Artista> Artista { get; set; } = new List<Artista>();
+
     public virtual ICollection<Cancion> Cancion { get; set; } = new List<Cancion>();
 }

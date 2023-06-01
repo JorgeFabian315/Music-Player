@@ -21,7 +21,7 @@ namespace Music_Player.ViewModels
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public void PropertyChange(string? propertyName = null)
+        public void Actualizar(string? propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

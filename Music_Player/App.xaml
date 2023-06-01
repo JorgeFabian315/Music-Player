@@ -17,14 +17,14 @@
             <SolidColorBrush x:Key="color4"
                              Color="#fcfcff" />
             <!--#REGION ESTILOS ICONOS MENU-->
-            <Style TargetType="{x:Type mat:PackIconFontAwesome}"
-                   x:Key="IconosMenu_mat">
+            <Style TargetType="{x:Type materialDesign:PackIcon}"
+                   x:Key="IconosMenu_materialde">
                 <Setter Property="Foreground"
                         Value="{StaticResource color2}" />
                 <Setter Property="Height"
-                        Value="25" />
+                        Value="30" />
                 <Setter Property="Width"
-                        Value="25" />
+                        Value="30" />
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver"
                              Value="True">
@@ -109,8 +109,8 @@
             <!--#ENDREGION BOTONES MENU-->
             
             <ResourceDictionary.MergedDictionaries>
-                <materialDesign:BundledTheme BaseTheme="Light"
-                                             PrimaryColor="DeepPurple"
+                <materialDesign:BundledTheme BaseTheme="Dark"
+                                             PrimaryColor="Red"
                                              SecondaryColor="Blue" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>

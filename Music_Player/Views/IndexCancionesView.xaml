@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Music_Player.Views"
+             xmlns:Vistas="clr-namespace:Music_Player.Views.Enum_CambiarVista"
              xmlns:cancionesviews="clr-namespace:Music_Player.Views.CancionesViews"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -12,11 +13,24 @@
         <ContentControl>
             <ContentControl.Resources>
                 <Style TargetType="{x:Type ContentControl}">
-                    <Setter Property="Content">
-                        <Setter.Value>
-                            <cancionesviews:VerCancionesView />
-                        </Setter.Value>
-                    </Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Vista}"
+                                     Value="{x:Static Vistas:VistaPeliculas.VerPeliculas}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <cancionesviews:VerCancionesView />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Vista}"
+                                     Value="{x:Static Vistas:VistaPeliculas.VerPeliculasMegustan}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <cancionesviews:CancionesMeGustanView />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
                 </Style>
             </ContentControl.Resources>
         </ContentControl>

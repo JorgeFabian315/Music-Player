@@ -43,8 +43,18 @@ public partial class MusicPlayerContext : DbContext
 
             entity.ToTable("artista");
 
+            entity.HasIndex(e => e.IdGenero, "fk_Artista_Genero_idx");
+
+            entity.Property(e => e.Apodo).HasMaxLength(50);
+            entity.Property(e => e.FechaNacimiento).HasColumnType("datetime");
+            entity.Property(e => e.Nacionalidad).HasMaxLength(45);
             entity.Property(e => e.Nombre).HasMaxLength(100);
             entity.Property(e => e.TotalCanciones).HasDefaultValueSql("'0'");
+
+            entity.HasOne(d => d.IdGeneroNavigation).WithMany(p => p.Artista)
+                .HasForeignKey(d => d.IdGenero)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_Artista_Genero");
         });
 
         modelBuilder.Entity<BitacoraUsuario>(entity =>

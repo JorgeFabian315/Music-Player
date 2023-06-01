@@ -1,5 +1,7 @@
 ﻿using Music_Player.Catalogos;
 using Music_Player.Models;
+using Music_Player.Views;
+using Music_Player.Views.Enum_CambiarVista;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,20 +12,31 @@ using System.Threading.Tasks;
 
 namespace Music_Player.ViewModels
 {
-    public class CancionesViewModel: INotifyPropertyChanged
+    public class CancionesViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<Cancion> ListaCanciones { get; set; } = new();
         public ObservableCollection<Cancion> ListaCancionesMegusta { get; set; } = new();
 
         CancionesCatalogo _canciones = new();
+
+        public VistaPeliculas Vista { get; set; }
         public CancionesViewModel()
         {
+
+            MediadorViewModel.VistaActualizada += MediadorViewModel_VistaActualizada;
+
             GetCanciones();
-            GetCancionesMeGusta();
+
+            Actualizar();
         }
 
-
-
+        private void MediadorViewModel_VistaActualizada(VistaPeliculas vista)
+        {
+            Vista = vista;
+            if(vista == VistaPeliculas.VerPeliculasMegustan)
+                GetCancionesMeGusta();
+            Actualizar();
+        }
 
         public void GetCanciones()
         {
@@ -32,7 +45,7 @@ namespace Music_Player.ViewModels
             {
                 ListaCanciones.Add(item);
             }
-            PropertyChange();
+            Actualizar();
         }
 
         public void GetCancionesMeGusta()
@@ -44,12 +57,12 @@ namespace Music_Player.ViewModels
             {
                 ListaCancionesMegusta.Add(item);
             }
-            PropertyChange();
+            Actualizar();
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public void PropertyChange(string? propertyName = null)
+        public void Actualizar(string? propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
