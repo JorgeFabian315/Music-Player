@@ -37,10 +37,9 @@
     <Border 
             CornerRadius="10">
         <Border.Background>
-            <LinearGradientBrush>
-                <GradientStop Color="{StaticResource Color_1 }" Offset="1"/>
-                <GradientStop Color="{StaticResource Color_1 }" Offset="1"/>
-                <GradientStop Color="{StaticResource Color_1 }" Offset="1"/>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="{StaticResource Color_1 }" Offset="0"/>
+                <GradientStop Color="{StaticResource Color_2 }" Offset="0.85"/>
             </LinearGradientBrush>
         </Border.Background>
         <Grid Background="Transparent"
