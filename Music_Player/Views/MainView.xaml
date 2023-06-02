@@ -15,8 +15,7 @@
         Background="Transparent"
         FontFamily="{StaticResource MaterialDesignFont}"
         WindowStyle="None"
-        Height="700"
-        Width="1200">
+        Name="Ventana">
     <Window.DataContext>
         <viewmodels:MinViewModel />
     </Window.DataContext>

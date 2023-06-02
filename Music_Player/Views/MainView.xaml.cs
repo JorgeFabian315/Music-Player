@@ -22,6 +22,13 @@ namespace Music_Player.Views
         public MainView()
         {
             InitializeComponent();
+            double height = SystemParameters.FullPrimaryScreenHeight;
+            double width = SystemParameters.FullPrimaryScreenWidth;
+            double resolution = height * width;
+            Ventana.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
+            Ventana.Height = height * .95;
+            Ventana.Width = width * .90;
         }
 
         private void btnCerrar_Click(object sender, RoutedEventArgs e)
