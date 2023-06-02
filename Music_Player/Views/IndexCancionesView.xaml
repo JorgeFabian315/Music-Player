@@ -30,6 +30,22 @@
                                 </Setter.Value>
                             </Setter>
                         </DataTrigger>
+                        <DataTrigger Binding="{Binding Vista}"
+                                     Value="{x:Static Vistas:VistaPeliculas.VerCancion}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <cancionesviews:VerCancionView />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Vista}"
+                                     Value="{x:Static Vistas:VistaPeliculas.AgregarCancion}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <cancionesviews:AgregarCancionView />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </ContentControl.Resources>

@@ -17,5 +17,17 @@ namespace Music_Player.Catalogos
         {
            return context.Cancion.Include(c => c.IdArtistaNavigation).OrderBy(can => can.Titulo);
         }
+
+
+        public Cancion GetCancion(int id)
+        {
+            var cancion = context.Cancion.Find(id);
+
+            if (cancion != null)
+                return cancion;
+            else
+                return new Cancion();
+        }
+
     }
 }

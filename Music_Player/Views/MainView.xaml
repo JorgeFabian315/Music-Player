@@ -34,8 +34,15 @@
             <local:IndexCancionesView />
         </DataTemplate>
     </Window.Resources>
-    <Border Background="#2d2e37"
+    <Border 
             CornerRadius="10">
+        <Border.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="{StaticResource Color_1 }" Offset="1"/>
+                <GradientStop Color="{StaticResource Color_1 }" Offset="1"/>
+                <GradientStop Color="{StaticResource Color_1 }" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
         <Grid Background="Transparent"
               Margin="10">
             <Grid.ColumnDefinitions>
@@ -102,8 +109,8 @@
                 </RadioButton>
             </StackPanel>
             <ContentControl Grid.Column="1"
-                            Margin="10"
-                            Content="{Binding ViewModelAactual}"></ContentControl>
+                            Content="{Binding ViewModelAactual}" 
+                            Margin="7"/>
         </Grid>
     </Border>
 </Window>

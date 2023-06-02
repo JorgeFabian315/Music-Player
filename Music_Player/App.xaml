@@ -13,9 +13,14 @@
             <SolidColorBrush x:Key="color2"
                              Color="#c4c4c4" />
             <SolidColorBrush x:Key="color3"
-                             Color="#3c3abe" />
+                             Color="#673AB7" />
             <SolidColorBrush x:Key="color4"
                              Color="#fcfcff" />
+            <Color x:Key="Color_1">#2d2e37</Color>
+            <Color x:Key="Color_2">#c4c4c4</Color>
+            <Color x:Key="Color_3">#673AB7</Color>
+            <Color x:Key="Color_4">#fcfcff</Color>
+            
             <!--#REGION ESTILOS ICONOS MENU-->
             <Style TargetType="{x:Type materialDesign:PackIcon}"
                    x:Key="IconosMenu_materialde">
@@ -110,8 +115,8 @@
             
             <ResourceDictionary.MergedDictionaries>
                 <materialDesign:BundledTheme BaseTheme="Light"
-                                             PrimaryColor="Red"
-                                             SecondaryColor="Red" />
+                                             PrimaryColor="DeepPurple"
+                                             SecondaryColor="DeepPurple" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

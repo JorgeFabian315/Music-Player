@@ -10,7 +10,9 @@ namespace Music_Player.Views.Enum_CambiarVista
    public enum VistaPeliculas
     {
         VerPeliculas,
-        VerPeliculasMegustan
+        VerPeliculasMegustan,
+        VerCancion,
+        AgregarCancion
     }
 
 }
