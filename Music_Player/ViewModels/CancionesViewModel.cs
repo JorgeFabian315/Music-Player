@@ -27,11 +27,10 @@ namespace Music_Player.ViewModels
             Actualizar();
         }
 
-        CancionesCatalogo _catalogo_can = new();
-
        public Cancion Cancion { get; set; } = new();
 
-
+        public int Minutos { get; set; }
+        public int Segundos { get; set; }
         public VistaPeliculas Vista { get; set; }
 
         public int TotalCancionesMegustas { get; set; } 
@@ -45,20 +44,26 @@ namespace Music_Player.ViewModels
         {
             if (Cancion != null)
             {
-
+                Cancion.Duracion = $"{Minutos}:{Segundos}";
+                Cancion.IdUsuario = 1;
+                catalogo_can.AgregarCancion(Cancion);
+                GetCanciones();
+                Regresar();
             }
         }
 
         private void VerAgregarCancion()
         {
             Cancion = new();
+            Minutos = 0;
+            Segundos = 0;
             Vista = VistaPeliculas.AgregarCancion;
             Actualizar();
         }
 
         private void VerCancion(int id)
         {
-            Cancion = _catalogo_can.GetCancion(id);
+            Cancion = catalogo_can.GetCancion(id);
             if (Cancion != null)
                 Vista = VistaPeliculas.VerCancion;
             Actualizar();

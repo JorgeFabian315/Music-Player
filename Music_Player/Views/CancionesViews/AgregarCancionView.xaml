@@ -9,55 +9,88 @@
              FontWeight="Light"
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel>
-        
+        <StackPanel  DockPanel.Dock="Top"
+                     Margin="10,0,0,20"
+                    >
+            
         <Button Command="{Binding RegresarCommand}"
                 Height="40"
                 Width="40"
-                DockPanel.Dock="Top"
                 Padding="0"
-                HorizontalAlignment="Left"
-                Margin="10,0,0,30">
+               HorizontalAlignment="Left"
+                >
             <materialDesign:PackIcon Kind="ArrowBack"
                                      Width="30"
                                      Height="30" />
         </Button>
+            <TextBlock Text="Agregar Canción" FontSize="40" Margin="0,10,0,0" HorizontalAlignment="Center"/>
+        </StackPanel>
         <StackPanel Margin="100,0">
-            <TextBlock Text="Título:" Margin="0,5" FontSize="25"/>
+            <TextBlock Text="Título:" Margin="0,5" FontSize="20"/>
             <TextBox Grid.Column="1"
+                     Text="{Binding Cancion.Titulo}"
                      materialDesign:TextFieldAssist.HasClearButton="True"
                      materialDesign:HintAssist.Hint="Título de la canción"
-                     FontSize="25"
+                     FontSize="20"
                      Margin="0,5" />
             <TextBlock Text="Duración:"
-                       Margin="0,10, 0, 5"
-                       FontSize="25"
+                       Margin="0,10, 0, 0"
+                       FontSize="20"
                        Grid.Row="1" />
             <WrapPanel Grid.Row="1" Grid.Column="1" Margin="0,10">
                 <TextBox Width="100"
                          Margin="0"
-                         FontSize="25"
+                         Text="{Binding Minutos}"
+                         FontSize="20"
                          materialDesign:HintAssist.Hint="mm" />
                 <TextBlock Text=":" Margin="10,0" />
                 <TextBox Width="100"
+                         Text="{Binding Segundos}"
                          materialDesign:HintAssist.Hint="ss"
                          Margin="0"
-                         FontSize="25" />
+                         FontSize="20" />
             </WrapPanel>
             <TextBlock Text="Artista:"
                        Margin="0,5"
-                       FontSize="25" />
+                       FontSize="20" />
             <ComboBox materialDesign:HintAssist.Hint="Artista"
-                      FontSize="25"
+                      ItemsSource="{Binding ListaArtistas}"
+                      DisplayMemberPath="Apodo"
+                      FontSize="20"
+                      SelectedValuePath="Id"
+                      SelectedValue="{Binding Cancion.IdArtista}"
                       Margin="0,10" />
             <TextBlock Text="Género musical:"
                        Margin="0,5"
-                       FontSize="25" />
+                       FontSize="20" />
             <ComboBox materialDesign:HintAssist.Hint="Género musical"
-                      FontSize="25"
+                      DisplayMemberPath="Nombre"
+                      FontSize="20"
+                      SelectedValuePath="Id"
+                      SelectedValue="{Binding Cancion.IdGenero}"
+                      ItemsSource="{Binding ListaGeneros}"
                       Margin="0,5" />
-            <TextBlock Text="errrorrr" Foreground="red" FontSize="15" HorizontalAlignment="Center"/>
-            <Button Content="Agregar" Foreground="{StaticResource color4}" FontSize="20" Padding="10"
-                    Height="50" Width="150" Margin="0,10"/>
+            <TextBlock Text="errrorrr" Foreground="red" FontSize="15"
+                       Margin="0 20 0 10"
+                       HorizontalAlignment="Center"/>
+            <WrapPanel HorizontalAlignment="Center" Margin="0 15">
+                <Button Content="Agregar"
+                        Foreground="{StaticResource color4}"
+                        FontSize="20"
+                        Padding="10"
+                        Height="50"
+                        Command="{Binding AgregarCancionCommand}"
+                        Width="150"
+                        Margin="10,0" />
+                <Button Content="Cancelar"
+                        Foreground="{StaticResource color4}"
+                        FontSize="20"
+                        Command="{Binding RegresarCommand}"
+                        Padding="10"
+                        Height="50"
+                        Width="150"
+                        Margin="10,0" />
+            </WrapPanel>
         </StackPanel>
     
     </DockPanel>

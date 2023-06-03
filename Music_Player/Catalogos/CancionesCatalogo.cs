@@ -30,6 +30,10 @@ namespace Music_Player.Catalogos
             else
                 return new Cancion();
         }
-
+        public void AgregarCancion(Cancion cancion)
+        {
+            context.Cancion.Add(cancion);
+            context.SaveChanges();
+        }
     }
 }

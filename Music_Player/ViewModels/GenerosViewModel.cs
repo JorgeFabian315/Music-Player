@@ -26,7 +26,6 @@ namespace Music_Player.ViewModels
         public VistaGeneros Vista { get; set; } = VistaGeneros.VerGeneros;
         public GenerosViewModel()
         {
-            GetGeneros();
         }
 
         public ICommand VerCancionesGeneroCommand => new RelayCommand<int>(VerCancionesGenero);
