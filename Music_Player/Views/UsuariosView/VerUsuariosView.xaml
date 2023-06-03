@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Music_Player.Views.UsuariosView" xmlns:viewmodels="clr-namespace:Music_Player.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:UsuariosViewModel}"
-             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:local="clr-namespace:Music_Player.Views.UsuariosView" xmlns:fa="http://schemas.fontawesome.io/icons/"
               xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:viewmodels="clr-namespace:Music_Player.ViewModels" 
              mc:Ignorable="d" 
-             Name="user"
+             x:Name="user"
              d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid Background="#2A2F4F">
@@ -24,7 +24,7 @@
                     <DataTemplate>
 
                         <Border Background="{StaticResource color3}"
-                                Height="215"
+                                Height="230"
                                 Width="210"
                                 CornerRadius="10"
                                 Margin="50,25,0,0"
@@ -77,7 +77,23 @@
                                         </WrapPanel>
 
 
-
+                                        <WrapPanel HorizontalAlignment="Center">
+                                            <materialDesign:PackIcon Kind="CardAccountDetails" 
+                                         Foreground="White"
+                                         Height="15"
+                                         Width="15"
+                                         Margin="0,0,0,0"
+                                         HorizontalAlignment="Center"
+                                         VerticalAlignment="Center"/>
+                                            <TextBlock Text="   "></TextBlock>
+                                            <TextBlock Text="{Binding IdRolNavigation.Nombre}"
+                                                   HorizontalAlignment="Center"
+                                           FontSize="15"
+                                               VerticalAlignment="Center"
+                                                   Foreground="white"
+                                                   ></TextBlock>
+                                        </WrapPanel>
+                                        
                                     </StackPanel>
 
                                 </Border>
@@ -86,6 +102,7 @@
                                 <Grid
   Width="50">
                                     <Button
+     Command="{Binding Source={x:Reference user},Path=DataContext.VerBitacorasCommand}"
     Style="{StaticResource MaterialDesignRaisedDarkButton}"
     Height="50"
     Margin="0,5,0,0"

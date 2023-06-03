@@ -14,7 +14,7 @@ namespace Music_Player.Catalogos
 
         public IEnumerable<Usuario> GetUsuarios()
         {
-            return context.Usuario.Include(x => x.BitacoraUsuario).OrderBy(x => x.Nombre);
+            return context.Usuario.Include(x => x.BitacoraUsuario).Include(x => x.IdRolNavigation).OrderBy(x => x.Nombre);
         }
 
     }
