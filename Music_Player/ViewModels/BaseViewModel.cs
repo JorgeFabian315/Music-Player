@@ -18,11 +18,14 @@ namespace Music_Player.Operaciones
         {
             GetCanciones();
             GetArtistas();
+            GetGeneros();
+
         }
 
-          CancionesCatalogo  catalogo_can = new();
-          GenerosCatalogo  catalogo_gen = new();
-          ArtistasCatalogo catalogo_Art = new();
+        
+        public CancionesCatalogo  catalogo_can = new();
+        public GenerosCatalogo  catalogo_gen = new();
+        public ArtistasCatalogo catalogo_Art = new();
         
         public event PropertyChangedEventHandler? PropertyChanged;
 
