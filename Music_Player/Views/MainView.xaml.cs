@@ -35,5 +35,13 @@ namespace Music_Player.Views
         {
             Application.Current.Shutdown();
         }
+
+        private void Ventana_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if(e.LeftButton == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
+        }
     }
 }

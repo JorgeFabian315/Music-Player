@@ -9,7 +9,80 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
  
-    <Grid Background="Gold">
-        <ItemsControl ItemsSource="{Binding ListaCancionesMegusta}"></ItemsControl>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".4*"/>
+            <RowDefinition Height=".6*"/>
+        </Grid.RowDefinitions>
+        <Border Background="{StaticResource color3}" CornerRadius="10 10 0 0"/>
+        <Grid Margin="10 0 10 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".2*"/>
+                <ColumnDefinition Width=".8*"/>
+            </Grid.ColumnDefinitions>
+            <Border VerticalAlignment="Center" Background="{StaticResource color1}" 
+                    CornerRadius="10"
+                    Height="200" Width="200" Margin="0 0 0 0">
+                <materialDesign:PackIcon Kind="CardsHeart"
+                                         Width="170"
+                                         Foreground="White"
+                                         VerticalAlignment="Center"
+                                         HorizontalAlignment="Center"
+                                         Height="170" />
+            </Border>
+            <StackPanel Grid.Column="1"
+                        Margin="20 0 0 0"
+                        VerticalAlignment="Center">
+                <TextBlock Text="Lista"
+                           FontSize="20"
+                           Foreground="White"
+                           TextWrapping="Wrap" />
+                <TextBlock Text="Canciones que te gustan" FontSize="50" Foreground="White" TextWrapping="Wrap"
+                           Margin="0, 5"/>
+                <TextBlock FontSize="20"
+                           Foreground="White"
+                           TextWrapping="Wrap">
+                    <Run Text="{Binding TotalCancionesMegustas}"/>
+                <Run Text="Canciones"/></TextBlock>
+            </StackPanel>
+        </Grid>
+        <ScrollViewer Grid.Row="1" Margin="10 20 0 0">
+            <DataGrid ItemsSource="{Binding ListaCancionesMegusta}" IsReadOnly="True"
+                      AutoGenerateColumns="False"
+                      FontSize="15" SelectionMode="Single" 
+                      SelectionUnit="FullRow"
+                      CanUserDeleteRows="False"
+                      CanUserResizeColumns="False" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Título" Binding="{Binding Titulo}" Width=".3*"/>
+                    <DataGridTextColumn Header="Artista"
+                                        Binding="{Binding IdArtistaNavigation.Apodo}"
+                                        Width=".2*" />
+                    <DataGridTextColumn Header="Género musical"
+                                        Binding="{Binding IdGeneroNavigation.Nombre}"
+                                        Width=".2*" />
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <materialDesign:PackIcon Kind="CardsHeart"
+                                                             Width="20"
+                                                             Foreground="{StaticResource color3}"
+                                                             VerticalAlignment="Center"
+                                                             HorizontalAlignment="Left"
+                                                             Height="20" />
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Duración"
+                                        Width=".1*"
+                                        MaxWidth="100"
+                                        Binding="{Binding Duracion}" />
+                </DataGrid.Columns>
+                
+            </DataGrid>
+        </ScrollViewer>
+        
     </Grid>
 </UserControl>

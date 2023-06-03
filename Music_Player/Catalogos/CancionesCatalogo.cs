@@ -15,7 +15,9 @@ namespace Music_Player.Catalogos
 
         public IEnumerable<Cancion> GetCanciones()
         {
-           return context.Cancion.Include(c => c.IdArtistaNavigation).OrderBy(can => can.Titulo);
+           return context.Cancion.Include(c => c.IdArtistaNavigation)
+                .Include(c => c.IdGeneroNavigation)
+                .OrderBy(can => can.Titulo);
         }
 
 
