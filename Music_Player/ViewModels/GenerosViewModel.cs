@@ -18,7 +18,6 @@ namespace Music_Player.ViewModels
     {
 
 
-        public ObservableCollection<Genero> ListaGeneros { get; set; } = new();
 
         GenerosCatalogo cgenero = new();
 
@@ -47,16 +46,6 @@ namespace Music_Player.ViewModels
             Actualizar();
         }
 
-        private void GetGeneros()
-        {
-            ListaGeneros.Clear();
-
-            foreach (var item in cgenero.GetGeneros())
-            {
-                ListaGeneros.Add(item);
-            }
-
-            Actualizar();
-        }
+      
     }
 }

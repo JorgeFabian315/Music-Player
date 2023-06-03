@@ -58,22 +58,27 @@
                         Margin="4,0,0,0">
                 <Grid VerticalAlignment="Center"
                       HorizontalAlignment="Center"
-                      Margin="0,8,0,60">
-                    <Ellipse Width="40"
+                      Margin="0,8,0,5">
+                    <Border Width="40"
                              Height="40"
-                             Fill="{StaticResource color3}" />
-                    <materialDesign:PackIcon Kind="Disc"
-                                             Width="40"
-                                             Height="40"
+                             CornerRadius="40"
+                             Background="{StaticResource color3}"
+                             />
+               
+                    <materialDesign:PackIcon Kind="Account"
+                                             Width="30"
+                                             Height="30"
                                              Foreground="{StaticResource color4}"
                                              VerticalAlignment="Center"
                                              HorizontalAlignment="Center"
                                              Style="{StaticResource IconosMenu_materialde}" />
                 </Grid>
+          
                 <RadioButton Style="{StaticResource BotonesMenu}"
                              Command="{Binding NavegarHomeCommand}">
-                    <materialDesign:PackIcon Kind="Home"
-                                             Style="{StaticResource IconosMenu_materialde}" />
+                        <materialDesign:PackIcon Kind="Home"
+                                                 Style="{StaticResource IconosMenu_materialde}" />
+                       
                 </RadioButton>
                 <RadioButton Style="{StaticResource BotonesMenu}"
                              Command="{Binding NavegarUsuariosCommand}">
@@ -103,7 +108,7 @@
                                      Style="{StaticResource IconosMenu_fa}" />
                 </RadioButton>
                 <RadioButton Style="{StaticResource BotonesMenu}"
-                             Margin="0,150,0,8"
+                             Margin="0,130,0,8"
                              Name="btnCerrar"
                              Click="btnCerrar_Click">
                     <fa:ImageAwesome Icon="PowerOff"

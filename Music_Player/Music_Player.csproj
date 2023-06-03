@@ -10,6 +10,7 @@
   <ItemGroup>
     <None Remove="Assets\Gif.gif" />
     <None Remove="Assets\musica.jpg" />
+    <None Remove="Assets\musicagif.gif" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +29,7 @@
   <ItemGroup>
     <Resource Include="Assets\Gif.gif" />
     <Resource Include="Assets\musica.jpg" />
+    <Resource Include="Assets\musicagif.gif" />
   </ItemGroup>
 
 </Project>

@@ -17,16 +17,12 @@ namespace Music_Player.ViewModels
 {
     public class CancionesViewModel : BaseViewModel
     {
-        public ObservableCollection<Cancion> ListaCanciones { get; set; } = new();
-        public ObservableCollection<Cancion> ListaCancionesMegusta { get; set; } = new();
 
         public CancionesViewModel()
         {
 
             MediadorViewModel.VistaActualizada += MediadorViewModel_VistaActualizada;
 
-
-            GetCanciones();
 
             Actualizar();
         }
@@ -85,27 +81,9 @@ namespace Music_Player.ViewModels
             Actualizar();
         }
 
-        public void GetCanciones()
-        {
-            ListaCanciones = new();
-            foreach (var item in _catalogo_can.GetCanciones())
-            {
-                ListaCanciones.Add(item);
-            }
-            Actualizar();
-        }
 
-        public void GetCancionesMeGusta()
-        {
-            ListaCancionesMegusta = new();
-            var lista = _catalogo_can.GetCanciones().Where(x => x.MeGusta == true);
 
-            foreach (var item in lista)
-            {
-                ListaCancionesMegusta.Add(item);
-            }
-            Actualizar();
-        }
+     
 
      
     }

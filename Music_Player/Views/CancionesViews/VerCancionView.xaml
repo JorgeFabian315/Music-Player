@@ -5,10 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Music_Player.Views.CancionesViews"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
-    
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height=".1*" />
@@ -28,23 +28,28 @@
         <StackPanel Grid.Row="1"
                     Height="400"
                     Width="400">
-            <Grid Height="320" Width="320" HorizontalAlignment="Center">
+            <Grid Height="320"
+                  Width="320"
+                  HorizontalAlignment="Center">
                 <Image Source="/Assets/musica.jpg"
                        Stretch="Fill" />
                 <Border Background="{StaticResource color1}"
                         Opacity=".3" />
             </Grid>
             <TextBlock Text="{Binding Cancion.Titulo}"
-                   Foreground="{StaticResource color1}"
-                   FontSize="30"
+                       Foreground="{StaticResource color1}"
+                       FontSize="30"
                        Margin="0,15,0,0"
-                       HorizontalAlignment="Center"/>
-            
+                       HorizontalAlignment="Center" />
         </StackPanel>
-      
-        <Grid Grid.Row="2" VerticalAlignment="Center" Margin="20,0">
-            <Border Background="{StaticResource color1}" CornerRadius="10"  Height="100" />
-        </Grid>
-        
+        <Border Background="{StaticResource color1}"
+                CornerRadius="10"
+                Grid.Row="2"
+                VerticalAlignment="Center"
+                Margin="20,0"
+                Height="100">
+            <Image gif:ImageBehavior.AnimatedSource="/Assets/musicagif.gif"
+                   Margin="30,0" />
+        </Border>
     </Grid>
 </UserControl>

@@ -16,10 +16,11 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height=".1*" />
-            <RowDefinition Height=".3*" />
-            <RowDefinition Height=".6*" />
+            <RowDefinition Height=".4*" />
+            <RowDefinition Height=".5*" />
         </Grid.RowDefinitions>
         <TextBlock Text="Home"
+                   Margin="10 0 0 0"
                    Foreground="{StaticResource color1}"
                    FontSize="40" />
         <WrapPanel Grid.Column="1"
@@ -50,16 +51,30 @@
                 </WrapPanel>
             </Border>
         </WrapPanel>
-        <Border Background="Orange"
-                Grid.Column="1"
-                Grid.Row="1" />
+        <DockPanel Grid.Row="1"
+                   Grid.RowSpan="2"
+                   Grid.Column="1">
+            <TextBlock Text="Top Artistas"
+                       FontSize="30"
+                       Margin="0 0 0 15"
+                       DockPanel.Dock="Top" />
+            <ScrollViewer>
+                <ItemsControl ItemsSource="{Binding ListaArtistas}"></ItemsControl>
+            </ScrollViewer>
+        </DockPanel>
+       
         <Border Background="Chocolate"
                 Grid.Row="1" />
-        <Border Background="red"
-                Grid.Row="2" />
-        <Image Grid.Row="2"
+        <DockPanel Grid.Row="2">
+            <TextBlock Text="Top Canciones" FontSize="30" Margin="0 0 0 15" DockPanel.Dock="Top"/>
+            <ScrollViewer>
+                <ItemsControl ItemsSource="{Binding ListaCanciones}"
+                ></ItemsControl>
+        </ScrollViewer>
+        </DockPanel>
+        <Image Grid.Row="1"
                Visibility="Visible"
-               Grid.Column="1"
+               Grid.Column="0"
                gif:ImageBehavior.AnimatedSource="/Assets/gif.gif" />
     </Grid>
 </UserControl>
