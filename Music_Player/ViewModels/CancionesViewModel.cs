@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Music_Player.Catalogos;
 using Music_Player.Models;
+using Music_Player.Operaciones;
 using Music_Player.Views;
 using Music_Player.Views.Enum_CambiarVista;
 using System;
@@ -14,7 +15,7 @@ using System.Windows.Input;
 
 namespace Music_Player.ViewModels
 {
-    public class CancionesViewModel : INotifyPropertyChanged
+    public class CancionesViewModel : BaseViewModel
     {
         public ObservableCollection<Cancion> ListaCanciones { get; set; } = new();
         public ObservableCollection<Cancion> ListaCancionesMegusta { get; set; } = new();
@@ -23,6 +24,7 @@ namespace Music_Player.ViewModels
         {
 
             MediadorViewModel.VistaActualizada += MediadorViewModel_VistaActualizada;
+
 
             GetCanciones();
 
@@ -36,7 +38,7 @@ namespace Music_Player.ViewModels
 
         public VistaPeliculas Vista { get; set; }
 
-
+        public int TotalCancionesMegustas { get; set; } 
 
         public ICommand VerCancionCommand => new RelayCommand<int>(VerCancion);
         public ICommand RegresarCommand => new RelayCommand(Regresar);
@@ -77,6 +79,9 @@ namespace Music_Player.ViewModels
             Vista = vista;
             if (vista == VistaPeliculas.VerPeliculasMegustan)
                 GetCancionesMeGusta();
+
+           TotalCancionesMegustas = ListaCancionesMegusta.Count;
+
             Actualizar();
         }
 
@@ -102,22 +107,6 @@ namespace Music_Player.ViewModels
             Actualizar();
         }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        public void Actualizar(string? propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-
-
-
-
-
-
-
-
-
-
+     
     }
 }

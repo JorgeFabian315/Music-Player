@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Music_Player.Views.CancionesViews"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
@@ -21,18 +22,32 @@
         <TextBlock Text="Home"
                    Foreground="{StaticResource color1}"
                    FontSize="40" />
-        <WrapPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <fa:ImageAwesome Icon="BellOutline" Foreground="{StaticResource color1}" Height="30"/>
-            <Border Background="{StaticResource color4}" Height="30" Width="200" CornerRadius="5" Margin="30,0,0,0">
+        <WrapPanel Grid.Column="1"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center">
+            <fa:ImageAwesome Icon="BellOutline"
+                             Foreground="{StaticResource color1}"
+                             Height="30" />
+            <Border Background="{StaticResource color4}"
+                    Height="30"
+                    Width="200"
+                    CornerRadius="5"
+                    Margin="30,0,0,0">
                 <Border.Effect>
-                    <DropShadowEffect BlurRadius="13" ShadowDepth="2" Color="Black"/>
+                    <DropShadowEffect BlurRadius="13"
+                                      ShadowDepth="2"
+                                      Color="Black" />
                 </Border.Effect>
                 <WrapPanel>
-                    <fa:ImageAwesome Icon="Search" Margin="7,5,5,5" Foreground="{StaticResource color2}"/>
-                    <TextBlock Text="Buscar" Foreground="{StaticResource color2}" VerticalAlignment="Center" FontSize="15"
-                               Margin="10,0,0,0"/>
+                    <fa:ImageAwesome Icon="Search"
+                                     Margin="7,5,5,5"
+                                     Foreground="{StaticResource color2}" />
+                    <TextBlock Text="Buscar"
+                               Foreground="{StaticResource color2}"
+                               VerticalAlignment="Center"
+                               FontSize="15"
+                               Margin="10,0,0,0" />
                 </WrapPanel>
-                
             </Border>
         </WrapPanel>
         <Border Background="Orange"
@@ -42,8 +57,9 @@
                 Grid.Row="1" />
         <Border Background="red"
                 Grid.Row="2" />
-        <Border Background="LightBlue"
-                Grid.Row="2"
-                Grid.Column="1" />
+        <Image Grid.Row="2"
+               Visibility="Visible"
+               Grid.Column="1"
+               gif:ImageBehavior.AnimatedSource="/Assets/gif.gif" />
     </Grid>
 </UserControl>

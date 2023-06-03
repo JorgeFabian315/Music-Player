@@ -15,6 +15,7 @@
         Background="Transparent"
         FontFamily="{StaticResource MaterialDesignFont}"
         WindowStyle="None"
+        MouseLeftButtonDown="Ventana_MouseLeftButtonDown"
         Name="Ventana">
     <Window.DataContext>
         <viewmodels:MinViewModel />
@@ -31,6 +32,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewmodels:CancionesViewModel}">
             <local:IndexCancionesView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
+            <local:IndexHomeView />
         </DataTemplate>
     </Window.Resources>
     <Border 
