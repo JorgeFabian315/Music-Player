@@ -30,7 +30,7 @@ namespace Music_Player.ViewModels
         {
             GetUsuarios();
            Vista = EnumUsuarioVista.VerUsuarios;
-           VerBitacorasCommand = new RelayCommand(VerBitacoras);
+           VerBitacorasCommand = new RelayCommand<Usuario>(VerBitacoras);
             RegresarCommand = new RelayCommand(Regresar);
         }
 
@@ -40,10 +40,14 @@ namespace Music_Player.ViewModels
             Actualizar();
         }
 
-        private void VerBitacoras()
+        private void VerBitacoras(Usuario u)
         {
-            Vista = EnumUsuarioVista.VerBitacoras;
-            Actualizar();
+            if(u != null)
+            {
+                usuario = catalagousuario.GetBitacorasUsuario(u.CorreoElectronico);
+                Vista = EnumUsuarioVista.VerBitacoras;
+                Actualizar();
+            }
         }
 
         public void GetUsuarios()
