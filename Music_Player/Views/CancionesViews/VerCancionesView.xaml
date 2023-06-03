@@ -58,61 +58,7 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border 
-                                    Margin="5,10"
-                                    CornerRadius="5"
-                                    Width="200"
-                                    Background="{StaticResource color1}">
-                                <!--<Border.InputBindings>
-                                    <MouseBinding  Gesture="LeftClick"
-                                                   Command="{Binding
-                                    RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.VerCancionCommand}"
-                                                   CommandParameter="{Binding Id}" />
-                                </Border.InputBindings>-->
-                                <Grid>
-                                    
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height=".6*" />
-                                        <RowDefinition Height=".4*" />
-                                    </Grid.RowDefinitions>
-                                    <Grid Height="170"
-                                          Margin="7"
-                                          Width="200">
-                                        <Image Source="/Assets/musica.jpg"
-                                               Stretch="Fill" />
-                                        <Border Background="{StaticResource color1}"
-                                                Opacity=".5" />
-                                    </Grid>
-                                    <StackPanel Grid.Row="1">
-                                        <TextBlock Text="{Binding Titulo}"
-                                                   Foreground="{StaticResource color4}"
-                                                   FontSize="17"
-                                                   Margin="10,5,0,5"
-                                                   TextWrapping="Wrap" />
-                                        <TextBlock Text="{Binding IdArtistaNavigation.Apodo}"
-                                                   Margin="10,0,0,10"
-                                                   FontSize="12"
-                                                   TextWrapping="Wrap"
-                                                   Foreground="{StaticResource color2}" />
-                                    </StackPanel>
-                                    <Button Style="{StaticResource MaterialDesignFloatingActionButton}"
-                                            Padding="5"
-                                            Height="45"
-                                            Width="45"
-                                            Command="{Binding
-                                    RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.VerCancionCommand}"
-                                            CommandParameter="{Binding Id}"
-                                            Name="btnVerCancion"
-                                            VerticalAlignment="Bottom"
-                                            HorizontalAlignment="Right"
-                                            Margin="10">
-                                       
-                                        <materialDesign:PackIcon Kind="Play"
-                                                                 Height="35"
-                                                                 Width="35" />
-                                    </Button>
-                                </Grid>
-                            </Border>
+                            <local:PlantillaCancionesView />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -122,8 +68,7 @@
                     VerticalAlignment="Bottom"
                     HorizontalAlignment="Right"
                     Command="{Binding VerAgregarCancionCommand}"
-                    Margin="30"
-                   >
+                    Margin="30">
                 <materialDesign:PackIcon Kind="MusicNotePlus"
                                          Height="40"
                                          Width="40" />

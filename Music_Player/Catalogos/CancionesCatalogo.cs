@@ -35,5 +35,12 @@ namespace Music_Player.Catalogos
             context.Cancion.Add(cancion);
             context.SaveChanges();
         }
+
+
+        public void EliminarCancion(int id)
+        {
+            context.Cancion.Where(c => c.Id == id).ExecuteDelete();
+        }
+
     }
 }

@@ -9,5 +9,9 @@ namespace Music_Player.ViewModels
 {
     public class HomeViewModel : BaseViewModel
     {
+        public HomeViewModel()
+        {
+            GetCanciones();
+        }
     }
 }
