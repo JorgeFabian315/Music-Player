@@ -16,5 +16,6 @@ namespace Music_Player.Catalogos
         {
             return context.Usuario.Include(x => x.BitacoraUsuario).OrderBy(x => x.Nombre);
         }
+
     }
 }
