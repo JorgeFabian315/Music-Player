@@ -16,7 +16,6 @@ namespace Music_Player.Operaciones
 
         public BaseViewModel()
         {
-            GetCanciones();
             GetArtistas();
             GetGeneros();
 

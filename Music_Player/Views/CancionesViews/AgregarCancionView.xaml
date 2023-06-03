@@ -51,7 +51,7 @@
                          FontSize="20" />
             </WrapPanel>
             <TextBlock Text="Artista:"
-                       Margin="0,5"
+                       Margin="0,20,0,5"
                        FontSize="20" />
             <ComboBox materialDesign:HintAssist.Hint="Artista"
                       ItemsSource="{Binding ListaArtistas}"
@@ -70,7 +70,7 @@
                       SelectedValue="{Binding Cancion.IdGenero}"
                       ItemsSource="{Binding ListaGeneros}"
                       Margin="0,5" />
-            <TextBlock Text="errrorrr" Foreground="red" FontSize="15"
+            <TextBlock Text="{Binding Error}" Foreground="red" FontSize="15"
                        Margin="0 20 0 10"
                        HorizontalAlignment="Center"/>
             <WrapPanel HorizontalAlignment="Center" Margin="0 15">

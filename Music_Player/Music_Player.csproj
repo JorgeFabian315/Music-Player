@@ -29,7 +29,9 @@
 
   <ItemGroup>
     <Resource Include="Assets\Gif.gif" />
-    <Resource Include="Assets\musica.jpg" />
+    <Resource Include="Assets\musica.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\musicagif.gif" />
   </ItemGroup>
 
