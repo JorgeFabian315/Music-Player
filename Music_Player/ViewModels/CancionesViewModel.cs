@@ -80,7 +80,7 @@ namespace Music_Player.ViewModels
             if (vista == VistaPeliculas.VerPeliculasMegustan)
                 GetCancionesMeGusta();
 
-            TotalCancionesMegustas = ListaCancionesMegusta.Count;
+           TotalCancionesMegustas = ListaCancionesMegusta.Count;
 
             Actualizar();
         }

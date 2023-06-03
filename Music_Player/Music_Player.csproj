@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Gif.gif" />
     <None Remove="Assets\musica.jpg" />
   </ItemGroup>
 
@@ -21,9 +22,11 @@
     </PackageReference>
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
+    <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\Gif.gif" />
     <Resource Include="Assets\musica.jpg" />
   </ItemGroup>
 
