@@ -1,5 +1,7 @@
-﻿using Music_Player.Catalogos;
+﻿using GalaSoft.MvvmLight.Command;
+using Music_Player.Catalogos;
 using Music_Player.Models;
+using Music_Player.Views.Enum_CambiarVista;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,6 +9,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Music_Player.ViewModels
 {
@@ -17,11 +20,30 @@ namespace Music_Player.ViewModels
         public ObservableCollection<Usuario> ListaUsuarios { get; set; } = new ObservableCollection<Usuario>();
         public Usuario? usuario { get; set; }
         UsuariosCatalogo catalagousuario = new();
+        public EnumUsuarioVista Vista { get; set; }
+
+        public ICommand VerBitacorasCommand { get; set; }
+        public ICommand RegresarCommand { get; set; }
 
 
         public UsuariosViewModel()
         {
             GetUsuarios();
+           Vista = EnumUsuarioVista.VerUsuarios;
+           VerBitacorasCommand = new RelayCommand(VerBitacoras);
+            RegresarCommand = new RelayCommand(Regresar);
+        }
+
+        private void Regresar()
+        {
+            Vista = EnumUsuarioVista.VerUsuarios;
+            Actualizar();
+        }
+
+        private void VerBitacoras()
+        {
+            Vista = EnumUsuarioVista.VerBitacoras;
+            Actualizar();
         }
 
         public void GetUsuarios()
