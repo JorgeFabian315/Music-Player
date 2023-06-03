@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Music_Player.Views"
              xmlns:usuariosview="clr-namespace:Music_Player.Views.UsuariosView"
              mc:Ignorable="d" 
+             x:Name="user"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <ContentControl>

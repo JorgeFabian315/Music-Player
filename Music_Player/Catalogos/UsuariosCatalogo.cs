@@ -1,4 +1,5 @@
-﻿using Music_Player.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Music_Player.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,9 @@ namespace Music_Player.Catalogos
     {
         MusicPlayerContext context = new();
 
-
         public IEnumerable<Usuario> GetUsuarios()
         {
-            return context.Usuario.OrderBy(x => x.Nombre);
+            return context.Usuario.Include(x => x.BitacoraUsuario).OrderBy(x => x.Nombre);
         }
-
-
-
     }
 }
