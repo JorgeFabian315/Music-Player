@@ -103,6 +103,7 @@
   Width="50">
                                     <Button
      Command="{Binding Source={x:Reference user},Path=DataContext.VerBitacorasCommand}"
+    CommandParameter="{Binding .}"
     Style="{StaticResource MaterialDesignRaisedDarkButton}"
     Height="50"
     Margin="0,5,0,0"
@@ -125,6 +126,9 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
+
+
+          
         </ScrollViewer>
     </Grid>
 </UserControl>
