@@ -51,11 +51,10 @@
         <Grid Background="Transparent"
               Margin="10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width=".06*" />
-                <ColumnDefinition Width=".94*" />
+                <ColumnDefinition Width=".05*" />
+                <ColumnDefinition Width=".95*" />
             </Grid.ColumnDefinitions>
-            
-            <Border 
+            <Border Grid.Row="1"
                     Background="#fcfcff"
                     CornerRadius="10">
                 <Border.Resources>
@@ -80,7 +79,8 @@
             
             
             <StackPanel HorizontalAlignment="Left"
-                        Margin="4,0,0,0">
+                        Margin="4,0,0,0"
+                        Grid.Row="1">
                 <StackPanel.Resources>
                     <Style TargetType="{x:Type StackPanel}">
                         <Setter Property="Visibility"
@@ -148,13 +148,12 @@
                 </RadioButton>
                 <RadioButton Style="{StaticResource BotonesMenu}"
                              Margin="0,130,0,8"
-                             Name="btnCerrar"
-                             Click="btnCerrar_Click">
-                    <fa:ImageAwesome Icon="PowerOff"
-                                     Style="{StaticResource IconosMenu_fa}" />
+                             Command="{Binding CerrarSesionCommand}">
+                    <materialDesign:PackIcon Kind="Logout"
+                                             Style="{StaticResource IconosMenu_materialde}" />
                 </RadioButton>
             </StackPanel>
-            <ContentControl>
+            <ContentControl Grid.Row="1">
                 <ContentControl.Resources>
                     <Style TargetType="{x:Type ContentControl}">
                         <Setter Property="Grid.Column"

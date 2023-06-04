@@ -10,6 +10,7 @@ using GalaSoft.MvvmLight.Command;
 using Music_Player.Catalogos;
 using Music_Player.Models;
 using Music_Player.Operaciones;
+using Music_Player.Views;
 using Music_Player.Views.CancionesViews;
 using Music_Player.Views.Enum_CambiarVista;
 using Music_Player.Views.UsuariosView;
@@ -57,8 +58,11 @@ namespace Music_Player.ViewModels
         public ICommand NavegarUsuariosCommand => new RelayCommand(NavegarUsuarios);
         public ICommand NavegarArtistasCommand => new RelayCommand(NavegarArtistas);
         public ICommand IniciarSesionCommand => new RelayCommand(IniciarSesion);
+        public ICommand CerrarSesionCommand => new RelayCommand(CerrarSesion);
+
 
         #endregion
+        public string Error { get; private set; }
 
         private void IniciarSesion()
         {
@@ -76,6 +80,12 @@ namespace Music_Player.ViewModels
 
             }
 
+        }
+        private void CerrarSesion()
+        {
+            Usuario = new();
+            Error = "";
+            Actualizar();
         }
 
 
