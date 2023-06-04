@@ -1,4 +1,7 @@
-﻿using Music_Player.Catalogos;
+﻿using GalaSoft.MvvmLight.Command;
+using Microsoft.EntityFrameworkCore.Query;
+using Microsoft.EntityFrameworkCore.Update.Internal;
+using Music_Player.Catalogos;
 using Music_Player.Models;
 using Music_Player.Operaciones;
 using System;
@@ -8,15 +11,26 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Music_Player.ViewModels
 {
     public class ArtistasViewModel:BaseViewModel
     {
+        public ICommand  VerCancionesPorArtistaCommand { get; set; }
+         public ICommand AgregarArtistaCommand { get; set; }
+        public ICommand EditarArtistaCommand { get; set; }
+        public ICommand EliminarArtistaCommand { get; set; }
+
         Artista artista;
         public ArtistasViewModel()
         {
             ActualizarListaArtistas();
+            VerCancionesPorArtistaCommand = new RelayCommand(VerCancionesPorArtista);
+        }
+        public void VerCancionesPorArtista()
+        {
+
         }
         public void ActualizarListaArtistas()
         {
