@@ -16,6 +16,28 @@ namespace Music_Player.Catalogos
         {
             return context.Artista.OrderBy(artista => artista.Nombre);
         }
+        public Artista? GetArtista(int id)
+        {
+            return context.Artista.FirstOrDefault(x=>x.Id == id);
+        }
+        public void AgregarArtista(Artista a)
+        {
+            context.Add(a);
+            context.SaveChanges();
+            context.Entry(a).Reload();
+        }
+        public void EliminarArtista(Artista a)
+        {
+            context.Remove(a);
+            context.SaveChanges();
+            context.Entry(a).Reload();
+        }
+        public void EditarArtista(Artista a)
+        {
+            context.Remove(a);
+            context.SaveChanges();
+            context.Entry(a).Reload();
+        }
 
 
     }
