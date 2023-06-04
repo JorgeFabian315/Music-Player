@@ -25,8 +25,6 @@ namespace Music_Player.ViewModels
 
             MediadorViewModel.VistaActualizada += MediadorViewModel_VistaActualizada;
 
-            GetCanciones();
-
             Actualizar();
         }
 

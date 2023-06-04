@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using Music_Player.Catalogos;
+using Music_Player.Models;
 using Music_Player.Operaciones;
 using Music_Player.Views.CancionesViews;
 using Music_Player.Views.Enum_CambiarVista;
@@ -14,7 +16,7 @@ using Music_Player.Views.UsuariosView;
 
 namespace Music_Player.ViewModels
 {
-    public class MinViewModel : BaseViewModel
+    public class MinViewModel : INotifyPropertyChanged
     {
 
 
@@ -24,10 +26,16 @@ namespace Music_Player.ViewModels
         ArtistasViewModel artistasviewmodel = new();
         HomeViewModel homeviewmodel = new();
 
+        UsuariosCatalogo catalogo_us = new();
 
-        private object _miviewmodel;
+        private object? _miviewmodel;
 
-        public object ViewModelAactual
+
+        public Usuario Usuario { get; set; } = new();
+
+        public bool Conectado => Usuario.Id != 0;
+
+        public object? ViewModelAactual
         {
             get { return _miviewmodel; }
             set { _miviewmodel = value; }
@@ -37,7 +45,7 @@ namespace Music_Player.ViewModels
 
         public MinViewModel()
         {
-            NavegarHome();
+
         }
 
 
@@ -48,8 +56,27 @@ namespace Music_Player.ViewModels
         public ICommand NavegarCancionesMegustanCommand => new RelayCommand(NavegarCancionesMegustan);
         public ICommand NavegarUsuariosCommand => new RelayCommand(NavegarUsuarios);
         public ICommand NavegarArtistasCommand => new RelayCommand(NavegarArtistas);
+        public ICommand IniciarSesionCommand => new RelayCommand(IniciarSesion);
 
         #endregion
+
+        private void IniciarSesion()
+        {
+
+            var iniciosesion = catalogo_us.IniciarSesion(Usuario.CorreoElectronico, Usuario.Contraseña);
+
+
+            if(iniciosesion == 1)
+            {
+                Usuario = catalogo_us.GetUsuario(Usuario.CorreoElectronico);
+                NavegarHome();
+            }
+            else
+            {
+
+            }
+
+        }
 
 
         private void NavegarCancionesMegustan()
@@ -98,6 +125,11 @@ namespace Music_Player.ViewModels
 
             Actualizar();
         }
+        public event PropertyChangedEventHandler? PropertyChanged;
 
+        public void Actualizar(string? propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
