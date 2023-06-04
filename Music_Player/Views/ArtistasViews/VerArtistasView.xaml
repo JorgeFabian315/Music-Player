@@ -17,22 +17,34 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Margin="5,10"
+                        <Grid Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            
+                            <Grid.InputBindings>
+                                <MouseBinding  Gesture="LeftClick"
+                                               Command="{Binding
+                                    RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.VerCancionesGeneroCommand}"
+                                               CommandParameter="{Binding Id}" />
+                            </Grid.InputBindings>
+                            <StackPanel Margin="5,10"
                                     Background="Gray">
-                            <Border Height="200"
+                                <Border Height="200"
                                     Background="orange"
                                     Width="200"></Border>
-                            <TextBlock Text="{Binding Nombre}" />
-                        </StackPanel>
+                                <TextBlock Text="{Binding Nombre}" />
+                            </StackPanel>
+                        </Grid>
+                        
+                        
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-        <Button Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
-                Width="300"
-                Background="Green"
-                ToolTip="Resource name: MaterialDesignRaisedSecondaryLightButton"
-                Content="LIGHT"
-                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+        
     </Grid>
 </UserControl>
