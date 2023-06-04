@@ -12,7 +12,7 @@
              d:DesignHeight="450"
              d:DesignWidth="800">
     <Border Background="#2A2F4F" CornerRadius="10">
-        <ScrollViewer>
+        <ScrollViewer Margin="10">
             <ItemsControl ItemsSource="{Binding ListaUsuarios}"
                           HorizontalContentAlignment="Center"
                           HorizontalAlignment="Center">
