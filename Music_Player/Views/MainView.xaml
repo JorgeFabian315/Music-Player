@@ -99,18 +99,7 @@
                       Margin="0,8,0,5">
                     <Ellipse Width="40"
                              Height="40"
-                             Fill="{StaticResource color3}">
-                        <Ellipse.ToolTip>
-                            <ToolTip Placement="Right">
-                                <TextBlock Text="{Binding Usuario.Nombre}"
-                                           Foreground="{StaticResource color4}"
-                                           FontSize="15"
-                                           TextWrapping="Wrap"
-                                           FontWeight="Light"
-                                           Margin="0 0 0 20" />
-                            </ToolTip>
-                        </Ellipse.ToolTip>
-                    </Ellipse>
+                             Fill="{StaticResource color3}" />
                     <materialDesign:PackIcon Kind="Account"
                                              Width="30"
                                              Height="30"
@@ -119,7 +108,7 @@
                                              HorizontalAlignment="Center"
                                              Style="{StaticResource IconosMenu_materialde}" />
                 </Grid>
-                <TextBlock Text="Fernando"
+                <TextBlock Text="{Binding Usuario.Nombre}"
                            Foreground="{StaticResource color4}"
                            FontSize="13"
                            TextWrapping="Wrap"
