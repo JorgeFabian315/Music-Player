@@ -16,18 +16,18 @@ namespace Music_Player.ViewModels
         Artista artista;
         public ArtistasViewModel()
         {
-            ActualizarListaArtistas();
+            //ActualizarListaArtistas();
         }
-        public void ActualizarListaArtistas()
-        {
-            ListaArtistas.Clear();
-            foreach (var item in catalogo_Art.GetArtistas())
-            {
-                ListaArtistas.Add(item);
-            }
-            Actualizar();
+        //public void ActualizarListaArtistas()
+        //{
+        //    ListaArtistas.Clear();
+        //    foreach (var item in catalogo_Art.GetArtistas())
+        //    {
+        //        ListaArtistas.Add(item);
+        //    }
+        //    Actualizar();
             
-        }
+        //}
         public void AgregarArtista()
         {
 

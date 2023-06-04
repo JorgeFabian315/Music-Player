@@ -10,7 +10,9 @@ using GalaSoft.MvvmLight.Command;
 using Music_Player.Catalogos;
 using Music_Player.Models;
 using Music_Player.Operaciones;
+using Music_Player.Validaciones;
 using Music_Player.Views;
+using FluentValidation;
 using Music_Player.Views.CancionesViews;
 using Music_Player.Views.Enum_CambiarVista;
 using Music_Player.Views.UsuariosView;
@@ -62,24 +64,41 @@ namespace Music_Player.ViewModels
 
 
         #endregion
+        
         public string Error { get; private set; }
 
         private void IniciarSesion()
         {
+            Error = "";
 
-            var iniciosesion = catalogo_us.IniciarSesion(Usuario.CorreoElectronico, Usuario.Contraseña);
-
-
-            if(iniciosesion == 1)
+            if (Usuario != null)
             {
-                Usuario = catalogo_us.GetUsuario(Usuario.CorreoElectronico);
-                NavegarHome();
-            }
-            else
-            {
+                UsuarioValidator rules = new();
+                var result = rules.Validate(Usuario, options =>
+                {
+                    options.IncludeRuleSets("Correo", "Contraseña");
+                });
+                
+                if (result.IsValid)
+                {
+                    var iniciosesion = catalogo_us.IniciarSesion(Usuario.CorreoElectronico, Usuario.Contraseña);
 
+                    if (iniciosesion == 1)
+                    {
+                        Usuario = catalogo_us.GetUsuario(Usuario.CorreoElectronico) ?? new Usuario();
+                        NavegarHome();
+                    }
+                    else
+                        Error = (iniciosesion == 2) ? "La contraseña es incorrecta" : "El usuario no existe";
+                }
+                else
+                    foreach (var error in result.Errors)
+                    {
+                        Error = $"{Error} {error} {Environment.NewLine}";
+                    }
+           
+                Actualizar();
             }
-
         }
         private void CerrarSesion()
         {
@@ -91,9 +110,7 @@ namespace Music_Player.ViewModels
 
         private void NavegarCancionesMegustan()
         {
-            cancionesviewmodel.Vista = VistaPeliculas.VerPeliculasMegustan;
-
-            MediadorViewModel.ActualizarVista(cancionesviewmodel.Vista);
+            MediadorViewModel.ActualizarVista(VistaPeliculas.VerPeliculasMegustan);
 
             ViewModelAactual = cancionesviewmodel;
 
@@ -127,9 +144,7 @@ namespace Music_Player.ViewModels
 
         private void NavegarVerCanciones()
         {
-            cancionesviewmodel.Vista = VistaPeliculas.VerPeliculas;
-
-            MediadorViewModel.ActualizarVista(cancionesviewmodel.Vista);
+            MediadorViewModel.ActualizarVista(VistaPeliculas.VerPeliculas);
 
             ViewModelAactual = cancionesviewmodel;
 

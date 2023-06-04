@@ -41,7 +41,7 @@
                            FontSize="40"
                            FontWeight="Light"
                            HorizontalAlignment="Center">Iniciar sesión</TextBlock>
-                <WrapPanel Margin="5,10">
+                <WrapPanel Margin="5,10" HorizontalAlignment="Center">
                     <fa:ImageAwesome Icon="User"
                                      Margin="0,0,15,5"
                                      Foreground="{StaticResource color3}"
@@ -57,7 +57,8 @@
                              materialDesign:HintAssist.Hint="Correo electrónico:"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                 </WrapPanel>
-                <WrapPanel Margin="5,10">
+                <WrapPanel Margin="5,10"
+                           HorizontalAlignment="Center">
                     <fa:ImageAwesome Icon="Lock"
                                      Foreground="{StaticResource color3}"
                                      Margin="0,0,15,5"
