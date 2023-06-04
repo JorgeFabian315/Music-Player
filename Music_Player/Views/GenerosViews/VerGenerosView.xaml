@@ -30,11 +30,15 @@
                                     RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.VerCancionesGeneroCommand}"
                                                CommandParameter="{Binding Id}" />
                             </Grid.InputBindings>
-                            <Image Source="/Assets/musica.jpg"
-                                   Stretch="Fill" />
+                            <Border CornerRadius="10">
+                                <Border.Background>
+                                    <ImageBrush ImageSource="/Assets/musica.jpg" />
+                                </Border.Background>
+                            </Border>
                             <Border Height="200"
+                                    CornerRadius="10"
                                     Background="Black"
-                                    Width="200"  Opacity=".6"/>
+                                    Width="200"  Opacity=".3"/>
                             <StackPanel VerticalAlignment="Center"
                                         HorizontalAlignment="Center">
                                 <materialDesign:PackIcon Kind="GuitarAcoustic"

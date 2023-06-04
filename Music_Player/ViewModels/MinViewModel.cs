@@ -16,6 +16,7 @@ using FluentValidation;
 using Music_Player.Views.CancionesViews;
 using Music_Player.Views.Enum_CambiarVista;
 using Music_Player.Views.UsuariosView;
+using System.Threading;
 
 namespace Music_Player.ViewModels
 {
@@ -87,6 +88,16 @@ namespace Music_Player.ViewModels
                     {
                         Usuario = catalogo_us.GetUsuario(Usuario.CorreoElectronico) ?? new Usuario();
                         NavegarHome();
+                        if (Thread.CurrentPrincipal is not null)
+                        {
+                            // var nose = Thread.CurrentPrincipal.Identity.Name;
+                            if (Thread.CurrentPrincipal.IsInRole("Administrador"))
+                                AccionesAdministrador();
+                            if (Thread.CurrentPrincipal.IsInRole("Usuario VIP"))
+                                AccionesUsuarioVIP();
+                            if (Thread.CurrentPrincipal.IsInRole("Usuario"))
+                                AccionesUsuarioNormal();
+                        }
                     }
                     else
                         Error = (iniciosesion == 2) ? "La contraseña es incorrecta" : "El usuario no existe";
@@ -100,6 +111,19 @@ namespace Music_Player.ViewModels
                 Actualizar();
             }
         }
+
+        private void AccionesUsuarioNormal()
+        {
+        }
+
+        private void AccionesUsuarioVIP()
+        {
+        }
+
+        private void AccionesAdministrador()
+        {
+        }
+
         private void CerrarSesion()
         {
             Usuario = new();
