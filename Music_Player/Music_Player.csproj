@@ -24,11 +24,11 @@
     </PackageReference>
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
     <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\Gif.gif" />
     <Resource Include="Assets\musica.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

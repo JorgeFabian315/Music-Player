@@ -19,6 +19,7 @@ namespace Music_Player.ViewModels
 
 
 
+
         GenerosCatalogo cgenero = new();
 
         public Genero? Genero { get; set; }
