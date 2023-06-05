@@ -10,7 +10,7 @@
     
     <Border Background="#2A2F4F" CornerRadius="10">
 
-        <StackPanel Background="White" Margin="20">
+        <StackPanel Background="White" Margin="20" HorizontalAlignment="Center" Width="1000">
 
             <Button DockPanel.Dock="Top" Command="{Binding RegresarCommand}"
                 Height="40"
@@ -24,12 +24,35 @@
             </Button>
 
 
-            <TextBlock FontSize="40" FontFamily="arial" HorizontalAlignment="Center">Agregar Usuario</TextBlock>
-            <TextBlock Margin="70,10,0,10" FontSize="15" FontFamily="arial">Nombre del usuario:</TextBlock>
+            <!--<TextBlock FontSize="40" FontFamily="arial" HorizontalAlignment="Center">Agregar Usuario</TextBlock>-->
+            <TextBlock
+  Style="{StaticResource MaterialDesignHeadline1TextBlock}"
+  Text="Agregar Usuario" 
+  HorizontalAlignment="Center"
+  FontSize="40"
+                />
+
+            <TextBlock
+  Style="{StaticResource MaterialDesignHeadline1TextBlock}"
+  Text="Nombre del usuario:"
+  Margin="90,30,0,0"
+  FontSize="20"    
+            />
+
+            <TextBox Margin="10,0,0,0" Width="480"></TextBox>
+            <TextBlock
+  Style="{StaticResource MaterialDesignHeadline1TextBlock}"
+  Text="Correo Electronico:"
+  Margin="90,30,0,0"
+  FontSize="20"    
+            />
             <TextBox Margin="10,0,0,0" Width="450"></TextBox>
-            <TextBlock Margin="70,15,0,10" FontSize="15" FontFamily="arial">Correo Electronico:</TextBlock>
-            <TextBox Margin="10,0,0,0" Width="450"></TextBox>
-            <TextBlock Margin="70,15,0,0" FontSize="15" FontFamily="arial">Contraseña:</TextBlock>
+            <TextBlock
+  Style="{StaticResource MaterialDesignHeadline1TextBlock}"
+  Text="Contraseña:"
+  Margin="90,30,0,0"
+  FontSize="20"    
+            />
             <TextBox Visibility="Collapsed"
                              Name="txtPassword"
                      Padding="0"
