@@ -122,7 +122,7 @@
                     <Button
     Style="{StaticResource MaterialDesignRaisedButton}"
     Height="30"
-    Command="{Binding }"
+    Command="{Binding VerUsuariosAdminCommand}"
                         Padding="0"
                         
                         Background="#917FB3"
@@ -140,23 +140,23 @@
     Style="{StaticResource MaterialDesignRaisedButton}"
     Height="30"
                         Padding="0"
-                        
+                        Command="{Binding VerUsuariosVIPCommand}"
                         Background="#917FB3"
     materialDesign:ButtonAssist.CornerRadius="3"
     ToolTip="MaterialDesignRaisedButton with Round Corners"
     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
-
+    
                         <materialDesign:PackIcon Kind="Crown" Width="40" Height="30" HorizontalAlignment="Center" />
 
                     </Button>
                 </Grid>
-                <Grid
+                <Grid Margin="0,0,10,0"
   Width="40">
                     <Button
     Style="{StaticResource MaterialDesignRaisedButton}"
     Height="30"
                         Padding="0"
-                        
+                        Command="{Binding VerUsuariosNormalCommand}"
                         Background="#917FB3"
     materialDesign:ButtonAssist.CornerRadius="3"
     ToolTip="MaterialDesignRaisedButton with Round Corners"
@@ -166,6 +166,22 @@
 
                     </Button>
                 </Grid>
+                <Grid
+  Width="40">
+                    <Button
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    Height="30"
+                        Padding="0"
+                        Background="#917FB3"
+    materialDesign:ButtonAssist.CornerRadius="3"
+    ToolTip="MaterialDesignRaisedButton with Round Corners"
+    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+
+                        <materialDesign:PackIcon Kind="AccountPlus" Width="40" Height="30" HorizontalAlignment="Center" />
+
+                    </Button>
+                </Grid>
+
             </WrapPanel>
             <ScrollViewer>
                 <ItemsControl ItemsSource="{Binding ListaUsuarios}"
@@ -182,7 +198,7 @@
                                 Height="230"
                                 Width="210"
                                 CornerRadius="10"
-                                Margin="50,25,0,0">
+                                Margin="13,25,0,0">
                                 <StackPanel HorizontalAlignment="Center"
                                         Margin="0,20,0,0">
                                     <fa:ImageAwesome Icon="UserCircle"
@@ -244,8 +260,9 @@
                                             </WrapPanel>
                                         </StackPanel>
                                     </Border>
-                                    <Grid Width="50">
-                                        <Button Command="{Binding Source={x:Reference user},Path=DataContext.VerBitacorasCommand}"
+                                    <WrapPanel HorizontalAlignment="Center" Margin="0,0,0,0">
+                                        <Grid Width="50" Margin="0,0,10,0">
+                                            <Button Command="{Binding Source={x:Reference user},Path=DataContext.VerBitacorasCommand}"
                                             CommandParameter="{Binding .}"
                                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                             Height="50"
@@ -253,12 +270,29 @@
                                             materialDesign:ButtonAssist.CornerRadius="25"
                                             ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
                                             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
-                                            <materialDesign:PackIcon Kind="Book"
+                                                <materialDesign:PackIcon Kind="Book"
                                                                  Height="25"
                                                                  Width="25"
                                                                  HorizontalAlignment="Center" />
-                                        </Button>
-                                    </Grid>
+                                            </Button>
+                                        </Grid>
+                                        <Grid Width="50">
+                                            <Button
+                                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                            Height="50"
+                                            Margin="0,5,0,0"
+                                            materialDesign:ButtonAssist.CornerRadius="25"
+                                            ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                                                <materialDesign:PackIcon Kind="Delete"
+                                                                 Height="25"
+                                                                 Width="25"
+                                                                 HorizontalAlignment="Center" />
+                                            </Button>
+                                        </Grid>
+
+                                    </WrapPanel>
+                                   
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
