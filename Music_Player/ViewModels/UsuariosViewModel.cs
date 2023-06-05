@@ -18,22 +18,59 @@ namespace Music_Player.ViewModels
 
 
         public ObservableCollection<Usuario> ListaUsuarios { get; set; } = new ObservableCollection<Usuario>();
+        //public ObservableCollection<Usuario> ListaAdmin { get; set; } = new ObservableCollection<Usuario>();
         public Usuario? usuario { get; set; }
         UsuariosCatalogo catalagousuario = new();
         public EnumUsuarioVista Vista { get; set; }
 
         public ICommand VerBitacorasCommand { get; set; }
         public ICommand RegresarCommand { get; set; }
-
-
+        public ICommand VerUsuariosAdminCommand { get; set; }
+        public ICommand VerUsuariosNormalCommand { get; set; }
+        public ICommand VerUsuariosVIPCommand { get; set; }
 
 
         public UsuariosViewModel()
         {
             GetUsuarios();
-           Vista = EnumUsuarioVista.VerUsuarios;
-           VerBitacorasCommand = new RelayCommand<Usuario>(VerBitacoras);
+            VerAdmins();
+            Vista = EnumUsuarioVista.VerUsuarios;
+            VerBitacorasCommand = new RelayCommand<Usuario>(VerBitacoras);
             RegresarCommand = new RelayCommand(Regresar);
+            VerUsuariosAdminCommand = new RelayCommand(VerAdmins);
+            VerUsuariosVIPCommand = new RelayCommand(VerVIP);
+            VerUsuariosNormalCommand = new RelayCommand(VerUsuarios);
+        }
+
+        private void VerUsuarios()
+        {
+            ListaUsuarios.Clear();
+            foreach (var item in catalagousuario.GetUsuariosNormal())
+            {
+                ListaUsuarios.Add(item);
+            }
+            Actualizar();
+        }
+
+        private void VerVIP()
+        {
+            ListaUsuarios.Clear();
+            foreach (var item in catalagousuario.GetUsuariosVIP())
+            {
+                ListaUsuarios.Add(item);
+            }
+            Actualizar();
+        }
+
+        private void VerAdmins()
+        {
+            ListaUsuarios.Clear();
+            foreach (var item in catalagousuario.GetUsuariosAdmin())
+            {
+                ListaUsuarios.Add(item);
+            }
+            Actualizar();
+
         }
 
         private void Regresar()

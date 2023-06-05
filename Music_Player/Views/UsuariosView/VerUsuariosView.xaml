@@ -113,11 +113,139 @@
     </Border>-->
 
 
-    <Border  Background="#2A2F4F" CornerRadius="10">
+    <Border Background="#2A2F4F" CornerRadius="10">
 
         <DockPanel>
-            <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Center">
-                <Button Command="{Binding Source={x:Reference user},Path=DataContext.VerBitacorasCommand}"
+            <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="0,15,0,0">
+                <Grid Margin="0,0,10,0"
+  Width="40">
+                    <Button
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    Height="30"
+    Command="{Binding }"
+                        Padding="0"
+                        
+                        Background="#917FB3"
+    materialDesign:ButtonAssist.CornerRadius="3"
+    ToolTip="MaterialDesignRaisedButton with Round Corners"
+    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+
+                        <materialDesign:PackIcon Kind="AccountTie" Width="40" Height="30" HorizontalAlignment="Center" />
+
+                    </Button>
+                </Grid>
+                <Grid Margin="0,0,10,0"
+  Width="40">
+                    <Button
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    Height="30"
+                        Padding="0"
+                        
+                        Background="#917FB3"
+    materialDesign:ButtonAssist.CornerRadius="3"
+    ToolTip="MaterialDesignRaisedButton with Round Corners"
+    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+
+                        <materialDesign:PackIcon Kind="Crown" Width="40" Height="30" HorizontalAlignment="Center" />
+
+                    </Button>
+                </Grid>
+                <Grid
+  Width="40">
+                    <Button
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    Height="30"
+                        Padding="0"
+                        
+                        Background="#917FB3"
+    materialDesign:ButtonAssist.CornerRadius="3"
+    ToolTip="MaterialDesignRaisedButton with Round Corners"
+    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+
+                        <materialDesign:PackIcon Kind="Account" Width="40" Height="30" HorizontalAlignment="Center" />
+
+                    </Button>
+                </Grid>
+            </WrapPanel>
+            <ScrollViewer>
+                <ItemsControl ItemsSource="{Binding ListaUsuarios}"
+                          HorizontalContentAlignment="Center"
+                          HorizontalAlignment="Center">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="{StaticResource color3}"
+                                Height="230"
+                                Width="210"
+                                CornerRadius="10"
+                                Margin="50,25,0,0">
+                                <StackPanel HorizontalAlignment="Center"
+                                        Margin="0,20,0,0">
+                                    <fa:ImageAwesome Icon="UserCircle"
+                                                 Width="40"
+                                                 Margin="10"
+                                                 Foreground="White"></fa:ImageAwesome>
+                                    <Border Background="#2A2F4F"
+                                        Height="auto"
+                                        Width="auto"
+                                        CornerRadius="10"
+                                        Padding="8">
+                                        <StackPanel VerticalAlignment="Center"
+                                                Margin="0,0,0,5">
+                                            <WrapPanel VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center">
+                                                <materialDesign:PackIcon Kind="Pencil"
+                                                                     Foreground="White"
+                                                                     Height="15"
+                                                                     Width="15"
+                                                                     Margin="0,5,0,0"
+                                                                     HorizontalAlignment="Center"
+                                                                     VerticalAlignment="Center" />
+                                                <TextBlock Height="20"
+                                                       HorizontalAlignment="Center"
+                                                       Margin="0,10,0,0"
+                                                       FontSize="15"
+                                                       VerticalAlignment="Center"
+                                                       Foreground="white">:<Run Text=" "></Run><Run Text="{Binding Nombre}"></Run></TextBlock>
+                                            </WrapPanel>
+                                            <WrapPanel VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center">
+                                                <materialDesign:PackIcon Kind="Email"
+                                                                     Foreground="White"
+                                                                     Height="15"
+                                                                     Width="15"
+                                                                     Margin="0,0,0,0"
+                                                                     HorizontalAlignment="Center"
+                                                                     VerticalAlignment="Center" />
+                                                <TextBlock Height="20"
+                                                       HorizontalAlignment="Center"
+                                                       FontSize="15"
+                                                       VerticalAlignment="Center"
+                                                       Foreground="white">:<Run Text=" "></Run><Run Text="{Binding CorreoElectronico}"></Run></TextBlock>
+                                            </WrapPanel>
+                                            <WrapPanel HorizontalAlignment="Center">
+                                                <materialDesign:PackIcon Kind="CardAccountDetails"
+                                                                     Foreground="White"
+                                                                     Height="15"
+                                                                     Width="15"
+                                                                     Margin="0,0,0,0"
+                                                                     HorizontalAlignment="Center"
+                                                                     VerticalAlignment="Center" />
+                                                <TextBlock Text="   "></TextBlock>
+                                                <TextBlock Text="{Binding IdRolNavigation.Nombre}"
+                                                       HorizontalAlignment="Center"
+                                                       FontSize="15"
+                                                       VerticalAlignment="Center"
+                                                       Foreground="white"></TextBlock>
+                                            </WrapPanel>
+                                        </StackPanel>
+                                    </Border>
+                                    <Grid Width="50">
+                                        <Button Command="{Binding Source={x:Reference user},Path=DataContext.VerBitacorasCommand}"
                                             CommandParameter="{Binding .}"
                                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                             Height="50"
@@ -125,19 +253,21 @@
                                             materialDesign:ButtonAssist.CornerRadius="25"
                                             ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
                                             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
-                    <materialDesign:PackIcon Kind="Book"
-                                              Background="#917FB3"
+                                            <materialDesign:PackIcon Kind="Book"
                                                                  Height="25"
                                                                  Width="25"
                                                                  HorizontalAlignment="Center" />
-                </Button>
-            </WrapPanel>
-            <ScrollViewer>
-                
+                                        </Button>
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </ScrollViewer>
         </DockPanel>
         
     </Border>
-    
-    
+
+  
 </UserControl>

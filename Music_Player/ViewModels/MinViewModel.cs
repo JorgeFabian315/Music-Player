@@ -37,7 +37,8 @@ namespace Music_Player.ViewModels
 
         public Usuario Usuario { get; set; } = new();
 
-        public bool Conectado => Usuario.Id != 0;
+        //public bool Conectado => Usuario.Id != 0;
+        public bool Conectado => true;
 
         public object? ViewModelAactual
         {

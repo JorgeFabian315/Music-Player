@@ -75,6 +75,14 @@ namespace Music_Player.Catalogos
             return context.Usuario.Where(x => x.IdRolNavigation.Nombre == "Administrador");
         }
 
+        public IEnumerable<Usuario> GetUsuariosVIP()
+        {
+            return context.Usuario.Where(x => x.IdRolNavigation.Nombre == "Usuario VIP");
+        }
 
+        public IEnumerable<Usuario> GetUsuariosNormal()
+        {
+            return context.Usuario.Where(x => x.IdRolNavigation.Nombre == "Usuario");
+        }
     }
 }
