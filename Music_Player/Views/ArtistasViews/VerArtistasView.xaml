@@ -16,7 +16,7 @@
             <RowDefinition Height=".82*"></RowDefinition>
         </Grid.RowDefinitions>
         <Button Grid.Column="1">Ver artistas mas populares</Button>
-        <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" >
+        <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
             <ItemsControl ItemsSource="{Binding ListaArtistas}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -39,13 +39,24 @@
                                     RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.VerCancionesGeneroCommand}"
                                                CommandParameter="{Binding Id}" />
                             </Grid.InputBindings>
-                            <StackPanel Margin="5,10"
+                            <Grid Margin="5,10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="180"/>
+                                    <RowDefinition Height="40"/>
+                                </Grid.RowDefinitions>
+                                <Border Margin="10" CornerRadius="10" Width="200"  Background="Gray" Grid.Row="0"></Border>
+                                <Border Width="200" CornerRadius="10" Background="{StaticResource color3}" Grid.Row="1">
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"
+                                              Foreground="White" Text="{Binding Nombre}" />
+                                </Border>
+                            </Grid>
+                            <!--<StackPanel Margin="5,10"
                                     Background="Gray">
                                 <Border Height="200"
                                     Background="orange"
                                     Width="200"></Border>
-                                <TextBlock Text="{Binding Nombre}" />
-                            </StackPanel>
+                                
+                            </StackPanel>-->
                         </Grid>
                         
                         
