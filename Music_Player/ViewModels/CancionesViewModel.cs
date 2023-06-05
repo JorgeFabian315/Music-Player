@@ -48,13 +48,10 @@ namespace Music_Player.ViewModels
 
         private void EliminarCancion(int id)
         {
-<<<<<<< HEAD
-           if(id > 0)
-           {
-=======
+         
+
             if (id > 0)
             {
->>>>>>> ae2f24f957a7edb18283243d49dcc7b4e861a19b
                 catalogo_can.EliminarCancion(id);
                 GetCanciones();
            }
