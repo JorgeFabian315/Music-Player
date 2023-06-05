@@ -5,18 +5,81 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Music_Player.Views.UsuariosView"
              mc:Ignorable="d" 
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DesignHeight="450" d:DesignWidth="800">
     
     <Border Background="#2A2F4F" CornerRadius="10">
 
-        <StackPanel>
-            <TextBlock>Nombre del usuario:</TextBlock>
-            <TextBox></TextBox>
-            <TextBlock>Correo Electronico:</TextBlock>
-            <TextBox></TextBox>
-            <TextBlock></TextBlock>
-            
+        <StackPanel Background="White" Margin="20">
+
+            <Button DockPanel.Dock="Top" Command="{Binding RegresarCommand}"
+                Height="40"
+                Width="40"
+                Padding="0"
+                HorizontalAlignment="Left"
+                Margin="10,10,0,0">
+                <materialDesign:PackIcon Kind="ArrowBack"
+                                     Width="30"
+                                     Height="30" />
+            </Button>
+
+
+            <TextBlock FontSize="40" FontFamily="arial" HorizontalAlignment="Center">Agregar Usuario</TextBlock>
+            <TextBlock Margin="70,10,0,10" FontSize="15" FontFamily="arial">Nombre del usuario:</TextBlock>
+            <TextBox Margin="10,0,0,0" Width="450"></TextBox>
+            <TextBlock Margin="70,15,0,10" FontSize="15" FontFamily="arial">Correo Electronico:</TextBlock>
+            <TextBox Margin="10,0,0,0" Width="450"></TextBox>
+            <TextBlock Margin="70,15,0,0" FontSize="15" FontFamily="arial">Contraseña:</TextBlock>
+            <TextBox Visibility="Collapsed"
+                             Name="txtPassword"
+                     Padding="0"
+                             Text="{Binding Usuario.Contraseña, UpdateSourceTrigger= PropertyChanged}" />
+            <PasswordBox Name="pwb1"
+                        HorizontalAlignment="Left"
+                                 FontSize="20"
+                                 Width="450"
+                         Margin="160,0,0,0"
+                                 LostFocus="pwb1_LostFocus"
+                         Loaded="pwb1_Loaded"
+                         Padding="0"
+                                 materialDesign:TextFieldAssist.HasClearButton="True"
+                                 materialDesign:HintAssist.FloatingOffset="0,-25"
+                                 Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                                ></PasswordBox>
+
+
+            <WrapPanel HorizontalAlignment="Center" Margin="0,45,0,0">
+                <Grid Margin="0,0,30,0"
+  Width="120">
+                    <Button
+    Style="{StaticResource MaterialDesignRaisedLightButton}"
+    Height="40"
+                        Foreground="White"
+                        FontWeight="DemiBold"
+    materialDesign:ButtonAssist.CornerRadius="5"
+    ToolTip="MaterialDesignRaisedLightButton with Round Corners"
+    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                        <TextBlock
+      Text="Agregar" />
+                    </Button>
+                </Grid>
+                <Grid
+  Width="120">
+                    <Button
+    Style="{StaticResource MaterialDesignRaisedLightButton}"
+    Height="40"
+                        Foreground="White"
+                        FontWeight="DemiBold"
+    materialDesign:ButtonAssist.CornerRadius="5"
+    ToolTip="MaterialDesignRaisedLightButton with Round Corners"
+    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                        <TextBlock
+      Text="Cancelar" />
+                    </Button>
+                </Grid>
+            </WrapPanel>
+
         </StackPanel>
-        
+
     </Border>
 </UserControl>

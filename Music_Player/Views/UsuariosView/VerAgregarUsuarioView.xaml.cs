@@ -24,5 +24,16 @@ namespace Music_Player.Views.UsuariosView
         {
             InitializeComponent();
         }
+
+        private void pwb1_Loaded(object sender, RoutedEventArgs e)
+        {
+            pwb1.Clear();
+        }
+
+        private void pwb1_LostFocus(object sender, RoutedEventArgs e)
+        {
+            txtPassword.Text = "";
+            txtPassword.Text = pwb1.Password;
+        }
     }
 }

@@ -28,6 +28,8 @@ namespace Music_Player.ViewModels
         public ICommand VerUsuariosAdminCommand { get; set; }
         public ICommand VerUsuariosNormalCommand { get; set; }
         public ICommand VerUsuariosVIPCommand { get; set; }
+        public ICommand VerAgregarUsuarioCommand { get; set; }
+        public ICommand AgregarUsuarioCommand { get; set; }
 
 
         public UsuariosViewModel()
@@ -40,6 +42,23 @@ namespace Music_Player.ViewModels
             VerUsuariosAdminCommand = new RelayCommand(VerAdmins);
             VerUsuariosVIPCommand = new RelayCommand(VerVIP);
             VerUsuariosNormalCommand = new RelayCommand(VerUsuarios);
+            VerAgregarUsuarioCommand = new RelayCommand(VerAgregar);
+            AgregarUsuarioCommand = new RelayCommand(Agregar);
+        }
+
+        private void VerAgregar()
+        {
+            Vista = EnumUsuarioVista.VerAgregar;
+            Actualizar();
+        }
+
+        private void Agregar()
+        {
+            if(usuario != null)
+            {
+                catalagousuario.Agregar(usuario);
+                Actualizar();
+            }
         }
 
         private void VerUsuarios()

@@ -171,6 +171,7 @@
                     <Button
     Style="{StaticResource MaterialDesignRaisedButton}"
     Height="30"
+                        Command="{Binding VerAgregarUsuarioCommand}"
                         Padding="0"
                         Background="#917FB3"
     materialDesign:ButtonAssist.CornerRadius="3"

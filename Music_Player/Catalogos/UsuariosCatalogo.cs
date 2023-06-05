@@ -70,6 +70,12 @@ namespace Music_Player.Catalogos
 
         }
 
+        public void Agregar(Usuario u)
+        {
+            context.Usuario.Add(u);
+            context.SaveChanges();
+        }
+
         public IEnumerable<Usuario> GetUsuariosAdmin()
         {
             return context.Usuario.Where(x => x.IdRolNavigation.Nombre == "Administrador");

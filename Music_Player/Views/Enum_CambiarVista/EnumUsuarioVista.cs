@@ -10,6 +10,7 @@ namespace Music_Player.Views.Enum_CambiarVista
     public enum EnumUsuarioVista
     {
         VerUsuarios,
-        VerBitacoras
+        VerBitacoras,
+        VerAgregar
     }
 }

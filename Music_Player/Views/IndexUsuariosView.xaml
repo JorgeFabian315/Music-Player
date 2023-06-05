@@ -35,9 +35,7 @@
     <UserControl.Resources>
         <usuariosview:VerBitacorasUsuariosView x:Key="VerBitacoras"></usuariosview:VerBitacorasUsuariosView>
         <usuariosview:VerUsuariosView x:Key="VerUsuarios"></usuariosview:VerUsuariosView>
-        <!--<views:AgregarEmpleadoView x:Key="agregarempleadoview"></views:AgregarEmpleadoView>
-        <views:EliminarEmpleadoView x:Key="eliminarempleadoview"></views:EliminarEmpleadoView>
-        <views:EditarEmpleadoView x:Key="editarempleadoview"></views:EditarEmpleadoView>-->
+        <usuariosview:VerAgregarUsuarioView x:Key="VerAgregar"></usuariosview:VerAgregarUsuarioView>
     </UserControl.Resources>
 
 
@@ -52,6 +50,9 @@
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Vista}" Value="{x:Static vistas:EnumUsuarioVista.VerUsuarios}">
                         <Setter Property="Content" Value="{StaticResource VerUsuarios}"></Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Vista}" Value="{x:Static vistas:EnumUsuarioVista.VerAgregar}">
+                        <Setter Property="Content" Value="{StaticResource VerAgregar}"></Setter>
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
