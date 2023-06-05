@@ -29,7 +29,11 @@ public partial class MusicPlayerContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+<<<<<<< HEAD
         => optionsBuilder.UseMySql("server=localhost;user=root;password=root;database=music_player", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.28-mysql"));
+=======
+        => optionsBuilder.UseMySql("server=localhost;database=Music_Player;password=root;user=root", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.32-mysql"));
+>>>>>>> ae2f24f957a7edb18283243d49dcc7b4e861a19b
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

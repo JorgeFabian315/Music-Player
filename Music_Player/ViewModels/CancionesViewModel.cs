@@ -14,38 +14,47 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Threading;
 
 namespace Music_Player.ViewModels
 {
     public class CancionesViewModel : BaseViewModel
     {
+        public ObservableCollection<Cancion> ListaCanciones2 { get; set; } = new();
 
         public CancionesViewModel()
         {
 
             MediadorViewModel.VistaActualizada += MediadorViewModel_VistaActualizada;
 
+            GetCancionesBusqueda();
+
             Actualizar();
         }
 
-       public Cancion Cancion { get; set; } = new();
-
+        public Cancion Cancion { get; set; } = new();
         public int Minutos { get; set; }
         public int Segundos { get; set; }
         public VistaPeliculas Vista { get; set; }
         public string Error { get; set; } = "";
-        public int TotalCancionesMegustas { get; set; } 
+        public int TotalCancionesMegustas { get; set; }
 
         public ICommand VerCancionCommand => new RelayCommand<int>(VerCancion);
         public ICommand RegresarCommand => new RelayCommand(Regresar);
         public ICommand VerAgregarCancionCommand => new RelayCommand(VerAgregarCancion);
         public ICommand AgregarCancionCommand => new RelayCommand(AgregarCancion);
         public ICommand EliminarCancionCommand => new RelayCommand<int>(EliminarCancion);
+        public ICommand BuscarCancionCommand => new RelayCommand<string>(GetCancionesBusqueda);
 
         private void EliminarCancion(int id)
         {
+<<<<<<< HEAD
            if(id > 0)
            {
+=======
+            if (id > 0)
+            {
+>>>>>>> ae2f24f957a7edb18283243d49dcc7b4e861a19b
                 catalogo_can.EliminarCancion(id);
                 GetCanciones();
            }
@@ -70,6 +79,7 @@ namespace Music_Player.ViewModels
                 {
                     catalogo_can.AgregarCancion(Cancion);
                     GetCanciones();
+                    GetCancionesBusqueda();
                     Regresar();
                 }
                 else
@@ -114,15 +124,24 @@ namespace Music_Player.ViewModels
             if (vista == VistaPeliculas.VerPeliculasMegustan)
                 GetCancionesMeGusta();
 
-           TotalCancionesMegustas = ListaCancionesMegusta.Count;
+            TotalCancionesMegustas = ListaCancionesMegusta.Count;
 
             Actualizar();
         }
 
 
+        private void GetCancionesBusqueda(string titulo = "")
+        {
+            ListaCanciones2.Clear();
+            var lis = ListaCanciones.Where(x => x.Titulo.ToLower().Contains(titulo.ToLower()));
+            foreach (var item in lis)
+            {
+                ListaCanciones2.Add(item);
+            }
+            Actualizar();
+        } 
 
-     
 
-     
+
     }
 }

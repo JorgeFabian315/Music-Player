@@ -25,13 +25,19 @@ namespace Music_Player.Operaciones
         public CancionesCatalogo  catalogo_can = new();
         public GenerosCatalogo  catalogo_gen = new();
         public ArtistasCatalogo catalogo_Art = new();
-        
-        public event PropertyChangedEventHandler? PropertyChanged;
+        UsuariosCatalogo catalogo_us = new();
+
+
 
         public  ObservableCollection<Cancion> ListaCanciones { get; set; } = new();
         public ObservableCollection<Cancion> ListaCancionesMegusta { get; set; } = new();
         public ObservableCollection<Genero> ListaGeneros { get; set; } = new();
         public ObservableCollection<Artista> ListaArtistas { get; set; } = new();
+
+
+
+
+
 
 
         public void GetCanciones()
@@ -44,6 +50,7 @@ namespace Music_Player.Operaciones
             }
             Actualizar();
         }
+        
         public void GetCancionesMeGusta()
         {
             ListaCancionesMegusta = new();
@@ -55,10 +62,7 @@ namespace Music_Player.Operaciones
             }
             Actualizar();
         }
-        public void Actualizar(string? propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        
         public void GetGeneros()
         {
             ListaGeneros.Clear();
@@ -70,6 +74,7 @@ namespace Music_Player.Operaciones
 
             Actualizar();
         }
+        
         public void GetArtistas()
         {
             ListaArtistas = new();
@@ -78,6 +83,15 @@ namespace Music_Player.Operaciones
                 ListaArtistas.Add(item);
             }
             Actualizar();
+        }
+
+
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        public void Actualizar(string? propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
     }
