@@ -22,7 +22,6 @@ namespace Music_Player.Operaciones
 
         }
 
-
         public CancionesCatalogo  catalogo_can = new();
         public GenerosCatalogo  catalogo_gen = new();
         public ArtistasCatalogo catalogo_Art = new();

@@ -11,7 +11,7 @@
              x:Name="user"
              d:DesignHeight="450"
              d:DesignWidth="800">
-    <Border Background="#2A2F4F" CornerRadius="10">
+    <!--<Border Background="#2A2F4F" CornerRadius="10">
         <ScrollViewer Margin="10">
             <ItemsControl ItemsSource="{Binding ListaUsuarios}"
                           HorizontalContentAlignment="Center"
@@ -110,5 +110,34 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
+    </Border>-->
+
+
+    <Border  Background="#2A2F4F" CornerRadius="10">
+
+        <DockPanel>
+            <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Center">
+                <Button Command="{Binding Source={x:Reference user},Path=DataContext.VerBitacorasCommand}"
+                                            CommandParameter="{Binding .}"
+                                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                            Height="50"
+                                            Margin="0,5,0,0"
+                                            materialDesign:ButtonAssist.CornerRadius="25"
+                                            ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                    <materialDesign:PackIcon Kind="Book"
+                                              Background="#917FB3"
+                                                                 Height="25"
+                                                                 Width="25"
+                                                                 HorizontalAlignment="Center" />
+                </Button>
+            </WrapPanel>
+            <ScrollViewer>
+                
+            </ScrollViewer>
+        </DockPanel>
+        
     </Border>
+    
+    
 </UserControl>

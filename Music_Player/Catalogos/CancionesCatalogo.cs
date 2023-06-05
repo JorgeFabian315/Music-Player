@@ -15,9 +15,9 @@ namespace Music_Player.Catalogos
 
         public IEnumerable<Cancion> GetCanciones()
         {
-           return context.Cancion.Include(c => c.IdArtistaNavigation)
-                .Include(c => c.IdGeneroNavigation)
-                .OrderBy(can => can.Titulo);
+            return context.Cancion.Include(c => c.IdArtistaNavigation)
+                 .Include(c => c.IdGeneroNavigation)
+                 .OrderBy(can => can.Titulo);
         }
 
 
@@ -41,6 +41,13 @@ namespace Music_Player.Catalogos
         {
             context.Cancion.Where(c => c.Id == id).ExecuteDelete();
         }
+
+
+        //public void EliminarCancion(Cancion c)
+        //{
+        //    context.Database.ExecuteSqlRaw($"CALL sp_EliminarCancion ({c.Id})");
+        //    context.SaveChanges();
+        //}
 
     }
 }

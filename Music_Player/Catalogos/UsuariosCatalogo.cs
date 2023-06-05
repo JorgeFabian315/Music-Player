@@ -42,5 +42,12 @@ namespace Music_Player.Catalogos
             return context.Usuario.Include(d => d.BitacoraUsuario).
                 Include(x => x.IdRolNavigation).FirstOrDefault(c => c.CorreoElectronico == correo);
         }
+
+        public IEnumerable<Usuario> GetUsuariosAdmin()
+        {
+            return context.Usuario.Where(x => x.IdRolNavigation.Nombre == "Administrador");
+        }
+
+
     }
 }

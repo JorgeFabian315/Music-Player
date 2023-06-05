@@ -45,10 +45,10 @@ namespace Music_Player.ViewModels
         private void EliminarCancion(int id)
         {
            if(id > 0)
-            {
+           {
                 catalogo_can.EliminarCancion(id);
                 GetCanciones();
-            }
+           }
         }
 
         private void AgregarCancion()
