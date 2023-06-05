@@ -9,6 +9,8 @@
 
   <ItemGroup>
     <None Remove="Assets\Gif.gif" />
+    <None Remove="Assets\login.jpg" />
+    <None Remove="Assets\logo.png" />
     <None Remove="Assets\musica.jpg" />
     <None Remove="Assets\musicagif.gif" />
   </ItemGroup>
@@ -29,6 +31,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\login.jpg" />
+    <Resource Include="Assets\logo.png" />
     <Resource Include="Assets\musica.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

@@ -35,7 +35,7 @@ namespace Music_Player.Validaciones
             RuleFor(c => c.IdUsuario)
                 .GreaterThan(0);
             RuleFor(c => c.Duracion)
-                .Must(c => regex.IsMatch(c))
+                .Must(c => !regex.IsMatch(c))
                 .WithMessage("Error en la duración");
         }
 

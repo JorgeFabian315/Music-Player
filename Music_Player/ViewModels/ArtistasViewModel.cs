@@ -25,23 +25,18 @@ namespace Music_Player.ViewModels
         Artista artista;
         public ArtistasViewModel()
         {
-            ActualizarListaArtistas();
-            VerCancionesPorArtistaCommand = new RelayCommand(VerCancionesPorArtista);
+            //ActualizarListaArtistas();
         }
-        public void VerCancionesPorArtista()
-        {
-
-        }
-        public void ActualizarListaArtistas()
-        {
-            ListaArtistas.Clear();
-            foreach (var item in catalogo_Art.GetArtistas())
-            {
-                ListaArtistas.Add(item);
-            }
-            Actualizar();
+        //public void ActualizarListaArtistas()
+        //{
+        //    ListaArtistas.Clear();
+        //    foreach (var item in catalogo_Art.GetArtistas())
+        //    {
+        //        ListaArtistas.Add(item);
+        //    }
+        //    Actualizar();
             
-        }
+        //}
         public void AgregarArtista()
         {
 

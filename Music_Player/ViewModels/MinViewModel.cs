@@ -10,9 +10,13 @@ using GalaSoft.MvvmLight.Command;
 using Music_Player.Catalogos;
 using Music_Player.Models;
 using Music_Player.Operaciones;
+using Music_Player.Validaciones;
+using Music_Player.Views;
+using FluentValidation;
 using Music_Player.Views.CancionesViews;
 using Music_Player.Views.Enum_CambiarVista;
 using Music_Player.Views.UsuariosView;
+using System.Threading;
 
 namespace Music_Player.ViewModels
 {
@@ -57,33 +61,80 @@ namespace Music_Player.ViewModels
         public ICommand NavegarUsuariosCommand => new RelayCommand(NavegarUsuarios);
         public ICommand NavegarArtistasCommand => new RelayCommand(NavegarArtistas);
         public ICommand IniciarSesionCommand => new RelayCommand(IniciarSesion);
+        public ICommand CerrarSesionCommand => new RelayCommand(CerrarSesion);
+
 
         #endregion
+        
+        public string Error { get; private set; }
 
         private void IniciarSesion()
         {
+            Error = "";
 
-            var iniciosesion = catalogo_us.IniciarSesion(Usuario.CorreoElectronico, Usuario.Contraseña);
-
-
-            if(iniciosesion == 1)
+            if (Usuario != null)
             {
-                Usuario = catalogo_us.GetUsuario(Usuario.CorreoElectronico);
-                NavegarHome();
-            }
-            else
-            {
+                UsuarioValidator rules = new();
+                var result = rules.Validate(Usuario, options =>
+                {
+                    options.IncludeRuleSets("Correo", "Contraseña");
+                });
+                
+                if (result.IsValid)
+                {
+                    var iniciosesion = catalogo_us.IniciarSesion(Usuario.CorreoElectronico, Usuario.Contraseña);
 
+                    if (iniciosesion == 1)
+                    {
+                        Usuario = catalogo_us.GetUsuario(Usuario.CorreoElectronico) ?? new Usuario();
+                        NavegarHome();
+                        if (Thread.CurrentPrincipal is not null)
+                        {
+                            // var nose = Thread.CurrentPrincipal.Identity.Name;
+                            if (Thread.CurrentPrincipal.IsInRole("Administrador"))
+                                AccionesAdministrador();
+                            if (Thread.CurrentPrincipal.IsInRole("Usuario VIP"))
+                                AccionesUsuarioVIP();
+                            if (Thread.CurrentPrincipal.IsInRole("Usuario"))
+                                AccionesUsuarioNormal();
+                        }
+                    }
+                    else
+                        Error = (iniciosesion == 2) ? "La contraseña es incorrecta" : "El usuario no existe";
+                }
+                else
+                    foreach (var error in result.Errors)
+                    {
+                        Error = $"{Error} {error} {Environment.NewLine}";
+                    }
+           
+                Actualizar();
             }
+        }
 
+        private void AccionesUsuarioNormal()
+        {
+        }
+
+        private void AccionesUsuarioVIP()
+        {
+        }
+
+        private void AccionesAdministrador()
+        {
+        }
+
+        private void CerrarSesion()
+        {
+            Usuario = new();
+            Error = "";
+            Actualizar();
         }
 
 
         private void NavegarCancionesMegustan()
         {
-            cancionesviewmodel.Vista = VistaPeliculas.VerPeliculasMegustan;
-
-            MediadorViewModel.ActualizarVista(cancionesviewmodel.Vista);
+            MediadorViewModel.ActualizarVista(VistaPeliculas.VerPeliculasMegustan);
 
             ViewModelAactual = cancionesviewmodel;
 
@@ -117,9 +168,7 @@ namespace Music_Player.ViewModels
 
         private void NavegarVerCanciones()
         {
-            cancionesviewmodel.Vista = VistaPeliculas.VerPeliculas;
-
-            MediadorViewModel.ActualizarVista(cancionesviewmodel.Vista);
+            MediadorViewModel.ActualizarVista(VistaPeliculas.VerPeliculas);
 
             ViewModelAactual = cancionesviewmodel;
 
