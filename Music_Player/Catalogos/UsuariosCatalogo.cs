@@ -26,6 +26,11 @@ namespace Music_Player.Catalogos
             return context.Usuario.Include(x => x.BitacoraUsuario).FirstOrDefault(x => x.CorreoElectronico == correo);
         }
 
+
+        public Usuario? GetIdUsuario(int id)
+        {
+            return context.Usuario.Find(id);
+        }
         public Usuario? GetUsuario(string correo)
         {
             return context.Usuario.Include(d => d.BitacoraUsuario).
@@ -73,6 +78,12 @@ namespace Music_Player.Catalogos
         public void Agregar(Usuario u)
         {
             context.Usuario.Add(u);
+            context.SaveChanges();
+        }
+
+        public void Eliminar(Usuario u)
+        {
+            context.Usuario.Remove(u);
             context.SaveChanges();
         }
 

@@ -197,7 +197,7 @@
                         <DataTemplate>
                             <Border Background="{StaticResource color3}"
                                 Height="230"
-                                Width="210"
+                                Width="255"
                                 CornerRadius="10"
                                 Margin="13,25,0,0">
                                 <StackPanel HorizontalAlignment="Center"
@@ -281,6 +281,8 @@
                                             <Button
                                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                             Height="50"
+                                            Command="{Binding Source={x:Reference user},Path=DataContext.VerEliminarUsuarioCommand}"
+                                            CommandParameter="{Binding Id}"
                                             Margin="0,5,0,0"
                                             materialDesign:ButtonAssist.CornerRadius="25"
                                             ToolTip="MaterialDesignRaisedDarkButton with Round Corners"

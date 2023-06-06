@@ -11,6 +11,7 @@ namespace Music_Player.Views.Enum_CambiarVista
     {
         VerUsuarios,
         VerBitacoras,
-        VerAgregar
+        VerAgregar,
+        VerEliminar
     }
 }

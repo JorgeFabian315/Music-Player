@@ -10,7 +10,9 @@
     
     <Border Background="#2A2F4F" CornerRadius="10">
 
-        <StackPanel Background="White" Margin="20" HorizontalAlignment="Center" Width="1000">
+
+
+        <DockPanel Background="White" Margin="20">
 
             <Button DockPanel.Dock="Top" Command="{Binding RegresarCommand}"
                 Height="40"
@@ -23,60 +25,98 @@
                                      Height="30" />
             </Button>
 
-
-            <!--<TextBlock FontSize="40" FontFamily="arial" HorizontalAlignment="Center">Agregar Usuario</TextBlock>-->
-            <TextBlock
-  Style="{StaticResource MaterialDesignHeadline1TextBlock}"
-  Text="Agregar Usuario" 
-  HorizontalAlignment="Center"
-  FontSize="40"
-                />
-
-            <TextBlock
+            <StackPanel DockPanel.Dock="Top"  HorizontalAlignment="Center">
+                <TextBlock
   Style="{StaticResource MaterialDesignHeadline1TextBlock}"
   Text="Nombre del usuario:"
-  Margin="90,30,0,0"
+  FontSize="20" 
+    
+            />
+
+                <TextBox HorizontalAlignment="Left" Width="480" Text="{Binding usuario.Nombre}"
+                         Margin="35,5,0,0" FontSize="15"
+                         ></TextBox>
+                <TextBlock
+  Style="{StaticResource MaterialDesignHeadline1TextBlock}"
+  Text="Correo Electrónico:"
+                    Margin="0,20,0,0"
+  FontSize="20"    
+            />
+                <TextBox HorizontalAlignment="Left" Width="480" Text="{Binding usuario.CorreoElectronico}"
+                         Margin="35,0,0,0" FontSize="15"
+                         ></TextBox>
+                <TextBlock
+  Style="{StaticResource MaterialDesignHeadline1TextBlock}"
+  Text="Contraseña:"
+                    Margin="0,20,0,0"
   FontSize="20"    
             />
 
-            <TextBox Margin="10,0,0,0" Width="480"></TextBox>
-            <TextBlock
-  Style="{StaticResource MaterialDesignHeadline1TextBlock}"
-  Text="Correo Electronico:"
-  Margin="90,30,0,0"
-  FontSize="20"    
-            />
-            <TextBox Margin="10,0,0,0" Width="450"></TextBox>
-            <TextBlock
-  Style="{StaticResource MaterialDesignHeadline1TextBlock}"
-  Text="Contraseña:"
-  Margin="90,30,0,0"
-  FontSize="20"    
-            />
-            <TextBox Visibility="Collapsed"
+                <TextBox Visibility="Collapsed"
                              Name="txtPassword"
-                     Padding="0"
-                             Text="{Binding Usuario.Contraseña, UpdateSourceTrigger= PropertyChanged}" />
-            <PasswordBox Name="pwb1"
+                             Text="{Binding usuario.Contraseña, UpdateSourceTrigger= PropertyChanged}" />
+                <PasswordBox Name="pwb1"
                         HorizontalAlignment="Left"
                                  FontSize="20"
-                                 Width="450"
-                         Margin="160,0,0,0"
+                             Margin="35,0,0,0"
+                                 Width="480"
                                  LostFocus="pwb1_LostFocus"
                          Loaded="pwb1_Loaded"
-                         Padding="0"
+                             Padding="0"
                                  materialDesign:TextFieldAssist.HasClearButton="True"
                                  materialDesign:HintAssist.FloatingOffset="0,-25"
                                  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
                                 ></PasswordBox>
 
 
-            <WrapPanel HorizontalAlignment="Center" Margin="0,45,0,0">
-                <Grid Margin="0,0,30,0"
+
+                <TextBlock
+  Style="{StaticResource MaterialDesignHeadline1TextBlock}"
+  Text="Rol:" 
+  FontSize="20"
+                    Margin="0,20,0,0"
+                />
+
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Button
+      Style="{StaticResource MaterialDesignFlatButton}"
+      HorizontalAlignment="Right"
+      Grid.Column="1" />
+                    </Grid>
+                    <ComboBox
+    x:Name="OutlinedComboBox"
+                        Margin="35,0,0,0"
+    Style="{StaticResource MaterialDesignOutlinedComboBox}"
+    IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
+    materialDesign:HintAssist.Hint="Rol"
+    ItemsSource="{Binding ListaRoles}"
+    SelectedItem="{Binding rol}"
+                        HorizontalAlignment="Left"
+    DisplayMemberPath="Nombre"
+    SelectedValue="{Binding usuario.IdRol}"
+    SelectedValuePath="Id"
+    SelectedIndex="0"
+                        FontSize="15"
+    Width="480" />
+                </StackPanel>
+
+            </StackPanel>
+
+
+
+            <WrapPanel HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="0,23,0,0">
+                <Grid Margin="0,0,20,0"
   Width="120">
                     <Button
     Style="{StaticResource MaterialDesignRaisedLightButton}"
     Height="40"
+    Command="{Binding AgregarUsuarioCommand}"
                         Foreground="White"
                         FontWeight="DemiBold"
     materialDesign:ButtonAssist.CornerRadius="5"
@@ -91,6 +131,140 @@
                     <Button
     Style="{StaticResource MaterialDesignRaisedLightButton}"
     Height="40"
+    Command="{Binding RegresarCommand}"
+                        Foreground="White"
+                        FontWeight="DemiBold"
+    materialDesign:ButtonAssist.CornerRadius="5"
+    ToolTip="MaterialDesignRaisedLightButton with Round Corners"
+    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                        <TextBlock
+      Text="Cancelar" />
+                    </Button>
+                </Grid>
+                
+            </WrapPanel>
+
+
+            <TextBlock DockPanel.Dock="Bottom" VerticalAlignment="Center" Margin="0,20,0,0" HorizontalAlignment="Center" TextAlignment="Center" FontSize="13" Text="{Binding Error}" Foreground="Red"></TextBlock>
+
+
+        </DockPanel>
+
+        
+
+        <!--<StackPanel Background="White" Margin="20" HorizontalAlignment="Center" Width="1000">
+
+            <Button DockPanel.Dock="Top" Command="{Binding RegresarCommand}"
+                Height="40"
+                Width="40"
+                Padding="0"
+                HorizontalAlignment="Left"
+                Margin="10,10,0,0">
+                <materialDesign:PackIcon Kind="ArrowBack"
+                                     Width="20"
+                                     Height="20" />
+            </Button>
+
+
+               <TextBlock
+  Style="{StaticResource MaterialDesignHeadline1TextBlock}"
+  Text="Agregar Usuario" 
+  HorizontalAlignment="Center"
+  FontSize="30"
+                />
+
+            <TextBlock
+  Style="{StaticResource MaterialDesignHeadline1TextBlock}"
+  Text="Nombre del usuario:"
+  FontSize="20"    
+            />
+
+            <TextBox HorizontalAlignment="Left" Width="480" Text="{Binding usuario.Nombre}"></TextBox>
+            <TextBlock
+  Style="{StaticResource MaterialDesignHeadline1TextBlock}"
+  Text="Correo Electrónico:"
+  FontSize="20"    
+            />
+            <TextBox HorizontalAlignment="Left" Width="480" Text="{Binding usuario.CorreoElectronico}"></TextBox>
+            <TextBlock
+  Style="{StaticResource MaterialDesignHeadline1TextBlock}"
+  Text="Contraseña:"
+  FontSize="20"    
+            />
+            <TextBox Visibility="Collapsed"
+                             Name="txtPassword"
+                     Padding="0"
+                             Text="{Binding usuario.Contraseña, UpdateSourceTrigger= PropertyChanged}" />
+            <PasswordBox Name="pwb1"
+                        
+                        HorizontalAlignment="Left"
+                                 FontSize="20"
+                                 Width="480"
+                                 LostFocus="pwb1_LostFocus"
+                         Loaded="pwb1_Loaded"
+                         Padding="0"
+                                 materialDesign:TextFieldAssist.HasClearButton="True"
+                                 materialDesign:HintAssist.FloatingOffset="0,-25"
+                                 Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                                ></PasswordBox>
+
+
+
+            <TextBlock
+  Style="{StaticResource MaterialDesignHeadline1TextBlock}"
+  Text="Rol:" 
+  FontSize="20"
+                />
+
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                   
+                    <Button
+      Style="{StaticResource MaterialDesignFlatButton}"
+      HorizontalAlignment="Right"
+      Grid.Column="1" />
+                </Grid>
+                <ComboBox
+    x:Name="OutlinedComboBox"
+    Style="{StaticResource MaterialDesignOutlinedComboBox}"
+    IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
+    materialDesign:HintAssist.Hint="Rol"
+    ItemsSource="{Binding ListaRoles}"
+    SelectedItem="{Binding rol}"
+    DisplayMemberPath="Nombre"
+    SelectedValue="{Binding usuario.IdRol}"
+    SelectedValuePath="Id"
+    SelectedIndex="0"
+    Width="480" />
+            </StackPanel>
+
+
+            <WrapPanel HorizontalAlignment="Center" Margin="0,45,0,0">
+                <Grid Margin="0,0,30,0"
+  Width="120">
+                    <Button
+    Style="{StaticResource MaterialDesignRaisedLightButton}"
+    Height="40"
+    Command="{Binding AgregarUsuarioCommand}"
+                        Foreground="White"
+                        FontWeight="DemiBold"
+    materialDesign:ButtonAssist.CornerRadius="5"
+    ToolTip="MaterialDesignRaisedLightButton with Round Corners"
+    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                        <TextBlock
+      Text="Agregar" />
+                    </Button>
+                </Grid>
+                <Grid
+  Width="120">
+                    <Button
+    Style="{StaticResource MaterialDesignRaisedLightButton}"
+    Height="40"
+    Command="{Binding RegresarCommand}"
                         Foreground="White"
                         FontWeight="DemiBold"
     materialDesign:ButtonAssist.CornerRadius="5"
@@ -102,7 +276,9 @@
                 </Grid>
             </WrapPanel>
 
-        </StackPanel>
+            <TextBlock Margin="0,20,0,0" HorizontalAlignment="Center" TextAlignment="Center" FontSize="15" Text="{Binding Error}" Foreground="Red"></TextBlock>
+
+        </StackPanel>-->
 
     </Border>
 </UserControl>

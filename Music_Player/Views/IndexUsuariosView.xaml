@@ -36,6 +36,7 @@
         <usuariosview:VerBitacorasUsuariosView x:Key="VerBitacoras"></usuariosview:VerBitacorasUsuariosView>
         <usuariosview:VerUsuariosView x:Key="VerUsuarios"></usuariosview:VerUsuariosView>
         <usuariosview:VerAgregarUsuarioView x:Key="VerAgregar"></usuariosview:VerAgregarUsuarioView>
+        <usuariosview:VerEliminarUsuarioView x:Key="VerEliminar"></usuariosview:VerEliminarUsuarioView>
     </UserControl.Resources>
 
 
@@ -53,6 +54,9 @@
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Vista}" Value="{x:Static vistas:EnumUsuarioVista.VerAgregar}">
                         <Setter Property="Content" Value="{StaticResource VerAgregar}"></Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Vista}" Value="{x:Static vistas:EnumUsuarioVista.VerEliminar}">
+                        <Setter Property="Content" Value="{StaticResource VerEliminar}"></Setter>
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
