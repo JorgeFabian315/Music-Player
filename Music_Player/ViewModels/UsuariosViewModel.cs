@@ -22,7 +22,7 @@ namespace Music_Player.ViewModels
 
         public ObservableCollection<Usuario> ListaUsuarios { get; set; } = new ObservableCollection<Usuario>();
         public ObservableCollection<Rol> ListaRoles { get; set; } = new ObservableCollection<Rol>();
-        public Usuario? usuario { get; set; } = new();
+        public Usuario? usuario { get; set; }
         public Rol? rol { get; set; }
         UsuariosCatalogo catalagousuario = new();
         RolCatalogo catalagoroles = new();
@@ -36,8 +36,10 @@ namespace Music_Player.ViewModels
         public ICommand VerUsuariosVIPCommand { get; set; }
         public ICommand VerAgregarUsuarioCommand { get; set; }
         public ICommand VerEliminarUsuarioCommand { get; set; }
+        public ICommand VerEditarUsuarioCommand { get; set; }
         public ICommand AgregarUsuarioCommand { get; set; }
         public ICommand EliminarUsuarioCommand { get; set; }
+        public ICommand EditarUsuarioCommand { get; set; }
 
 
         public UsuariosViewModel()
@@ -52,10 +54,74 @@ namespace Music_Player.ViewModels
             VerUsuariosNormalCommand = new RelayCommand(VerUsuarios);
             VerAgregarUsuarioCommand = new RelayCommand(VerAgregar);
             VerEliminarUsuarioCommand = new RelayCommand<int>(VerEliminar);
+            VerEditarUsuarioCommand = new RelayCommand<Usuario>(VerEditar);
             AgregarUsuarioCommand = new RelayCommand(Agregar);
             EliminarUsuarioCommand = new RelayCommand(Eliminar);
+            EditarUsuarioCommand = new RelayCommand(Editar);
         }
 
+        private void Editar()
+        {
+            if(usuario != null)
+            {
+                UsuarioValidator validation = new UsuarioValidator();
+
+                var result = validation.Validate(usuario, options =>
+                {
+                    options.IncludeAllRuleSets();
+                });
+
+                if (result.IsValid)
+                {
+                    var existe = catalagousuario.GetUs(usuario);
+
+                    if(existe != null)
+                    {
+                        existe.Id = usuario.Id;
+                        existe.Nombre = usuario.Nombre;
+                        existe.CorreoElectronico = usuario.CorreoElectronico;
+                        existe.Contraseña = usuario.Contraseña;
+                        existe.IdRol = usuario.IdRol;
+
+                        catalagousuario.Editar(existe);
+                        CargarBD();
+                        Regresar();
+                    }
+                }
+                else
+                {
+                    foreach (var item in result.Errors)
+                    {
+                        Error = $"{Error} {item} {Environment.NewLine}";
+                    }
+                    Actualizar();
+                }
+                Error = "";
+            }
+        }
+
+        int indice = 0;
+        private void VerEditar(Usuario u)
+        {
+            if(u != null)
+            {
+                Error = "";
+                Vista = EnumUsuarioVista.VerEditar;
+
+                Usuario clon = new()
+                {
+                    Id = u.Id,
+                    Nombre = u.Nombre,
+                    CorreoElectronico = u.CorreoElectronico,
+                    Contraseña = u.Contraseña,
+                    IdRol = u.IdRol
+                };
+
+                indice = ListaUsuarios.IndexOf(u);
+                usuario = clon;
+                Actualizar();
+            }
+        }
 
         public void CargarRoles()
         {
