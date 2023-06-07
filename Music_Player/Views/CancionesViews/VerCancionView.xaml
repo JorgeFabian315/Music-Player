@@ -12,8 +12,9 @@
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height=".1*" />
-            <RowDefinition Height=".6*" />
-            <RowDefinition Height=".3*" />
+            <RowDefinition Height=".5*" />
+            <RowDefinition Height=".2*" />
+            <RowDefinition Height=".2*" />
         </Grid.RowDefinitions>
         <Button Command="{Binding RegresarCommand}"
                 Height="40"
@@ -25,26 +26,30 @@
                                      Width="30"
                                      Height="30" />
         </Button>
-        <StackPanel Grid.Row="1"
-                    Height="400"
-                    Width="400">
-            <Grid Height="320"
-                  Width="320"
-                  HorizontalAlignment="Center">
-                <Image Source="/Assets/musica.jpg"
-                       Stretch="Fill" />
-                <Border Background="{StaticResource color1}"
-                        Opacity=".3" />
-            </Grid>
-            <TextBlock Text="{Binding Cancion.Titulo}"
-                       Foreground="{StaticResource color1}"
-                       FontSize="30"
-                       Margin="0,15,0,0"
-                       HorizontalAlignment="Center" />
-        </StackPanel>
+        <Grid Grid.Row="1"
+              Width="340"
+              Height="300"
+              VerticalAlignment="Bottom"
+              HorizontalAlignment="Center">
+            <Border CornerRadius="10">
+                <Border.Background>
+                    <ImageBrush ImageSource="/Assets/musica.jpg"/>
+                </Border.Background>
+            </Border>
+            <Border Background="{StaticResource color1}"
+                    Opacity=".3"
+                    CornerRadius="10"/>
+        </Grid>
+        <TextBlock Text="{Binding Cancion.Titulo}"
+                   Foreground="{StaticResource color1}"
+                   FontSize="30"
+                   VerticalAlignment="Top"
+                   Grid.Row="2"
+                   Margin="0,25,0,0"
+                   HorizontalAlignment="Center" />
         <Border Background="{StaticResource color1}"
                 CornerRadius="10"
-                Grid.Row="2"
+                Grid.Row="3"
                 VerticalAlignment="Center"
                 Margin="20,0"
                 Height="100">
