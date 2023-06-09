@@ -54,7 +54,7 @@ namespace Music_Player.ViewModels
 
         public MinViewModel()
         {
-
+            ViewModelAactual = this;
         }
 
 
@@ -136,6 +136,7 @@ namespace Music_Player.ViewModels
         {
             Usuario = new();
             Error = "";
+            ViewModelAactual = this;
             Actualizar();
         }
 

@@ -20,6 +20,8 @@
     <Window.DataContext>
         <viewmodels:MinViewModel />
     </Window.DataContext>
+    
+    
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewmodels:ArtistasViewModel}">
             <local:IndexArtistasView />
@@ -36,7 +38,13 @@
         <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
             <local:IndexHomeView />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:MinViewModel}">
+            <local:LoginView />
+        </DataTemplate>
     </Window.Resources>
+    
+    
+    
     <Border CornerRadius="10"
             Background="{StaticResource color1}">
         <Grid Background="Transparent"
@@ -103,26 +111,10 @@
                                          Style="{StaticResource IconosMenu_materialde}" />
             </WrapPanel>
             <Border Grid.Row="1"
+                    Style="{StaticResource BorderFondo}"
                     Background="#fcfcff"
-                    CornerRadius="10">
-                <Border.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="Grid.Column"
-                                Value="0" />
-                        <Setter Property="Grid.ColumnSpan"
-                                Value="2" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Conectado}"
-                                         Value="true">
-                                <Setter Property="Grid.Column"
-                                        Value="1" />
-                                <Setter Property="Grid.ColumnSpan"
-                                        Value="1" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Border.Resources>
-            </Border>
+                    CornerRadius="10" />
+            
             <Grid HorizontalAlignment="Left"
                   Grid.Row="1"
                   Margin="4,0,0,0">
@@ -189,34 +181,10 @@
                                              Style="{StaticResource IconosMenu_materialde}" />
                 </RadioButton>
             </Grid>
-            <ContentControl Grid.Row="1">
-                <ContentControl.Resources>
-                    <Style TargetType="{x:Type ContentControl}">
-                        <Setter Property="Grid.Column"
-                                Value="0" />
-                        <Setter Property="Grid.ColumnSpan"
-                                Value="2" />
-                        <Setter Property="Margin"
-                                Value="10" />
-                        <Setter Property="Content">
-                            <Setter.Value>
-                                <local:LoginView />
-                            </Setter.Value>
-                        </Setter>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Conectado}"
-                                         Value="true">
-                                <Setter Property="Content"
-                                        Value="{Binding ViewModelAactual}" />
-                                <Setter Property="Grid.Column"
-                                        Value="1" />
-                                <Setter Property="Grid.ColumnSpan"
-                                        Value="1" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </ContentControl.Resources>
-            </ContentControl>
+            
+            <ContentControl Grid.Row="1"
+                            Style="{StaticResource ContentPrincipal}"
+                            Content="{Binding ViewModelAactual}" />
         </Grid>
     </Border>
 </Window>
