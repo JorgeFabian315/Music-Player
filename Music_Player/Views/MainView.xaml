@@ -57,6 +57,7 @@
                 <RowDefinition Height=".07*" />
                 <RowDefinition Height=".94*" />
             </Grid.RowDefinitions>
+            
             <WrapPanel Grid.Column="1"
                        HorizontalAlignment="Right"
                        VerticalAlignment="Center"
@@ -92,6 +93,7 @@
                     <Ellipse Width="auto"
                              Height="auto"
                              Fill="{StaticResource color3}" />
+                    
                     <materialDesign:PackIcon Kind="Account"
                                              Width="auto"
                                              Margin="4"
@@ -110,6 +112,8 @@
                                          HorizontalAlignment="Center"
                                          Style="{StaticResource IconosMenu_materialde}" />
             </WrapPanel>
+            
+            
             <Border Grid.Row="1"
                     Style="{StaticResource BorderFondo}"
                     Background="#fcfcff"
