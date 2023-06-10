@@ -33,6 +33,9 @@ namespace Music_Player.ViewModels
         }
 
         public Cancion Cancion { get; set; } = new();
+        public Genero Genero { get;  set; }
+
+
         public int Minutos { get; set; }
         public int Segundos { get; set; }
         public VistaCancion Vista { get; set; }
@@ -45,6 +48,8 @@ namespace Music_Player.ViewModels
         public ICommand AgregarCancionCommand => new RelayCommand(AgregarCancion);
         public ICommand EliminarCancionCommand => new RelayCommand<int>(EliminarCancion);
         public ICommand BuscarCancionCommand => new RelayCommand<string>(GetCancionesBusqueda);
+        public ICommand VerCancionesGeneroCommand => new RelayCommand<int>(VerCancionesGenero);
+
 
         private void EliminarCancion(int id)
         {
@@ -111,7 +116,10 @@ namespace Music_Player.ViewModels
 
         private void Regresar()
         {
-            Vista = VistaCancion.VerCanciones;
+            if (Vista == VistaCancion.VerCancionesPorGenero)
+                Vista = VistaCancion.VerGeneros;
+            else
+                Vista = VistaCancion.VerCanciones;
             Actualizar();
         }
 
@@ -136,9 +144,15 @@ namespace Music_Player.ViewModels
                 ListaCanciones2.Add(item);
             }
             Actualizar();
-        } 
+        }
 
-
+        private void VerCancionesGenero(int id)
+        {
+            Genero = catalogo_gen.GetGenero(id);
+            if (Genero != null)
+                Vista = VistaCancion.VerCancionesPorGenero;
+            Actualizar();
+        }
 
     }
 }

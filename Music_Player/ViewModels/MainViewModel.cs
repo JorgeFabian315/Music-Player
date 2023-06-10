@@ -20,14 +20,12 @@ using System.Threading;
 using Music_Player.Views.ArtistasViews;
 namespace Music_Player.ViewModels
 {
-    public class MainViewModel:INotifyPropertyChanged
+    public class MainViewModel : INotifyPropertyChanged
     {
 
         CancionesViewModel cancionesviewmodel = new();
         UsuariosViewModel usuariosviewmodel = new();
-        GenerosViewModel generosviewmodel = new();
         ArtistasViewModel artistasviewmodel = new();
-        HomeViewModel homeviewmodel = new();
         EstadisticasViewModel estadisticasViewModel = new();
         UsuariosCatalogo catalogo_us = new();
 
@@ -40,14 +38,21 @@ namespace Music_Player.ViewModels
         public object? ViewModelAactual
         {
             get { return _viewmodelactual; }
-            set { _viewmodelactual = value; }
+            set
+            {
+                _viewmodelactual = value;
+
+                Actualizar();
+            }
         }
         private UserControl _view;
 
         public UserControl View
         {
             get { return _view; }
-            set { _view = value;
+            set
+            {
+                _view = value;
                 Actualizar();
             }
         }
@@ -119,6 +124,7 @@ namespace Music_Player.ViewModels
             }
         }
 
+        #region ACCIONES USUARIOS
         private void AccionesUsuarioNormal()
         {
             View = new IndexUsuNVIPView();
@@ -136,6 +142,7 @@ namespace Music_Player.ViewModels
             View = new IndexAdministradorView();
             NavegarEstadisticas();
         }
+        #endregion ACCIONES USUARIOS
 
         private void CerrarSesion()
         {
@@ -160,39 +167,35 @@ namespace Music_Player.ViewModels
         private void NavegarArtistas()
         {
             ViewModelAactual = artistasviewmodel;
-            Actualizar();
         }
         private void NavegarUsuarios()
         {
             ViewModelAactual = usuariosviewmodel;
-            Actualizar();
         }
         private void NavegarEstadisticas()
         {
             ViewModelAactual = estadisticasViewModel;
-
-            Actualizar();
         }
 
 
         private void NavegarHome()
         {
-            ViewModelAactual = homeviewmodel;
+            MediadorViewModel.ActualizarVista(VistaCancion.Home);
 
-            Actualizar();
+            ViewModelAactual = cancionesviewmodel;
         }
 
         private void NavegarGeneros()
         {
-            ViewModelAactual = generosviewmodel;
-            Actualizar();
+            MediadorViewModel.ActualizarVista(VistaCancion.VerGeneros);
+
+            ViewModelAactual = cancionesviewmodel;
         }
 
         private void NavegarVerCanciones()
         {
             MediadorViewModel.ActualizarVista(VistaCancion.VerCanciones);
             ViewModelAactual = cancionesviewmodel;
-            Actualizar();
         }
 
 

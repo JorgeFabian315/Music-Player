@@ -4,9 +4,71 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Music_Player.Views.Usuarios.CancionesViews"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+    <DockPanel>
+        <TextBlock Text="Generos musicales"
+                   DockPanel.Dock="Top"
+                   FontSize="45"
+                   FontWeight="Light"
+                   Margin="10 10 0 10" />
+        <ScrollViewer VerticalScrollBarVisibility="Visible">
+            <ItemsControl ItemsSource="{Binding ListaGeneros}"
+                          HorizontalAlignment="Center">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="5,10"
+                              Width="200"
+                              Height="200"
+                              Cursor="Hand">
+                            <Grid.InputBindings>
+                                <MouseBinding  Gesture="LeftClick"
+                                               Command="{Binding
+                                    RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.VerCancionesGeneroCommand}"
+                                               CommandParameter="{Binding Id}" />
+                            </Grid.InputBindings>
+                            <Border CornerRadius="10">
+                                <Border.Background>
+                                    <ImageBrush ImageSource="/Assets/musica.jpg" />
+                                </Border.Background>
+                            </Border>
+                            <Border Height="200"
+                                    CornerRadius="10"
+                                    Background="Black"
+                                    Width="200"
+                                    Opacity=".3" />
+                            <StackPanel VerticalAlignment="Center"
+                                        HorizontalAlignment="Center">
+                                <materialDesign:PackIcon Kind="GuitarAcoustic"
+                                                         Width="35"
+                                                         Height="35"
+                                                         Margin=" 0 0 0 4"
+                                                         Foreground="White"
+                                                         HorizontalAlignment="Center" />
+                                <TextBlock Text="{Binding Nombre}"
+                                           FontSize="20"
+                                           HorizontalAlignment="Center"
+                                           Foreground="White"
+                                           Margin="0 0  0 5"
+                                           FontWeight="SemiBold" />
+                                <TextBlock FontSize="20"
+                                           HorizontalAlignment="Center"
+                                           Foreground="White"
+                                           FontWeight="Light">
+                                    <Run Text="(" />
+                                    <Run Text="{Binding TotalCanciones}" />
+                                <Run Text=")" /></TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </DockPanel>
 </UserControl>

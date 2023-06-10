@@ -53,8 +53,6 @@
                 VerticalAlignment="Center"
                 Margin="20,0"
                 Height="100">
-            <Image gif:ImageBehavior.AnimatedSource="/Assets/musicagif.gif"
-                   Margin="30,0" />
         </Border>
     </Grid>
 </UserControl>

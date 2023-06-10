@@ -7,6 +7,7 @@
              xmlns:local="clr-namespace:Music_Player.Views"
              xmlns:Vistas="clr-namespace:Music_Player.Views.Enum_CambiarVista"
              xmlns:cancionesviews="clr-namespace:Music_Player.Views.CancionesViews"
+             xmlns:cancionesviews1="clr-namespace:Music_Player.Views.Usuarios.CancionesViews"
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
@@ -47,7 +48,30 @@
                                 </Setter.Value>
                             </Setter>
                         </DataTrigger>
-                      
+                        <DataTrigger Binding="{Binding Vista}"
+                                     Value="{x:Static Vistas:VistaCancion.VerGeneros}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <cancionesviews1:VerGenerosView/>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Vista}"
+                                     Value="{x:Static Vistas:VistaCancion.VerCancionesPorGenero}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <cancionesviews1:CancionesPorGeneroView />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Vista}"
+                                     Value="{x:Static Vistas:VistaCancion.Home}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <cancionesviews:HomeView />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </ContentControl.Resources>

@@ -13,6 +13,7 @@ namespace Music_Player.Views.Enum_CambiarVista
         VerCancion,
         AgregarCancion,
         VerCancionesPorGenero,
-        VerGeneros
+        VerGeneros,
+        Home
     }
 }
