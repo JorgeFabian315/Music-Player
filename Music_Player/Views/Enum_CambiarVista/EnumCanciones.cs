@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Music_Player.Views.Enum_CambiarVista
 {
-    public enum VistaCancion
+    public enum VistaUsuario
     {
         VerCanciones,
         VerCancionesMegustan,
@@ -14,6 +14,7 @@ namespace Music_Player.Views.Enum_CambiarVista
         AgregarCancion,
         VerCancionesPorGenero,
         VerGeneros,
-        Home
+        Home,
+        Artista
     }
 }

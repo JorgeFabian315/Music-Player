@@ -17,7 +17,7 @@
                 <Style TargetType="{x:Type ContentControl}">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Vista}"
-                                     Value="{x:Static Vistas:VistaCancion.VerCanciones}">
+                                     Value="{x:Static Vistas:VistaUsuario.VerCanciones}">
                             <Setter Property="Content">
                                 <Setter.Value>
                                     <cancionesviews:VerCancionesView />
@@ -25,7 +25,7 @@
                             </Setter>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Vista}"
-                                     Value="{x:Static Vistas:VistaCancion.VerCancionesMegustan}">
+                                     Value="{x:Static Vistas:VistaUsuario.VerCancionesMegustan}">
                             <Setter Property="Content">
                                 <Setter.Value>
                                     <cancionesviews:CancionesMeGustanView />
@@ -33,7 +33,7 @@
                             </Setter>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Vista}"
-                                     Value="{x:Static Vistas:VistaCancion.VerCancion}">
+                                     Value="{x:Static Vistas:VistaUsuario.VerCancion}">
                             <Setter Property="Content">
                                 <Setter.Value>
                                     <cancionesviews:VerCancionView />
@@ -41,7 +41,7 @@
                             </Setter>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Vista}"
-                                     Value="{x:Static Vistas:VistaCancion.AgregarCancion}">
+                                     Value="{x:Static Vistas:VistaUsuario.AgregarCancion}">
                             <Setter Property="Content">
                                 <Setter.Value>
                                     <cancionesviews:AgregarCancionView />
@@ -49,7 +49,7 @@
                             </Setter>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Vista}"
-                                     Value="{x:Static Vistas:VistaCancion.VerGeneros}">
+                                     Value="{x:Static Vistas:VistaUsuario.VerGeneros}">
                             <Setter Property="Content">
                                 <Setter.Value>
                                     <cancionesviews1:VerGenerosView/>
@@ -57,7 +57,7 @@
                             </Setter>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Vista}"
-                                     Value="{x:Static Vistas:VistaCancion.VerCancionesPorGenero}">
+                                     Value="{x:Static Vistas:VistaUsuario.VerCancionesPorGenero}">
                             <Setter Property="Content">
                                 <Setter.Value>
                                     <cancionesviews1:CancionesPorGeneroView />
@@ -65,7 +65,7 @@
                             </Setter>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Vista}"
-                                     Value="{x:Static Vistas:VistaCancion.Home}">
+                                     Value="{x:Static Vistas:VistaUsuario.Home}">
                             <Setter Property="Content">
                                 <Setter.Value>
                                     <cancionesviews:HomeView />

@@ -26,7 +26,7 @@ namespace Music_Player.ViewModels
         public Rol? rol { get; set; }
         UsuariosCatalogo catalagousuario = new();
         RolCatalogo catalagoroles = new();
-        public EnumUsuarioVista Vista { get; set; }
+        public VistaAdministrador Vista { get; set; }
         public string Error { get; set; }
 
         public ICommand VerBitacorasCommand { get; set; }
@@ -46,7 +46,7 @@ namespace Music_Player.ViewModels
         {
             CargarBD();
             CargarRoles();
-            Vista = EnumUsuarioVista.VerUsuarios;
+            Vista = VistaAdministrador.VerUsuarios;
             VerBitacorasCommand = new RelayCommand<Usuario>(VerBitacoras);
             RegresarCommand = new RelayCommand(Regresar);
             VerUsuariosAdminCommand = new RelayCommand(VerAdmins);
@@ -106,7 +106,7 @@ namespace Music_Player.ViewModels
             if(u != null)
             {
                 Error = "";
-                Vista = EnumUsuarioVista.VerEditar;
+                Vista = VistaAdministrador.VerEditar;
 
                 Usuario clon = new()
                 {
@@ -139,7 +139,7 @@ namespace Music_Player.ViewModels
             {
                 catalagousuario.Eliminar(usuario);
 
-                Vista = EnumUsuarioVista.VerUsuarios;
+                Vista = VistaAdministrador.VerUsuarios;
                 CargarBD();
                 Actualizar();
             }
@@ -156,7 +156,7 @@ namespace Music_Player.ViewModels
         {
             usuario = new();
             Error = "";
-            Vista = EnumUsuarioVista.VerAgregar;
+            Vista = VistaAdministrador.VerAgregar;
             Actualizar();
         }
 
@@ -223,7 +223,7 @@ namespace Music_Player.ViewModels
 
         private void Regresar()
         {
-            Vista = EnumUsuarioVista.VerUsuarios;
+            Vista = VistaAdministrador.VerUsuarios;
             Actualizar();
         }
 
@@ -232,7 +232,7 @@ namespace Music_Player.ViewModels
             if(u != null)
             {
                 usuario = catalagousuario.GetBitacorasUsuario(u.CorreoElectronico);
-                Vista = EnumUsuarioVista.VerBitacoras;
+                Vista = VistaAdministrador.VerBitacoras;
                 Actualizar();
             }
         }

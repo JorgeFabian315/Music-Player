@@ -24,7 +24,6 @@ namespace Music_Player.Operaciones
         }
 
         public CancionesCatalogo  catalogo_can = new();
-        public GenerosCatalogo  catalogo_gen = new();
         public ArtistasCatalogo catalogo_Art = new();
         UsuariosCatalogo catalogo_us = new();
 
@@ -70,7 +69,7 @@ namespace Music_Player.Operaciones
         {
             ListaGeneros.Clear();
 
-            foreach (var item in catalogo_gen.GetGeneros())
+            foreach (var item in catalogo_can.GetGeneros())
             {
                 ListaGeneros.Add(item);
             }

@@ -66,14 +66,9 @@ namespace Music_Player.ViewModels
 
 
         #region COMANDOS
-        public ICommand NavegarCategoriasCommand => new RelayCommand(NavegarGeneros);
-        public ICommand NavegarHomeCommand => new RelayCommand(NavegarHome);
-        public ICommand NavegarVerCancionesCommand => new RelayCommand(NavegarVerCanciones);
-        public ICommand NavegarCancionesMegustanCommand => new RelayCommand(NavegarCancionesMegustan);
-        public ICommand NavegarUsuariosCommand => new RelayCommand(NavegarUsuarios);
-        public ICommand NavegarArtistasCommand => new RelayCommand(NavegarArtistas);
+        public ICommand NavegarUsuariosCommand => new RelayCommand<VistaUsuario>(NavegarUsuarios);
+        public ICommand NavegarAdminCommand => new RelayCommand<VistaAdministrador>(NavegarAdministrador);
         public ICommand IniciarSesionCommand => new RelayCommand(IniciarSesion);
-        public ICommand NavegarEstadisticasCommand => new RelayCommand(NavegarEstadisticas);
         public ICommand CerrarSesionCommand => new RelayCommand(CerrarSesion);
         #endregion
 
@@ -99,7 +94,6 @@ namespace Music_Player.ViewModels
                     if (iniciosesion == 1)
                     {
                         Usuario = catalogo_us.GetUsuario(Usuario.CorreoElectronico) ?? new Usuario();
-                        NavegarHome();
                         if (Thread.CurrentPrincipal is not null)
                         {
                             // var nose = Thread.CurrentPrincipal.Identity.Name;
@@ -128,19 +122,19 @@ namespace Music_Player.ViewModels
         private void AccionesUsuarioNormal()
         {
             View = new IndexUsuNVIPView();
-            NavegarHome();
+            NavegarUsuarios(VistaUsuario.Home);
         }
 
         private void AccionesUsuarioVIP()
         {
             View = new IndexUsuNVIPView();
-            NavegarHome();
+            NavegarUsuarios(VistaUsuario.Home);
         }
 
         private void AccionesAdministrador()
         {
             View = new IndexAdministradorView();
-            NavegarEstadisticas();
+            NavegarAdministrador(VistaAdministrador.Estadisticas);
         }
         #endregion ACCIONES USUARIOS
 
@@ -154,48 +148,29 @@ namespace Music_Player.ViewModels
         }
 
 
-        private void NavegarCancionesMegustan()
+
+        private void NavegarUsuarios(VistaUsuario vista)
         {
-            MediadorViewModel.ActualizarVista(VistaCancion.VerCancionesMegustan);
-
-            ViewModelAactual = cancionesviewmodel;
-
-
-            Actualizar();
+            if (vista == VistaUsuario.Artista)
+            {
+                ViewModelAactual = artistasviewmodel;
+            }
+            else
+            {
+                MediadorViewModel.ActualizarVista(vista);
+                ViewModelAactual = cancionesviewmodel;
+            }
         }
-
-        private void NavegarArtistas()
+        private void NavegarAdministrador(VistaAdministrador vista)
         {
-            ViewModelAactual = artistasviewmodel;
-        }
-        private void NavegarUsuarios()
-        {
-            ViewModelAactual = usuariosviewmodel;
-        }
-        private void NavegarEstadisticas()
-        {
-            ViewModelAactual = estadisticasViewModel;
-        }
-
-
-        private void NavegarHome()
-        {
-            MediadorViewModel.ActualizarVista(VistaCancion.Home);
-
-            ViewModelAactual = cancionesviewmodel;
-        }
-
-        private void NavegarGeneros()
-        {
-            MediadorViewModel.ActualizarVista(VistaCancion.VerGeneros);
-
-            ViewModelAactual = cancionesviewmodel;
-        }
-
-        private void NavegarVerCanciones()
-        {
-            MediadorViewModel.ActualizarVista(VistaCancion.VerCanciones);
-            ViewModelAactual = cancionesviewmodel;
+            if (vista == VistaAdministrador.Estadisticas)
+            {
+                ViewModelAactual = estadisticasViewModel;
+            }
+            else if (vista == VistaAdministrador.VerUsuarios)
+            {
+                ViewModelAactual = usuariosviewmodel;
+            }
         }
 
 

@@ -38,7 +38,7 @@ namespace Music_Player.ViewModels
 
         public int Minutos { get; set; }
         public int Segundos { get; set; }
-        public VistaCancion Vista { get; set; }
+        public VistaUsuario Vista { get; set; }
         public string Error { get; set; } = "";
         public int TotalCancionesMegustas { get; set; }
 
@@ -102,7 +102,7 @@ namespace Music_Player.ViewModels
             Minutos = 0;
             Segundos = 0;
             Error = "";
-            Vista = VistaCancion.AgregarCancion;
+            Vista = VistaUsuario.AgregarCancion;
             Actualizar();
         }
 
@@ -110,23 +110,23 @@ namespace Music_Player.ViewModels
         {
             Cancion = catalogo_can.GetCancion(id);
             if (Cancion != null)
-                Vista = VistaCancion.VerCancion;
+                Vista = VistaUsuario.VerCancion;
             Actualizar();
         }
 
         private void Regresar()
         {
-            if (Vista == VistaCancion.VerCancionesPorGenero)
-                Vista = VistaCancion.VerGeneros;
+            if (Vista == VistaUsuario.VerCancionesPorGenero)
+                Vista = VistaUsuario.VerGeneros;
             else
-                Vista = VistaCancion.VerCanciones;
+                Vista = VistaUsuario.VerCanciones;
             Actualizar();
         }
 
-        private void MediadorViewModel_VistaActualizada(VistaCancion vista)
+        private void MediadorViewModel_VistaActualizada(VistaUsuario vista)
         {
             Vista = vista;
-            if (vista == VistaCancion.VerCancionesMegustan)
+            if (vista == VistaUsuario.VerCancionesMegustan)
                 GetCancionesMeGusta();
 
             TotalCancionesMegustas = ListaCancionesMegusta.Count;
@@ -148,9 +148,9 @@ namespace Music_Player.ViewModels
 
         private void VerCancionesGenero(int id)
         {
-            Genero = catalogo_gen.GetGenero(id);
+            Genero = catalogo_can.GetGenero(id);
             if (Genero != null)
-                Vista = VistaCancion.VerCancionesPorGenero;
+                Vista = VistaUsuario.VerCancionesPorGenero;
             Actualizar();
         }
 
