@@ -33,6 +33,7 @@ namespace Music_Player.ViewModels
         public Usuario Usuario { get; set; } = new();
 
         public bool Conectado => Usuario.Id != 0;
+        public string Error { get; set; } = string.Empty;
 
         private object? _viewmodelactual;
         public object? ViewModelAactual
@@ -73,12 +74,10 @@ namespace Music_Player.ViewModels
         #endregion
 
 
-        public string Error { get; private set; }
 
         private void IniciarSesion()
         {
             Error = "";
-
             if (Usuario != null)
             {
                 UsuarioValidator rules = new();
@@ -131,12 +130,15 @@ namespace Music_Player.ViewModels
             NavegarUsuarios(VistaUsuario.Home);
         }
 
+        #endregion ACCIONES USUARIOS
+
+        #region ACCIONES ADMINISTRADOR
         private void AccionesAdministrador()
         {
             View = new IndexAdministradorView();
             NavegarAdministrador(VistaAdministrador.Estadisticas);
         }
-        #endregion ACCIONES USUARIOS
+        #endregion ACCIONES ADMINISTRADOR
 
         private void CerrarSesion()
         {
@@ -148,7 +150,7 @@ namespace Music_Player.ViewModels
         }
 
 
-
+        #region NAVEGAR USUARIOS
         private void NavegarUsuarios(VistaUsuario vista)
         {
             if (vista == VistaUsuario.Artista)
@@ -161,6 +163,9 @@ namespace Music_Player.ViewModels
                 ViewModelAactual = cancionesviewmodel;
             }
         }
+        #endregion NAVEGAR USUARIOS
+
+        #region NAVEGAR ADMINISTRADOR
         private void NavegarAdministrador(VistaAdministrador vista)
         {
             if (vista == VistaAdministrador.Estadisticas)
@@ -172,7 +177,7 @@ namespace Music_Player.ViewModels
                 ViewModelAactual = usuariosviewmodel;
             }
         }
-
+        #endregion NAVEGAR ADMINISTRADOR
 
         #region ACTUALIZAR CAMBIOS
         public event PropertyChangedEventHandler? PropertyChanged;
