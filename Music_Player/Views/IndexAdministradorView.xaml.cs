@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Music_Player.Views
 {
     /// <summary>
-    /// Lógica de interacción para IndexHomeView.xaml
+    /// Lógica de interacción para IndexAdministradorView.xaml
     /// </summary>
-    public partial class IndexHomeView : UserControl
+    public partial class IndexAdministradorView : UserControl
     {
-        public IndexHomeView()
+        public IndexAdministradorView()
         {
             InitializeComponent();
         }

@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Music_Player.Views.GenerosViews
+namespace Music_Player.Views
 {
     /// <summary>
-    /// Lógica de interacción para VerCancionesGenerosView.xaml
+    /// Lógica de interacción para IndexUsuNVIPView.xaml
     /// </summary>
-    public partial class VerCancionesGenerosView : UserControl
+    public partial class IndexUsuNVIPView : UserControl
     {
-        public VerCancionesGenerosView()
+        public IndexUsuNVIPView()
         {
             InitializeComponent();
         }

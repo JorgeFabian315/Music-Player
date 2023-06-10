@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Music_Player.Views.Enum_CambiarVista
+namespace Music_Player.ViewModels
 {
-    public enum VistaGeneros
+     public  class EstadisticasViewModel
     {
-        VerCancionesPorGenero,
-        VerGeneros
     }
 }

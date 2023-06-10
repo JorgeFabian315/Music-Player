@@ -107,42 +107,29 @@
         </Setter>
     </Style>
     <!--#ENDREGION BOTONES MENU-->
-    <!--#REGION ESTILOS BORDE FONDO-->
-    <Style TargetType="{x:Type Border}"
-           x:Key="BorderFondo">
-        <Setter Property="Grid.Column"
-                Value="0" />
-        <Setter Property="Grid.ColumnSpan"
-                Value="2" />
+    <!--#REGION ESTILOS NOMBRE DEL USUARIO-->
+    <Style TargetType="{x:Type TextBlock}"
+           x:Key="EstilosNombreUs">
+        <Setter Property="FontSize"
+                Value="14" />
+        <Setter Property="HorizontalAlignment"
+                Value="Right" />
+        <Setter Property="Foreground"
+                Value="{StaticResource color4}" />
+        <Setter Property="FontWeight"
+                Value="Light" />
         <Style.Triggers>
-            <DataTrigger Binding="{Binding Conectado}"
-                         Value="true">
-                <Setter Property="Grid.Column"
-                        Value="1" />
-                <Setter Property="Grid.ColumnSpan"
-                        Value="1" />
+            <DataTrigger Binding="{Binding Usuario.IdRolNavigation.Nombre}"
+                         Value="Usuario VIP">
+                <Setter Property="Foreground"
+                        Value="Gold" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Usuario.IdRolNavigation.Nombre}"
+                         Value="Administrador">
+                <Setter Property="Foreground"
+                        Value="Aqua" />
             </DataTrigger>
         </Style.Triggers>
     </Style>
-    <!--#ENDREGION ESTILOS BORDE FONDO-->
-    <!--#REGION ESTILOS CONTENT CONTROL PRINCIPAL-->
-    <Style TargetType="{x:Type ContentControl}"
-           x:Key="ContentPrincipal">
-        <Setter Property="Grid.Column"
-                Value="0" />
-        <Setter Property="Grid.ColumnSpan"
-                Value="2" />
-        <Setter Property="Margin"
-                Value="10" />
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding Conectado}"
-                         Value="true">
-                <Setter Property="Grid.Column"
-                        Value="1" />
-                <Setter Property="Grid.ColumnSpan"
-                        Value="1" />
-            </DataTrigger>
-        </Style.Triggers>
-    </Style>
-    <!--#ENDREGION ESTILOS CONTENT CONTROL PRINCIPAL-->
+    <!--#ENDREGION ESTILOS NOMBRE DEL USUARIO-->
 </ResourceDictionary>

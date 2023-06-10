@@ -18,44 +18,17 @@
         MouseLeftButtonDown="Ventana_MouseLeftButtonDown"
         Name="Ventana">
     <Window.DataContext>
-        <viewmodels:MinViewModel />
+        <viewmodels:MainViewModel />
     </Window.DataContext>
-    
-    
-    <Window.Resources>
-        <DataTemplate DataType="{x:Type viewmodels:ArtistasViewModel}">
-            <local:IndexArtistasView />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:GenerosViewModel}">
-            <local:IndexGenerosView />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:UsuariosViewModel}">
-            <local:IndexUsuariosView />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:CancionesViewModel}">
-            <local:IndexCancionesView />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
-            <local:IndexHomeView />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:MinViewModel}">
-            <local:LoginView />
-        </DataTemplate>
-    </Window.Resources>
-    
-    
     
     <Border CornerRadius="10"
             Background="{StaticResource color1}">
         <Grid Background="Transparent"
               Margin="10,0,10,10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width=".045*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height=".07*" />
-                <RowDefinition Height=".94*" />
+                <RowDefinition Height=".93*" />
             </Grid.RowDefinitions>
             
             <WrapPanel Grid.Column="1"
@@ -77,23 +50,17 @@
                 </WrapPanel.Resources>
                 <StackPanel Margin="15,0"
                             VerticalAlignment="Center">
-                    <TextBlock Text="{Binding Usuario.Nombre}"
-                               FontSize="14"
-                               HorizontalAlignment="Right"
-                               Foreground="{StaticResource color4}"
-                               FontWeight="Light" />
+                    <TextBlock Text="{Binding Usuario.Nombre}" Style="{StaticResource EstilosNombreUs}"/>
                     <TextBlock Text="{Binding Usuario.IdRolNavigation.Nombre}"
                                FontSize="11"
-                               HorizontalAlignment="Right"
-                               Foreground="{StaticResource color2}"
-                               FontWeight="Light" />
+                               Style="{StaticResource EstilosNombreUs}"/>
                 </StackPanel>
                 <Grid VerticalAlignment="Center"
+                      Margin="0,2"
                       HorizontalAlignment="Right">
                     <Ellipse Width="auto"
                              Height="auto"
                              Fill="{StaticResource color3}" />
-                    
                     <materialDesign:PackIcon Kind="Account"
                                              Width="auto"
                                              Margin="4"
@@ -103,92 +70,10 @@
                                              HorizontalAlignment="Center"
                                              Style="{StaticResource IconosMenu_materialde}" />
                 </Grid>
-                <materialDesign:PackIcon Kind="Settings"
-                                         Width="auto"
-                                         Margin="15,4,4,4"
-                                         Height="auto"
-                                         Foreground="{StaticResource color4}"
-                                         VerticalAlignment="Center"
-                                         HorizontalAlignment="Center"
-                                         Style="{StaticResource IconosMenu_materialde}" />
             </WrapPanel>
             
-            
-            <Border Grid.Row="1"
-                    Style="{StaticResource BorderFondo}"
-                    Background="#fcfcff"
-                    CornerRadius="10" />
-            
-            <Grid HorizontalAlignment="Left"
-                  Grid.Row="1"
-                  Margin="4,0,0,0">
-                <Grid.Resources>
-                    <Style TargetType="{x:Type Grid}">
-                        <Setter Property="Visibility"
-                                Value="Hidden" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Conectado}"
-                                         Value="true">
-                                <Setter Property="Visibility"
-                                        Value="Visible" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Grid.Resources>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height=".9*" />
-                    <RowDefinition Height=".1*" />
-                </Grid.RowDefinitions>
-                <StackPanel>
-                    <RadioButton Style="{StaticResource BotonesMenu}"
-                                 Command="{Binding NavegarUsuariosCommand}">
-                        <materialDesign:PackIcon Kind="AccountGroup"
-                                                 Style="{StaticResource IconosMenu_materialde}" />
-                    </RadioButton>
-                    <RadioButton Style="{StaticResource BotonesMenu}"
-                                 Command="{Binding NavegarUsuariosCommand}">
-                        <materialDesign:PackIcon Kind="ChartBar"
-                                                 Style="{StaticResource IconosMenu_materialde}" />
-                    </RadioButton>
-                    <RadioButton Style="{StaticResource BotonesMenu}"
-                                 Command="{Binding NavegarHomeCommand}">
-                        <materialDesign:PackIcon Kind="Home"
-                                                 Style="{StaticResource IconosMenu_materialde}" />
-                    </RadioButton>
-                    <RadioButton Style="{StaticResource BotonesMenu}"
-                                 Command="{Binding NavegarArtistasCommand}">
-                        <materialDesign:PackIcon Kind="AccountMusic"
-                                                 Style="{StaticResource IconosMenu_materialde}" />
-                    </RadioButton>
-                    <RadioButton Style="{StaticResource BotonesMenu}"
-                                 Command="{Binding NavegarVerCancionesCommand}">
-                        <fa:ImageAwesome Icon="Music"
-                                         Style="{StaticResource IconosMenu_fa}" />
-                    </RadioButton>
-                    <RadioButton Style="{StaticResource BotonesMenu}"
-                                 Command="{Binding NavegarCancionesMegustanCommand}">
-                        <fa:ImageAwesome Icon="Heart"
-                                         Tag="red"
-                                         Style="{StaticResource IconosMenu_fa}" />
-                    </RadioButton>
-                    <RadioButton Style="{StaticResource BotonesMenu}"
-                                 Command="{Binding NavegarCategoriasCommand}">
-                        <fa:ImageAwesome Icon="Folder"
-                                         Tag="red"
-                                         Style="{StaticResource IconosMenu_fa}" />
-                    </RadioButton>
-                </StackPanel>
-                <RadioButton Style="{StaticResource BotonesMenu}"
-                             Grid.Row="1"
-                             Command="{Binding CerrarSesionCommand}">
-                    <materialDesign:PackIcon Kind="Logout"
-                                             Style="{StaticResource IconosMenu_materialde}" />
-                </RadioButton>
-            </Grid>
-            
             <ContentControl Grid.Row="1"
-                            Style="{StaticResource ContentPrincipal}"
-                            Content="{Binding ViewModelAactual}" />
+                            Content="{Binding View}" />
         </Grid>
     </Border>
 </Window>

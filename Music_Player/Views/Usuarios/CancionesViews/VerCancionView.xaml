@@ -31,11 +31,11 @@
               Height="300"
               VerticalAlignment="Bottom"
               HorizontalAlignment="Center">
-            <Border CornerRadius="10">
+            <!--<Border CornerRadius="10">
                 <Border.Background>
                     <ImageBrush ImageSource="/Assets/musica.jpg"/>
                 </Border.Background>
-            </Border>
+            </Border>-->
             <Border Background="{StaticResource color1}"
                     Opacity=".3"
                     CornerRadius="10"/>

@@ -35,7 +35,7 @@ namespace Music_Player.ViewModels
         public Cancion Cancion { get; set; } = new();
         public int Minutos { get; set; }
         public int Segundos { get; set; }
-        public VistaPeliculas Vista { get; set; }
+        public VistaCancion Vista { get; set; }
         public string Error { get; set; } = "";
         public int TotalCancionesMegustas { get; set; }
 
@@ -97,7 +97,7 @@ namespace Music_Player.ViewModels
             Minutos = 0;
             Segundos = 0;
             Error = "";
-            Vista = VistaPeliculas.AgregarCancion;
+            Vista = VistaCancion.AgregarCancion;
             Actualizar();
         }
 
@@ -105,20 +105,20 @@ namespace Music_Player.ViewModels
         {
             Cancion = catalogo_can.GetCancion(id);
             if (Cancion != null)
-                Vista = VistaPeliculas.VerCancion;
+                Vista = VistaCancion.VerCancion;
             Actualizar();
         }
 
         private void Regresar()
         {
-            Vista = VistaPeliculas.VerPeliculas;
+            Vista = VistaCancion.VerCanciones;
             Actualizar();
         }
 
-        private void MediadorViewModel_VistaActualizada(VistaPeliculas vista)
+        private void MediadorViewModel_VistaActualizada(VistaCancion vista)
         {
             Vista = vista;
-            if (vista == VistaPeliculas.VerPeliculasMegustan)
+            if (vista == VistaCancion.VerCancionesMegustan)
                 GetCancionesMeGusta();
 
             TotalCancionesMegustas = ListaCancionesMegusta.Count;

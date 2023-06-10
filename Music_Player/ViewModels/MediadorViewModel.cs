@@ -9,9 +9,9 @@ namespace Music_Player.ViewModels
 {
    public static class MediadorViewModel
     {
-        public static event Action<VistaPeliculas>? VistaActualizada;
+        public static event Action<VistaCancion>? VistaActualizada;
 
-        public static void ActualizarVista(VistaPeliculas vista)
+        public static void ActualizarVista(VistaCancion vista)
         {
             VistaActualizada?.Invoke(vista);
         }

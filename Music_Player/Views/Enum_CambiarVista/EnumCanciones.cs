@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Music_Player.Views.Enum_CambiarVista
 {
-
-   public enum VistaPeliculas
+    public enum VistaCancion
     {
-        VerPeliculas,
-        VerPeliculasMegustan,
+        VerCanciones,
+        VerCancionesMegustan,
         VerCancion,
-        AgregarCancion
+        AgregarCancion,
+        VerCancionesPorGenero,
+        VerGeneros
     }
-
 }

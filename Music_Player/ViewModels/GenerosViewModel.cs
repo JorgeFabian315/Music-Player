@@ -20,31 +20,31 @@ namespace Music_Player.ViewModels
 
 
 
-        GenerosCatalogo cgenero = new();
+        //GenerosCatalogo cgenero = new();
 
-        public Genero? Genero { get; set; }
+        //public Genero? Genero { get; set; }
 
-        public VistaGeneros Vista { get; set; } = VistaGeneros.VerGeneros;
-        public GenerosViewModel()
-        {
-        }
+        //public VistaGeneros Vista { get; set; } = VistaGeneros.VerGeneros;
+        //public GenerosViewModel()
+        //{
+        //}
 
-        public ICommand VerCancionesGeneroCommand => new RelayCommand<int>(VerCancionesGenero);
-        public ICommand RegresarCommand => new RelayCommand(Regresar);
+        //public ICommand VerCancionesGeneroCommand => new RelayCommand<int>(VerCancionesGenero);
+        //public ICommand RegresarCommand => new RelayCommand(Regresar);
 
-        private void Regresar()
-        {
-            Vista = VistaGeneros.VerGeneros;
-            Actualizar();
-        }
+        //private void Regresar()
+        //{
+        //    Vista = VistaGeneros.VerGeneros;
+        //    Actualizar();
+        //}
 
-        private void VerCancionesGenero(int id)
-        {
-            Genero = cgenero.GetGenero(id);
-            if (Genero != null)
-                Vista = VistaGeneros.VerCancionesPorGenero;
-            Actualizar();
-        }
+        //private void VerCancionesGenero(int id)
+        //{
+        //    Genero = cgenero.GetGenero(id);
+        //    if (Genero != null)
+        //        Vista = VistaGeneros.VerCancionesPorGenero;
+        //    Actualizar();
+        //}
 
       
     }
