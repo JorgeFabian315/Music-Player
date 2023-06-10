@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Music_Player.Views
+namespace Music_Player.Views.Estadisticas
 {
     /// <summary>
-    /// Lógica de interacción para IndexHomeView.xaml
+    /// Lógica de interacción para EstadisticasView.xaml
     /// </summary>
-    public partial class IndexHomeView : UserControl
+    public partial class EstadisticasView : UserControl
     {
-        public IndexHomeView()
+        public EstadisticasView()
         {
             InitializeComponent();
         }

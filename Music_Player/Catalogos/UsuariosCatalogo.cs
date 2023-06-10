@@ -26,11 +26,33 @@ namespace Music_Player.Catalogos
             return context.Usuario.Include(x => x.BitacoraUsuario).FirstOrDefault(x => x.CorreoElectronico == correo);
         }
 
+        public Usuario? GetUs(Usuario u)
+        {
+            Usuario? existe = context.Usuario.Find(u.Id);
+
+            if(existe != null)
+            {
+                return existe;  
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public Usuario? GetIdUsuario(int id)
+        {
+            return context.Usuario.Find(id);
+        }
+
         public Usuario? GetUsuario(string correo)
         {
             return context.Usuario.Include(d => d.BitacoraUsuario).
                 Include(x => x.IdRolNavigation).FirstOrDefault(c => c.CorreoElectronico == correo);
         }
+
+
+
 
         public int IniciarSesion(string correo, string contraseña) 
         {
@@ -76,6 +98,17 @@ namespace Music_Player.Catalogos
             context.SaveChanges();
         }
 
+        public void Eliminar(Usuario u)
+        {
+            context.Usuario.Remove(u);
+            context.SaveChanges();
+        }
+
+        public void Editar(Usuario u)
+        {
+            context.Usuario.Update(u);
+            context.SaveChanges();
+        }
         public IEnumerable<Usuario> GetUsuariosAdmin()
         {
             return context.Usuario.Where(x => x.IdRolNavigation.Nombre == "Administrador");

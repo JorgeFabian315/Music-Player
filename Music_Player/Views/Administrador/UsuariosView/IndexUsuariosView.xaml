@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="Music_Player.Views.IndexUsuariosView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Music_Player.Views"
+             xmlns:usuariosview="clr-namespace:Music_Player.Views.UsuariosView"
+             xmlns:vistas="clr-namespace:Music_Player.Views.Enum_CambiarVista"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <!--<UserControl.Resources>
+        <usuariosview:VerUsuariosView x:Key="VerUsuarios"></usuariosview:VerUsuariosView>
+        <usuariosview:VerBitacorasUsuariosView x:Key="VistaBitacoras"></usuariosview:VerBitacorasUsuariosView>
+    </UserControl.Resources>
+    
+    <ContentControl>
+        -->
+    <!--<ContentControl.Resources>
+            <Style TargetType="{x:Type ContentControl}">
+
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <usuariosview:VerUsuariosView />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ContentControl.Resources>-->
+    <!--
+        
+    </ContentControl>
+</UserControl>-->
+    <UserControl.Resources>
+        <usuariosview:VerBitacorasUsuariosView x:Key="VerBitacoras"></usuariosview:VerBitacorasUsuariosView>
+        <usuariosview:VerUsuariosView x:Key="VerUsuarios"></usuariosview:VerUsuariosView>
+        <usuariosview:VerAgregarUsuarioView x:Key="VerAgregar"></usuariosview:VerAgregarUsuarioView>
+        <usuariosview:VerEliminarUsuarioView x:Key="VerEliminar"></usuariosview:VerEliminarUsuarioView>
+        <usuariosview:VerEditarUsuarioView x:Key="VerEditar"></usuariosview:VerEditarUsuarioView>
+    </UserControl.Resources>
+    <ContentControl>
+        <ContentControl.Style>
+            <Style TargetType="ContentControl">
+                <Setter Property="Content"
+                        Value="{StaticResource VerUsuarios}"></Setter>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Vista}"
+                                 Value="{x:Static vistas:VistaAdministrador.VerBitacoras}">
+                        <Setter Property="Content"
+                                Value="{StaticResource VerBitacoras}"></Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Vista}"
+                                 Value="{x:Static vistas:VistaAdministrador.VerUsuarios}">
+                        <Setter Property="Content"
+                                Value="{StaticResource VerUsuarios}"></Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Vista}"
+                                 Value="{x:Static vistas:VistaAdministrador.VerAgregar}">
+                        <Setter Property="Content"
+                                Value="{StaticResource VerAgregar}"></Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Vista}"
+                                 Value="{x:Static vistas:VistaAdministrador.VerEliminar}">
+                        <Setter Property="Content"
+                                Value="{StaticResource VerEliminar}"></Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Vista}"
+                                 Value="{x:Static vistas:VistaAdministrador.VerEditar}">
+                        <Setter Property="Content"
+                                Value="{StaticResource VerEditar}"></Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ContentControl.Style>
+    </ContentControl>
+</UserControl>

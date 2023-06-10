@@ -18,73 +18,27 @@
         MouseLeftButtonDown="Ventana_MouseLeftButtonDown"
         Name="Ventana">
     <Window.DataContext>
-        <viewmodels:MinViewModel />
+        <viewmodels:MainViewModel />
     </Window.DataContext>
-    <Window.Resources>
-        <DataTemplate DataType="{x:Type viewmodels:ArtistasViewModel}">
-            <local:IndexArtistasView />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:GenerosViewModel}">
-            <local:IndexGenerosView />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:UsuariosViewModel}">
-            <local:IndexUsuariosView />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:CancionesViewModel}">
-            <local:IndexCancionesView />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
-            <local:IndexHomeView />
-        </DataTemplate>
-    </Window.Resources>
-    <Border CornerRadius="10">
-        <Border.Background>
-            <LinearGradientBrush StartPoint="0,0"
-                                 EndPoint="1,1">
-                <GradientStop Color="{StaticResource Color_1 }"
-                              Offset="0" />
-                <GradientStop Color="{StaticResource Color_2 }"
-                              Offset="0.85" />
-            </LinearGradientBrush>
-        </Border.Background>
-        
+    
+    <Border CornerRadius="10"
+            Background="{StaticResource color1}">
         <Grid Background="Transparent"
-              Margin="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width=".05*" />
-                <ColumnDefinition Width=".95*" />
-            </Grid.ColumnDefinitions>
-            <Border Grid.Row="1"
-                    Background="#fcfcff"
-                    CornerRadius="10">
-                <Border.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="Grid.Column"
-                                Value="0" />
-                        <Setter Property="Grid.ColumnSpan"
-                                Value="2" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Conectado}"
-                                         Value="true">
-                                <Setter Property="Grid.Column"
-                                        Value="1" />
-                                <Setter Property="Grid.ColumnSpan"
-                                        Value="1" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Border.Resources>
-            </Border>
+              Margin="10,0,10,10">
             
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".07*" />
+                <RowDefinition Height=".93*" />
+            </Grid.RowDefinitions>
             
-            
-            <StackPanel HorizontalAlignment="Left"
-                        Margin="4,0,0,0"
-                        Grid.Row="1">
-                <StackPanel.Resources>
-                    <Style TargetType="{x:Type StackPanel}">
+            <WrapPanel Grid.Column="1"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Margin="0,5">
+                <WrapPanel.Resources>
+                    <Style TargetType="{x:Type WrapPanel}">
                         <Setter Property="Visibility"
-                                Value="Collapsed" />
+                                Value="Hidden" />
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding Conectado}"
                                          Value="true">
@@ -93,94 +47,33 @@
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
-                </StackPanel.Resources>
+                </WrapPanel.Resources>
+                <StackPanel Margin="15,0"
+                            VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Usuario.Nombre}" Style="{StaticResource EstilosNombreUs}"/>
+                    <TextBlock Text="{Binding Usuario.IdRolNavigation.Nombre}"
+                               FontSize="11"
+                               Style="{StaticResource EstilosNombreUs}"/>
+                </StackPanel>
                 <Grid VerticalAlignment="Center"
-                      HorizontalAlignment="Center"
-                      Margin="0,8,0,5">
-                    <Ellipse Width="40"
-                             Height="40"
+                      Margin="0,2"
+                      HorizontalAlignment="Right">
+                    <Ellipse Width="auto"
+                             Height="auto"
                              Fill="{StaticResource color3}" />
                     <materialDesign:PackIcon Kind="Account"
-                                             Width="30"
-                                             Height="30"
+                                             Width="auto"
+                                             Margin="4"
+                                             Height="auto"
                                              Foreground="{StaticResource color4}"
                                              VerticalAlignment="Center"
                                              HorizontalAlignment="Center"
                                              Style="{StaticResource IconosMenu_materialde}" />
                 </Grid>
-                <TextBlock Text="{Binding Usuario.Nombre}"
-                           Foreground="{StaticResource color4}"
-                           FontSize="13"
-                           TextWrapping="Wrap"
-                           FontWeight="Light"
-                           Margin="0 0 0 20" />
-                <RadioButton Style="{StaticResource BotonesMenu}"
-                             Command="{Binding NavegarHomeCommand}">
-                    <materialDesign:PackIcon Kind="Home"
-                                             Style="{StaticResource IconosMenu_materialde}" />
-                </RadioButton>
-                <RadioButton Style="{StaticResource BotonesMenu}"
-                             Command="{Binding NavegarUsuariosCommand}">
-                    <materialDesign:PackIcon Kind="AccountGroup"
-                                             Style="{StaticResource IconosMenu_materialde}" />
-                </RadioButton>
-                <RadioButton Style="{StaticResource BotonesMenu}"
-                             Command="{Binding NavegarArtistasCommand}">
-                    <materialDesign:PackIcon Kind="AccountMusic"
-                                             Style="{StaticResource IconosMenu_materialde}" />
-                </RadioButton>
-                <RadioButton Style="{StaticResource BotonesMenu}"
-                             Command="{Binding NavegarVerCancionesCommand}">
-                    <fa:ImageAwesome Icon="Music"
-                                     Style="{StaticResource IconosMenu_fa}" />
-                </RadioButton>
-                <RadioButton Style="{StaticResource BotonesMenu}"
-                             Command="{Binding NavegarCancionesMegustanCommand}">
-                    <fa:ImageAwesome Icon="Heart"
-                                     Tag="red"
-                                     Style="{StaticResource IconosMenu_fa}" />
-                </RadioButton>
-                <RadioButton Style="{StaticResource BotonesMenu}"
-                             Command="{Binding NavegarCategoriasCommand}">
-                    <fa:ImageAwesome Icon="Folder"
-                                     Tag="red"
-                                     Style="{StaticResource IconosMenu_fa}" />
-                </RadioButton>
-                <RadioButton Style="{StaticResource BotonesMenu}"
-                             Margin="0,130,0,8"
-                             Command="{Binding CerrarSesionCommand}">
-                    <materialDesign:PackIcon Kind="Logout"
-                                             Style="{StaticResource IconosMenu_materialde}" />
-                </RadioButton>
-            </StackPanel>
-            <ContentControl Grid.Row="1">
-                <ContentControl.Resources>
-                    <Style TargetType="{x:Type ContentControl}">
-                        <Setter Property="Grid.Column"
-                                Value="0" />
-                        <Setter Property="Grid.ColumnSpan"
-                                Value="2" />
-                        <Setter Property="Margin"
-                                Value="10" />
-                        <Setter Property="Content">
-                            <Setter.Value>
-                                <local:LoginView />
-                            </Setter.Value>
-                        </Setter>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Conectado}"
-                                         Value="true">
-                                <Setter Property="Content"
-                                        Value="{Binding ViewModelAactual}" />
-                                <Setter Property="Grid.Column"
-                                        Value="1" />
-                                <Setter Property="Grid.ColumnSpan"
-                                        Value="1" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </ContentControl.Resources>
-            </ContentControl>
+            </WrapPanel>
+            
+            <ContentControl Grid.Row="1"
+                            Content="{Binding View}" />
         </Grid>
     </Border>
 </Window>

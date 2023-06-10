@@ -7,10 +7,13 @@ using System.Threading.Tasks;
 
 namespace Music_Player.Views.Enum_CambiarVista
 {
-    public enum EnumUsuarioVista
+    public enum VistaAdministrador
     {
         VerUsuarios,
         VerBitacoras,
-        VerAgregar
+        VerAgregar,
+        VerEliminar,
+        VerEditar,
+        Estadisticas
     }
 }

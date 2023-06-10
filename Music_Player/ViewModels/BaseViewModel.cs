@@ -19,11 +19,11 @@ namespace Music_Player.Operaciones
             GetArtistas();
             GetGeneros();
             GetCanciones();
+            GetTopArtistas();
 
         }
 
         public CancionesCatalogo  catalogo_can = new();
-        public GenerosCatalogo  catalogo_gen = new();
         public ArtistasCatalogo catalogo_Art = new();
         UsuariosCatalogo catalogo_us = new();
 
@@ -33,6 +33,8 @@ namespace Music_Player.Operaciones
         public ObservableCollection<Cancion> ListaCancionesMegusta { get; set; } = new();
         public ObservableCollection<Genero> ListaGeneros { get; set; } = new();
         public ObservableCollection<Artista> ListaArtistas { get; set; } = new();
+        public ObservableCollection<Artista> ListaTopArtistas { get; set; } = new();
+        public ObservableCollection<Cancion> ListaTopCanciones { get; set; } = new();
 
 
 
@@ -67,7 +69,7 @@ namespace Music_Player.Operaciones
         {
             ListaGeneros.Clear();
 
-            foreach (var item in catalogo_gen.GetGeneros())
+            foreach (var item in catalogo_can.GetGeneros())
             {
                 ListaGeneros.Add(item);
             }
@@ -94,5 +96,27 @@ namespace Music_Player.Operaciones
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+      
+
+
+        public void GetTopArtistas()
+        {
+            ListaTopArtistas.Clear();
+            ListaTopCanciones.Clear();
+            var lista_art = ListaArtistas.OrderByDescending(x => x.TotalCanciones).Take(6);
+            var lista_can = ListaCanciones.OrderByDescending(x => x.FechaAgregada).Take(6);
+
+            foreach (var art in lista_art)
+            {
+                ListaTopArtistas.Add(art);
+            }
+            foreach (var can in lista_can)
+            {
+                ListaTopCanciones.Add(can);
+            }
+
+            Actualizar();
+
+        }
     }
 }

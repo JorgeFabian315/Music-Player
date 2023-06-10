@@ -11,6 +11,7 @@ namespace Music_Player.Catalogos
     public class CancionesCatalogo
     {
         MusicPlayerContext context = new();
+        // scaffold-dbcontext "server=localhost; database=Music_Player; password=root; user=root" Pomelo.EntityFrameworkCore.MySql -OutputDir "Models" -Force -NoPluralize
 
 
         public IEnumerable<Cancion> GetCanciones()
@@ -49,5 +50,17 @@ namespace Music_Player.Catalogos
         //    context.SaveChanges();
         //}
 
+        public IEnumerable<Genero> GetGeneros()
+        {
+            return context.Genero.OrderByDescending(x => x.TotalCanciones);
+        }
+        public Genero GetGenero(int id)
+        {
+            var genero = context.Genero.Include(x => x.Cancion).FirstOrDefault(x => x.Id == id);
+            if (genero != null)
+                return genero;
+            else
+                return new Genero();
+        }
     }
 }

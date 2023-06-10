@@ -1,0 +1,135 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:fa="http://schemas.fontawesome.io/icons/"
+                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <!--#REGION COLORES USADOS-->
+    <SolidColorBrush x:Key="color1"
+                     Color="#2d2e37" />
+    <SolidColorBrush x:Key="color2"
+                     Color="#c4c4c4" />
+    <SolidColorBrush x:Key="color3"
+                     Color="#673AB7" />
+    <SolidColorBrush x:Key="color4"
+                     Color="#fcfcff" />
+    <Color x:Key="Color_1">#2d2e37</Color>
+    <Color x:Key="Color_2">#c4c4c4</Color>
+    <Color x:Key="Color_3">#673AB7</Color>
+    <Color x:Key="Color_4">#fcfcff</Color>
+    <!--#ENDREGION COLORES USADOS-->
+    <!--#REGION ESTILOS ICONOS MENU-->
+    <Style TargetType="{x:Type materialDesign:PackIcon}"
+           x:Key="IconosMenu_materialde">
+        <Setter Property="Foreground"
+                Value="{StaticResource color2}" />
+        <Setter Property="Height"
+                Value="30" />
+        <Setter Property="Width"
+                Value="30" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter Property="Foreground"
+                        Value="{StaticResource color4}" />
+            </Trigger>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}, Path=IsChecked}"
+                         Value="True">
+                <Setter Property="Foreground"
+                        Value="{StaticResource color4}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="{x:Type fa:ImageAwesome}"
+           x:Key="IconosMenu_fa">
+        <Setter Property="Foreground"
+                Value="{StaticResource color2}" />
+        <Setter Property="Height"
+                Value="25" />
+        <Setter Property="Width"
+                Value="25" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter Property="Foreground"
+                        Value="{StaticResource color4}" />
+            </Trigger>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}, Path=IsChecked}"
+                         Value="True">
+                <Setter Property="Foreground"
+                        Value="{StaticResource color4}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <!--#ENDREGION ESTILOS ICONOS MENU-->
+    <!--#REGION ESTILOS BOTONES MENU-->
+    <Style TargetType="RadioButton"
+           x:Key="BotonesMenu">
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="Margin"
+                Value="0,8" />
+        <Setter Property="Height"
+                Value="40" />
+        <Setter Property="Cursor"
+                Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <Grid>
+                        <Border Height="{TemplateBinding Height}"
+                                x:Name="border"
+                                Background="{TemplateBinding Background}">
+                            <Border.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="BorderBrush"
+                                            Value="Transparent" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}
+                                                ,Path=IsMouseOver}"
+                                                     Value="True">
+                                            <Setter Property="BorderBrush"
+                                                    Value="red" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}
+                                                ,Path=IsChecked}"
+                                                     Value="True">
+                                            <Setter Property="BorderBrush"
+                                                    Value="Red" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Resources>
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#ENDREGION BOTONES MENU-->
+    <!--#REGION ESTILOS NOMBRE DEL USUARIO-->
+    <Style TargetType="{x:Type TextBlock}"
+           x:Key="EstilosNombreUs">
+        <Setter Property="FontSize"
+                Value="14" />
+        <Setter Property="HorizontalAlignment"
+                Value="Right" />
+        <Setter Property="Foreground"
+                Value="{StaticResource color4}" />
+        <Setter Property="FontWeight"
+                Value="Light" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Usuario.IdRolNavigation.Nombre}"
+                         Value="Usuario VIP">
+                <Setter Property="Foreground"
+                        Value="Gold" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Usuario.IdRolNavigation.Nombre}"
+                         Value="Administrador">
+                <Setter Property="Foreground"
+                        Value="Aqua" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <!--#ENDREGION ESTILOS NOMBRE DEL USUARIO-->
+</ResourceDictionary>

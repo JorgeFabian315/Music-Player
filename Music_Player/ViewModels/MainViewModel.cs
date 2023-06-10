@@ -17,56 +17,62 @@ using Music_Player.Views.CancionesViews;
 using Music_Player.Views.Enum_CambiarVista;
 using Music_Player.Views.UsuariosView;
 using System.Threading;
-
+using Music_Player.Views.ArtistasViews;
 namespace Music_Player.ViewModels
 {
-    public class MinViewModel : INotifyPropertyChanged
+    public class MainViewModel : INotifyPropertyChanged
     {
-
 
         CancionesViewModel cancionesviewmodel = new();
         UsuariosViewModel usuariosviewmodel = new();
-        GenerosViewModel generosviewmodel = new();
         ArtistasViewModel artistasviewmodel = new();
-        HomeViewModel homeviewmodel = new();
-
+        EstadisticasViewModel estadisticasViewModel = new();
         UsuariosCatalogo catalogo_us = new();
-
-        private object? _miviewmodel;
 
 
         public Usuario Usuario { get; set; } = new();
 
-        //public bool Conectado => Usuario.Id != 0;
-        public bool Conectado => true;
+        public bool Conectado => Usuario.Id != 0;
 
+        private object? _viewmodelactual;
         public object? ViewModelAactual
         {
-            get { return _miviewmodel; }
-            set { _miviewmodel = value; }
+            get { return _viewmodelactual; }
+            set
+            {
+                _viewmodelactual = value;
+
+                Actualizar();
+            }
+        }
+        private UserControl _view;
+
+        public UserControl View
+        {
+            get { return _view; }
+            set
+            {
+                _view = value;
+                Actualizar();
+            }
         }
 
 
-
-        public MinViewModel()
+        public MainViewModel()
         {
-
+            View = new LoginView();
+            View.DataContext = this;
         }
 
 
         #region COMANDOS
-        public ICommand NavegarCategoriasCommand => new RelayCommand(NavegarGeneros);
-        public ICommand NavegarHomeCommand => new RelayCommand(NavegarHome);
-        public ICommand NavegarVerCancionesCommand => new RelayCommand(NavegarVerCanciones);
-        public ICommand NavegarCancionesMegustanCommand => new RelayCommand(NavegarCancionesMegustan);
-        public ICommand NavegarUsuariosCommand => new RelayCommand(NavegarUsuarios);
-        public ICommand NavegarArtistasCommand => new RelayCommand(NavegarArtistas);
+        public ICommand NavegarUsuariosCommand => new RelayCommand<VistaUsuario>(NavegarUsuarios);
+        public ICommand NavegarAdminCommand => new RelayCommand<VistaAdministrador>(NavegarAdministrador);
         public ICommand IniciarSesionCommand => new RelayCommand(IniciarSesion);
         public ICommand CerrarSesionCommand => new RelayCommand(CerrarSesion);
-
-
         #endregion
-        
+
+
         public string Error { get; private set; }
 
         private void IniciarSesion()
@@ -80,7 +86,7 @@ namespace Music_Player.ViewModels
                 {
                     options.IncludeRuleSets("Correo", "Contraseña");
                 });
-                
+
                 if (result.IsValid)
                 {
                     var iniciosesion = catalogo_us.IniciarSesion(Usuario.CorreoElectronico, Usuario.Contraseña);
@@ -88,7 +94,6 @@ namespace Music_Player.ViewModels
                     if (iniciosesion == 1)
                     {
                         Usuario = catalogo_us.GetUsuario(Usuario.CorreoElectronico) ?? new Usuario();
-                        NavegarHome();
                         if (Thread.CurrentPrincipal is not null)
                         {
                             // var nose = Thread.CurrentPrincipal.Identity.Name;
@@ -108,78 +113,73 @@ namespace Music_Player.ViewModels
                     {
                         Error = $"{Error} {error} {Environment.NewLine}";
                     }
-           
+
                 Actualizar();
             }
         }
 
+        #region ACCIONES USUARIOS
         private void AccionesUsuarioNormal()
         {
+            View = new IndexUsuNVIPView();
+            NavegarUsuarios(VistaUsuario.Home);
         }
 
         private void AccionesUsuarioVIP()
         {
+            View = new IndexUsuNVIPView();
+            NavegarUsuarios(VistaUsuario.Home);
         }
 
         private void AccionesAdministrador()
         {
+            View = new IndexAdministradorView();
+            NavegarAdministrador(VistaAdministrador.Estadisticas);
         }
+        #endregion ACCIONES USUARIOS
 
         private void CerrarSesion()
         {
             Usuario = new();
             Error = "";
+            View = new LoginView();
+            View.DataContext = this;
             Actualizar();
         }
 
 
-        private void NavegarCancionesMegustan()
+
+        private void NavegarUsuarios(VistaUsuario vista)
         {
-            MediadorViewModel.ActualizarVista(VistaPeliculas.VerPeliculasMegustan);
-
-            ViewModelAactual = cancionesviewmodel;
-
-
-            Actualizar();
+            if (vista == VistaUsuario.Artista)
+            {
+                ViewModelAactual = artistasviewmodel;
+            }
+            else
+            {
+                MediadorViewModel.ActualizarVista(vista);
+                ViewModelAactual = cancionesviewmodel;
+            }
         }
-
-        private void NavegarArtistas()
+        private void NavegarAdministrador(VistaAdministrador vista)
         {
-            ViewModelAactual = artistasviewmodel;
-            Actualizar();
-        }
-        private void NavegarUsuarios()
-        {
-            ViewModelAactual = usuariosviewmodel;
-            Actualizar();
-        }
-
-
-        private void NavegarHome()
-        {
-            ViewModelAactual = homeviewmodel;
-            Actualizar();
+            if (vista == VistaAdministrador.Estadisticas)
+            {
+                ViewModelAactual = estadisticasViewModel;
+            }
+            else if (vista == VistaAdministrador.VerUsuarios)
+            {
+                ViewModelAactual = usuariosviewmodel;
+            }
         }
 
-        private void NavegarGeneros()
-        {
-            ViewModelAactual = generosviewmodel;
-            Actualizar();
-        }
 
-        private void NavegarVerCanciones()
-        {
-            MediadorViewModel.ActualizarVista(VistaPeliculas.VerPeliculas);
-
-            ViewModelAactual = cancionesviewmodel;
-
-            Actualizar();
-        }
+        #region ACTUALIZAR CAMBIOS
         public event PropertyChangedEventHandler? PropertyChanged;
-
         public void Actualizar(string? propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        #endregion ACTUALIZAR CAMBIOS
     }
 }

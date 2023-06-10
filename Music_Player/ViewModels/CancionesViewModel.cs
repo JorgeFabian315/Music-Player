@@ -33,9 +33,12 @@ namespace Music_Player.ViewModels
         }
 
         public Cancion Cancion { get; set; } = new();
+        public Genero Genero { get;  set; }
+
+
         public int Minutos { get; set; }
         public int Segundos { get; set; }
-        public VistaPeliculas Vista { get; set; }
+        public VistaUsuario Vista { get; set; }
         public string Error { get; set; } = "";
         public int TotalCancionesMegustas { get; set; }
 
@@ -45,6 +48,8 @@ namespace Music_Player.ViewModels
         public ICommand AgregarCancionCommand => new RelayCommand(AgregarCancion);
         public ICommand EliminarCancionCommand => new RelayCommand<int>(EliminarCancion);
         public ICommand BuscarCancionCommand => new RelayCommand<string>(GetCancionesBusqueda);
+        public ICommand VerCancionesGeneroCommand => new RelayCommand<int>(VerCancionesGenero);
+
 
         private void EliminarCancion(int id)
         {
@@ -97,7 +102,7 @@ namespace Music_Player.ViewModels
             Minutos = 0;
             Segundos = 0;
             Error = "";
-            Vista = VistaPeliculas.AgregarCancion;
+            Vista = VistaUsuario.AgregarCancion;
             Actualizar();
         }
 
@@ -105,20 +110,23 @@ namespace Music_Player.ViewModels
         {
             Cancion = catalogo_can.GetCancion(id);
             if (Cancion != null)
-                Vista = VistaPeliculas.VerCancion;
+                Vista = VistaUsuario.VerCancion;
             Actualizar();
         }
 
         private void Regresar()
         {
-            Vista = VistaPeliculas.VerPeliculas;
+            if (Vista == VistaUsuario.VerCancionesPorGenero)
+                Vista = VistaUsuario.VerGeneros;
+            else
+                Vista = VistaUsuario.VerCanciones;
             Actualizar();
         }
 
-        private void MediadorViewModel_VistaActualizada(VistaPeliculas vista)
+        private void MediadorViewModel_VistaActualizada(VistaUsuario vista)
         {
             Vista = vista;
-            if (vista == VistaPeliculas.VerPeliculasMegustan)
+            if (vista == VistaUsuario.VerCancionesMegustan)
                 GetCancionesMeGusta();
 
             TotalCancionesMegustas = ListaCancionesMegusta.Count;
@@ -136,9 +144,15 @@ namespace Music_Player.ViewModels
                 ListaCanciones2.Add(item);
             }
             Actualizar();
-        } 
+        }
 
-
+        private void VerCancionesGenero(int id)
+        {
+            Genero = catalogo_can.GetGenero(id);
+            if (Genero != null)
+                Vista = VistaUsuario.VerCancionesPorGenero;
+            Actualizar();
+        }
 
     }
 }

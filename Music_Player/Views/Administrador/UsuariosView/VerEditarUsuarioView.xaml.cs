@@ -13,16 +13,27 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Music_Player.Views
+namespace Music_Player.Views.UsuariosView
 {
     /// <summary>
-    /// Lógica de interacción para IndexGenerosView.xaml
+    /// Interaction logic for VerEditarUsuarioView.xaml
     /// </summary>
-    public partial class IndexGenerosView : UserControl
+    public partial class VerEditarUsuarioView : UserControl
     {
-        public IndexGenerosView()
+        public VerEditarUsuarioView()
         {
             InitializeComponent();
+        }
+
+        private void pwb1_LostFocus(object sender, RoutedEventArgs e)
+        {
+            txtPassword.Text = "";
+            txtPassword.Text = pwb1.Password;
+        }
+
+        private void pwb1_Loaded(object sender, RoutedEventArgs e)
+        {
+            pwb1.Clear();
         }
     }
 }
