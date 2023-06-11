@@ -13,15 +13,18 @@ namespace Music_Player.Operaciones
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public BaseViewModel()
+        public CancionesCatalogo catalogo_can;
+        public ArtistasCatalogo catalogo_art;
+        public UsuariosCatalogo catalogo_us;
+        public BaseViewModel(MusicPlayerContext context)
         {
+            catalogo_can = new(context);
+            catalogo_art = new(context);
+            catalogo_us = new(context);
             GetArtistas();
             GetGeneros();
         }
 
-        public CancionesCatalogo catalogo_can = new();
-        public ArtistasCatalogo catalogo_Art = new();
-        public UsuariosCatalogo catalogo_us = new();
 
         public ObservableCollection<Cancion> ListaCanciones { get; set; } = new();
         public ObservableCollection<Cancion> ListaCancionesMegusta { get; set; } = new();
@@ -71,7 +74,7 @@ namespace Music_Player.Operaciones
         public void GetArtistas()
         {
             ListaArtistas.Clear();
-            foreach (var item in catalogo_Art.GetArtistas())
+            foreach (var item in catalogo_art.GetArtistas())
             {
                 ListaArtistas.Add(item);
             }

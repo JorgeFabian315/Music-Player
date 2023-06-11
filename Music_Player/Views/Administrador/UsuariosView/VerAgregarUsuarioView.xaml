@@ -160,9 +160,9 @@
                               SelectedValue="{Binding usuario.IdRol}"
                               SelectedValuePath="Id"
                               SelectedIndex="0"
-                              FontSize="12"
+                              FontSize="15"
                               Width="530"
-                              Height="45" />
+                              Height="50" />
                 </WrapPanel>
             </StackPanel>
             <WrapPanel HorizontalAlignment="Center"

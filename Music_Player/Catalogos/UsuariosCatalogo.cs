@@ -14,21 +14,26 @@ namespace Music_Player.Catalogos
 {
     public class UsuariosCatalogo
     {
-        MusicPlayerContext context = new();
+        private readonly MusicPlayerContext _context;
+        public UsuariosCatalogo(MusicPlayerContext context)
+        {
+            _context = context;
+        }
+
 
         public IEnumerable<Usuario> GetUsuarios()
         {
-            return context.Usuario.Include(x => x.IdRolNavigation).OrderBy(x => x.Nombre);
+            return _context.Usuario.Include(x => x.IdRolNavigation).OrderBy(x => x.Nombre);
         }
 
         public Usuario? GetBitacorasUsuario(string correo)
         {
-            return context.Usuario.Include(x => x.BitacoraUsuario).FirstOrDefault(x => x.CorreoElectronico == correo);
+            return _context.Usuario.Include(x => x.BitacoraUsuario).FirstOrDefault(x => x.CorreoElectronico == correo);
         }
 
         public Usuario? GetUs(Usuario u)
         {
-            Usuario? existe = context.Usuario.Find(u.Id);
+            Usuario? existe = _context.Usuario.Find(u.Id);
 
             if(existe != null)
             {
@@ -42,12 +47,12 @@ namespace Music_Player.Catalogos
 
         public Usuario? GetIdUsuario(int id)
         {
-            return context.Usuario.Find(id);
+            return _context.Usuario.Find(id);
         }
 
         public Usuario? GetUsuario(string correo)
         {
-            return context.Usuario.Include(d => d.BitacoraUsuario).
+            return _context.Usuario.Include(d => d.BitacoraUsuario).
                 Include(x => x.IdRolNavigation).FirstOrDefault(c => c.CorreoElectronico == correo);
         }
 
@@ -58,7 +63,7 @@ namespace Music_Player.Catalogos
         {
             string comando = $"select fn_InicioSeion('{correo}','{contraseña}')";
 
-            var y = ((IEnumerable<int>)context.Database.
+            var y = ((IEnumerable<int>)_context.Database.
             SqlQueryRaw<int>(comando,  correo, contraseña)
             .AsAsyncEnumerable<int>()).First();
 
@@ -94,34 +99,41 @@ namespace Music_Player.Catalogos
 
         public void Agregar(Usuario u)
         {
-            context.Usuario.Add(u);
-            context.SaveChanges();
+            _context.Usuario.Add(u);
+            _context.SaveChanges();
         }
 
         public void Eliminar(Usuario u)
         {
-            context.Usuario.Remove(u);
-            context.SaveChanges();
+            _context.Usuario.Remove(u);
+            _context.SaveChanges();
         }
 
         public void Editar(Usuario u)
         {
-            context.Usuario.Update(u);
-            context.SaveChanges();
+            _context.Usuario.Update(u);
+            _context.SaveChanges();
         }
         public IEnumerable<Usuario> GetUsuariosAdmin()
         {
-            return context.Usuario.Where(x => x.IdRolNavigation.Nombre == "Administrador");
+            return _context.Usuario.Where(x => x.IdRolNavigation.Nombre == "Administrador");
         }
 
         public IEnumerable<Usuario> GetUsuariosVIP()
         {
-            return context.Usuario.Where(x => x.IdRolNavigation.Nombre == "Usuario VIP");
+            return _context.Usuario.Where(x => x.IdRolNavigation.Nombre == "Usuario VIP");
         }
 
         public IEnumerable<Usuario> GetUsuariosNormal()
         {
-            return context.Usuario.Where(x => x.IdRolNavigation.Nombre == "Usuario");
+            return _context.Usuario.Where(x => x.IdRolNavigation.Nombre == "Usuario");
+        }
+        public IEnumerable<Rol> GetRoles()
+        {
+            foreach (var rol in _context.Rol)
+            {
+                yield return rol;
+            }
         }
     }
 }

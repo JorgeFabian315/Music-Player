@@ -18,16 +18,21 @@ using Music_Player.Views.Enum_CambiarVista;
 using Music_Player.Views.UsuariosView;
 using System.Threading;
 using Music_Player.Views.ArtistasViews;
+using Microsoft.EntityFrameworkCore;
+
 namespace Music_Player.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
 
-        CancionesViewModel cancionesviewmodel = new();
-        UsuariosViewModel usuariosviewmodel = new();
-        ArtistasViewModel artistasviewmodel = new();
+        public static MusicPlayerContext _context = new();
+
+
+        CancionesViewModel cancionesviewmodel = new(_context);
+        UsuariosViewModel usuariosviewmodel = new(_context);
+        ArtistasViewModel artistasviewmodel = new(_context);
         EstadisticasViewModel estadisticasViewModel = new();
-        UsuariosCatalogo catalogo_us = new();
+        UsuariosCatalogo catalogo_us = new(_context);
 
 
         public Usuario Usuario { get; set; } = new();
@@ -46,9 +51,9 @@ namespace Music_Player.ViewModels
                 Actualizar();
             }
         }
-        private UserControl _view;
+        private UserControl? _view;
 
-        public UserControl View
+        public UserControl? View
         {
             get { return _view; }
             set

@@ -24,14 +24,14 @@ namespace Music_Player.ViewModels
         public ICommand EliminarArtistaCommand { get; set; }
         public VistaArtista Vista { get; set; } = VistaArtista.VerArtistas;
         Artista artista;
-        public ArtistasViewModel()
+        public ArtistasViewModel(MusicPlayerContext _context):base(_context)
         {
             //ActualizarListaArtistas();
         }
         public void ActualizarListaArtistas()
         {
             ListaArtistas.Clear();
-            foreach (var item in catalogo_Art.GetArtistas())
+            foreach (var item in catalogo_art.GetArtistas())
             {
                 ListaArtistas.Add(item);
             }

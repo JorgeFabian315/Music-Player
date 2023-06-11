@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using Microsoft.Extensions.Options;
 using Music_Player.Catalogos;
 using Music_Player.Models;
+using Music_Player.Operaciones;
 using Music_Player.Validaciones;
 using Music_Player.Views.Enum_CambiarVista;
 using System;
@@ -16,7 +17,7 @@ using System.Windows.Input;
 
 namespace Music_Player.ViewModels
 {
-    public class UsuariosViewModel: INotifyPropertyChanged
+    public class UsuariosViewModel: BaseViewModel
     {
 
 
@@ -24,10 +25,8 @@ namespace Music_Player.ViewModels
         public ObservableCollection<Rol> ListaRoles { get; set; } = new ObservableCollection<Rol>();
         public Usuario? usuario { get; set; }
         public Rol? rol { get; set; }
-        UsuariosCatalogo catalagousuario = new();
-        RolCatalogo catalagoroles = new();
         public VistaAdministrador Vista { get; set; }
-        public string Error { get; set; }
+        public string Error { get; set; } = string.Empty;
 
         public ICommand VerBitacorasCommand { get; set; }
         public ICommand RegresarCommand { get; set; }
@@ -42,8 +41,9 @@ namespace Music_Player.ViewModels
         public ICommand EditarUsuarioCommand { get; set; }
 
 
-        public UsuariosViewModel()
+        public UsuariosViewModel(MusicPlayerContext context):base(context)
         {
+
             CargarBD();
             CargarRoles();
             Vista = VistaAdministrador.VerUsuarios;
@@ -73,7 +73,7 @@ namespace Music_Player.ViewModels
 
                 if (result.IsValid)
                 {
-                    var existe = catalagousuario.GetUs(usuario);
+                    var existe = catalogo_us.GetUs(usuario);
 
                     if(existe != null)
                     {
@@ -83,7 +83,7 @@ namespace Music_Player.ViewModels
                         existe.Contraseña = usuario.Contraseña;
                         existe.IdRol = usuario.IdRol;
 
-                        catalagousuario.Editar(existe);
+                        catalogo_us.Editar(existe);
                         CargarBD();
                         Regresar();
                     }
@@ -126,7 +126,7 @@ namespace Music_Player.ViewModels
         public void CargarRoles()
         {
             ListaRoles.Clear();
-            foreach (var item in catalagoroles.GetRoles())
+            foreach (var item in catalogo_us.GetRoles())
             {
                 ListaRoles.Add(item);
             }
@@ -137,7 +137,7 @@ namespace Music_Player.ViewModels
         {
             if(usuario != null)
             {
-                catalagousuario.Eliminar(usuario);
+                catalogo_us.Eliminar(usuario);
 
                 Vista = VistaAdministrador.VerUsuarios;
                 CargarBD();
@@ -147,7 +147,7 @@ namespace Music_Player.ViewModels
 
         private void VerEliminar(int id)
         {
-            usuario = catalagousuario.GetIdUsuario(id);
+            usuario = catalogo_us.GetIdUsuario(id);
 
             if(usuario != null)
             {
@@ -181,7 +181,7 @@ namespace Music_Player.ViewModels
 
                 if (result.IsValid)
                 {
-                    catalagousuario.Agregar(usuario);
+                    catalogo_us.Agregar(usuario);
                     CargarBD();
                     Regresar();
                 }
@@ -199,7 +199,7 @@ namespace Music_Player.ViewModels
         private void VerUsuarios()
         {
             ListaUsuarios.Clear();
-            foreach (var item in catalagousuario.GetUsuariosNormal())
+            foreach (var item in catalogo_us.GetUsuariosNormal())
             {
                 ListaUsuarios.Add(item);
             }
@@ -209,7 +209,7 @@ namespace Music_Player.ViewModels
         private void VerVIP()
         {
             ListaUsuarios.Clear();
-            foreach (var item in catalagousuario.GetUsuariosVIP())
+            foreach (var item in catalogo_us.GetUsuariosVIP())
             {
                 ListaUsuarios.Add(item);
             }
@@ -219,7 +219,7 @@ namespace Music_Player.ViewModels
         private void VerAdmins()
         {
             ListaUsuarios.Clear();
-            foreach (var item in catalagousuario.GetUsuariosAdmin())
+            foreach (var item in catalogo_us.GetUsuariosAdmin())
             {
                 ListaUsuarios.Add(item);
             }
@@ -237,7 +237,7 @@ namespace Music_Player.ViewModels
         {
             if(u != null)
             {
-                usuario = catalagousuario.GetBitacorasUsuario(u.CorreoElectronico);
+                usuario = catalogo_us.GetBitacorasUsuario(u.CorreoElectronico);
                 Vista = VistaAdministrador.VerBitacoras;
                 Actualizar();
             }
@@ -246,18 +246,11 @@ namespace Music_Player.ViewModels
         public void CargarBD()
         {
             ListaUsuarios.Clear();
-            foreach (var item in catalagousuario.GetUsuarios())
+            foreach (var item in catalogo_us.GetUsuarios())
             {
                 ListaUsuarios.Add(item);
             }
             Actualizar();
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        public void Actualizar(string? propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

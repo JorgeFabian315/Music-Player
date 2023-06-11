@@ -10,13 +10,18 @@ namespace Music_Player.Catalogos
 {
     public class CancionesCatalogo
     {
-        MusicPlayerContext context = new();
+
         // scaffold-dbcontext "server=localhost; database=Music_Player; password=root; user=root" Pomelo.EntityFrameworkCore.MySql -OutputDir "Models" -Force -NoPluralize
 
+        private readonly MusicPlayerContext _context;
+        public CancionesCatalogo(MusicPlayerContext context)
+        {
+            _context = context;
+        }
 
         public IEnumerable<Cancion> GetCanciones(int id)
         {
-            return context.Cancion
+            return _context.Cancion
                  .Include(c => c.IdArtistaNavigation)
                  .Include(c => c.IdGeneroNavigation)
                  .Where(c => c.IdUsuario == id);
@@ -25,7 +30,7 @@ namespace Music_Player.Catalogos
 
         public Cancion GetCancion(int id)
         {
-            var cancion = context.Cancion.Find(id);
+            var cancion = _context.Cancion.Find(id);
 
             if (cancion != null)
                 return cancion;
@@ -34,19 +39,19 @@ namespace Music_Player.Catalogos
         }
         public void AgregarCancion(Cancion cancion)
         {
-            context.Cancion.Add(cancion);
-            context.SaveChanges();
+            _context.Cancion.Add(cancion);
+            _context.SaveChanges();
         }
 
         public void GetActualizarMeGusta(int id, bool estado)
         {
-            context.Cancion.Where(c => c.Id == id)
+            _context.Cancion.Where(c => c.Id == id)
                 .ExecuteUpdate(c => c.SetProperty(f => f.MeGusta, estado));
         }
 
         public void EliminarCancion(int id)
         {
-            context.Cancion.Where(c => c.Id == id).ExecuteDelete();
+            _context.Cancion.Where(c => c.Id == id).ExecuteDelete();
         }
 
 
@@ -58,21 +63,23 @@ namespace Music_Player.Catalogos
 
         public IEnumerable<Genero> GetGeneros()
         {
-            return context.Genero.OrderByDescending(x => x.TotalCanciones);
+            return _context.Genero.OrderByDescending(x => x.TotalCanciones);
         }
         public Genero GetGenero(int id)
         {
-            var genero = context.Genero.Include(x => x.Cancion).FirstOrDefault(x => x.Id == id);
+            var genero = _context.Genero.Include(x => x.Cancion).FirstOrDefault(x => x.Id == id);
             if (genero != null)
                 return genero;
             else
                 return new Genero();
         }
 
-        public void EditarCancion(Cancion c)
+        public void EditarCancion(Cancion exis, Cancion c)
         {
-            context.Cancion.Update(c);
-            context.SaveChanges();  
+            _context.Entry(exis).CurrentValues.SetValues(c);
+
+            _context.Cancion.Update(exis);
+            _context.SaveChanges();  
         }
     }
 }

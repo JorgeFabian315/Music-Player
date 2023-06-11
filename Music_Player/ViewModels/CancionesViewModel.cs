@@ -15,6 +15,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Threading;
+using AutoMapper;
+using Music_Player.Profile;
 
 namespace Music_Player.ViewModels
 {
@@ -23,8 +25,12 @@ namespace Music_Player.ViewModels
 
         public Usuario? Usuario { get; set; }
 
-        public CancionesViewModel()
+        private IMapper _mapper;
+        public CancionesViewModel(MusicPlayerContext _context):base(_context)
         {
+
+            _mapper = (Mapper) CancionProfile.Initialize();
+
             MediadorViewModel.VistaActualizada += MediadorViewModel_VistaActualizada;
             MediadorViewModel.UusarioConectado += MediadorViewModel_UusarioConectado;
         }
@@ -39,7 +45,6 @@ namespace Music_Player.ViewModels
         public VistaUsuario Vista { get; set; }
         public string Error { get; set; } = "";
         public int TotalCancionesMegustas { get; set; }
-
         public ICommand VerCancionCommand => new RelayCommand<int>(VerCancion);
         public ICommand RegresarCommand => new RelayCommand(Regresar);
         public ICommand VerAgregarCancionCommand => new RelayCommand(VerAgregarCancion);
@@ -55,23 +60,25 @@ namespace Music_Player.ViewModels
             if(Cancion != null)
             {
                 Vista = VistaUsuario.EditarCancion;
-                var clon = new Cancion()
-                {
-                    Id = Cancion.Id,
-                    Titulo = Cancion.Titulo,
-                    Duracion = Cancion.Duracion,
-                    IdArtista = Cancion.IdArtista,
-                    IdGenero = Cancion.IdGenero,
-                    IdUsuario = Cancion.IdUsuario,
-                    MeGusta = Cancion.MeGusta,
-                    FechaAgregada = Cancion.FechaAgregada,
-                    IdArtistaNavigation = Cancion.IdArtistaNavigation,
-                    IdGeneroNavigation = Cancion.IdGeneroNavigation,
-                    IdUsuarioNavigation = Cancion.IdUsuarioNavigation
-                };
+                //var clon = new Cancion()
+                //{
+                //    Id = Cancion.Id,
+                //    Titulo = Cancion.Titulo,
+                //    Duracion = Cancion.Duracion,
+                //    IdArtista = Cancion.IdArtista,
+                //    IdGenero = Cancion.IdGenero,
+                //    IdUsuario = Cancion.IdUsuario,
+                //    MeGusta = Cancion.MeGusta,
+                //    FechaAgregada = Cancion.FechaAgregada,
+                //    IdArtistaNavigation = Cancion.IdArtistaNavigation,
+                //    IdGeneroNavigation = Cancion.IdGeneroNavigation,
+                //    IdUsuarioNavigation = Cancion.IdUsuarioNavigation
+                //};
+
+                var clon = _mapper.Map<Cancion>(Cancion);
 
                 Cancion = clon;
-
+                
                 Actualizar();
             }
         }
@@ -102,7 +109,15 @@ namespace Music_Player.ViewModels
                 if (result.IsValid)
                 {
                     if (Cancion.Id > 0)
-                        catalogo_can.EditarCancion(Cancion);
+                    {
+                        var existe = catalogo_can.GetCancion(Cancion.Id);
+                        
+                        if (existe != null)
+                        {
+                            // existe = _mapper.Map<Cancion>(Cancion);
+                            catalogo_can.EditarCancion(existe, Cancion);
+                        }
+                    }
                     else
                         catalogo_can.AgregarCancion(Cancion);
 
