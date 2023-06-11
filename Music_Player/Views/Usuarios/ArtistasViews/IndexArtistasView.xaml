@@ -5,17 +5,31 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Music_Player.Views"
              xmlns:artistasviews="clr-namespace:Music_Player.Views.ArtistasViews"
+             xmlns:Vista="clr-namespace:Music_Player.Views.Enum_CambiarVista"
+             
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <ContentControl>
             <ContentControl.Resources>
                 <Style TargetType="{x:Type ContentControl}">
-                    <Setter Property="Content">
-                        <Setter.Value>
-                            <artistasviews:VerArtistasView />
-                        </Setter.Value>
-                    </Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Vista}" Value="{x:Static Vista:VistaArtista.VerArtistas}">
+                            <Setter Property="Content" >
+                                <Setter.Value>
+                                    <artistasviews:VerArtistasView/>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Vista}" Value="{x:Static Vista:VistaArtista.VerCancionesPorArtista}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <artistasviews:VerCancionesPorArtistaView/>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+
                 </Style>
             </ContentControl.Resources>
         </ContentControl>

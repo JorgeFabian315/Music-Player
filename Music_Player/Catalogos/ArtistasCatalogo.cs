@@ -20,6 +20,10 @@ namespace Music_Player.Catalogos
         {
             return context.Artista.FirstOrDefault(x=>x.Id == id);
         }
+        public IEnumerable<Cancion> GetCancionesPorArtistas(int id)
+        {
+            return context.Cancion.OrderBy(x => x.IdArtista == id);
+        }
         public void AgregarArtista(Artista a)
         {
             context.Add(a);
