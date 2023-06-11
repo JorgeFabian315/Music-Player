@@ -159,7 +159,9 @@ namespace Music_Player.ViewModels
             }
             else
             {
+                MediadorViewModel.BuscarUsuario(Usuario.Id);
                 MediadorViewModel.ActualizarVista(vista);
+
                 ViewModelAactual = cancionesviewmodel;
             }
         }

@@ -1,14 +1,12 @@
-﻿<UserControl x:Class="Music_Player.Views.CancionesViews.AgregarCancionView"
+﻿<UserControl x:Class="Music_Player.Views.Usuarios.CancionesViews.EditarCancionView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Music_Player.Views.CancionesViews"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Music_Player.Views.Usuarios.CancionesViews"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d"
-             FontWeight="Light"
-             d:DesignHeight="450"
-             d:DesignWidth="800">
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel>
         <StackPanel  DockPanel.Dock="Top"
                      Margin="10,0,0,20">
@@ -40,15 +38,12 @@
                        Margin="0,10, 0, 0"
                        FontSize="20"
                        Grid.Row="1" />
- 
-                <TextBox Width="150"
-                         Margin="0"
-                         HorizontalAlignment="Left"
-                         Text="{Binding Cancion.Duracion}"
-                         FontSize="20"
-                         materialDesign:HintAssist.Hint="mm : ss" />
-     
-        
+            <TextBox Width="150"
+                     Margin="0"
+                     HorizontalAlignment="Left"
+                     Text="{Binding Cancion.Duracion}"
+                     FontSize="20"
+                     materialDesign:HintAssist.Hint="mm : ss" />
             <ComboBox materialDesign:HintAssist.Hint="Artista"
                       ItemsSource="{Binding ListaArtistas}"
                       DisplayMemberPath="Apodo"
@@ -57,7 +52,6 @@
                       SelectedValuePath="Id"
                       SelectedValue="{Binding Cancion.IdArtista}"
                       Margin="0,30,0,15" />
-           
             <ComboBox materialDesign:HintAssist.Hint="Género musical"
                       DisplayMemberPath="Nombre"
                       FontSize="20"

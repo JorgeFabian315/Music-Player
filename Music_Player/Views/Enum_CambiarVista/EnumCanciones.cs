@@ -15,6 +15,7 @@ namespace Music_Player.Views.Enum_CambiarVista
         VerCancionesPorGenero,
         VerGeneros,
         Home,
-        Artista
+        Artista,
+        EditarCancion
     }
 }

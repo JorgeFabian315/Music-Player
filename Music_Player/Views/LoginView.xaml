@@ -99,6 +99,7 @@
                         Padding="10,0"
                         Width="150"
                         Height="50"
+                        IsDefault="True"
                         FontSize="17"
                         Foreground="White"
                         Content="Iniciar Sesión"

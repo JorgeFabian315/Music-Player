@@ -14,11 +14,12 @@ namespace Music_Player.Catalogos
         // scaffold-dbcontext "server=localhost; database=Music_Player; password=root; user=root" Pomelo.EntityFrameworkCore.MySql -OutputDir "Models" -Force -NoPluralize
 
 
-        public IEnumerable<Cancion> GetCanciones()
+        public IEnumerable<Cancion> GetCanciones(int id)
         {
-            return context.Cancion.Include(c => c.IdArtistaNavigation)
+            return context.Cancion
+                 .Include(c => c.IdArtistaNavigation)
                  .Include(c => c.IdGeneroNavigation)
-                 .OrderBy(can => can.Titulo);
+                 .Where(c => c.IdUsuario == id);
         }
 
 
@@ -37,6 +38,11 @@ namespace Music_Player.Catalogos
             context.SaveChanges();
         }
 
+        public void GetActualizarMeGusta(int id, bool estado)
+        {
+            context.Cancion.Where(c => c.Id == id)
+                .ExecuteUpdate(c => c.SetProperty(f => f.MeGusta, estado));
+        }
 
         public void EliminarCancion(int id)
         {
@@ -61,6 +67,12 @@ namespace Music_Player.Catalogos
                 return genero;
             else
                 return new Genero();
+        }
+
+        public void EditarCancion(Cancion c)
+        {
+            context.Cancion.Update(c);
+            context.SaveChanges();  
         }
     }
 }

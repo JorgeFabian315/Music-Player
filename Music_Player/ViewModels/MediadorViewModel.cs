@@ -15,5 +15,11 @@ namespace Music_Player.ViewModels
         {
             VistaActualizada?.Invoke(vista);
         }
+        public static event Action<int>? UusarioConectado;
+
+        public static void BuscarUsuario(int id)
+        {
+            UusarioConectado?.Invoke(id);
+        }
     }
 }

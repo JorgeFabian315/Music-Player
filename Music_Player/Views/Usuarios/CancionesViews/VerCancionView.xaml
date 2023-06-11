@@ -5,10 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Music_Player.Views.CancionesViews"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:gif="http://wpfanimatedgif.codeplex.com"
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
+    <UserControl.Resources>
+    </UserControl.Resources>
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height=".1*" />
@@ -38,7 +41,7 @@
             </Border>-->
             <Border Background="{StaticResource color1}"
                     Opacity=".3"
-                    CornerRadius="10"/>
+                    CornerRadius="10" />
         </Grid>
         <TextBlock Text="{Binding Cancion.Titulo}"
                    Foreground="{StaticResource color1}"
@@ -47,12 +50,75 @@
                    Grid.Row="2"
                    Margin="0,25,0,0"
                    HorizontalAlignment="Center" />
-        <Border Background="{StaticResource color1}"
-                CornerRadius="10"
-                Grid.Row="3"
-                VerticalAlignment="Center"
-                Margin="20,0"
-                Height="100">
-        </Border>
+        <Grid Grid.Row="3"
+              VerticalAlignment="Center"
+              Margin="20,0"
+              Height="100">
+            <Border Background="Black"
+                    Opacity=".8"
+                    CornerRadius="10" />
+            <WrapPanel Margin="15 0 0 0 "
+                       VerticalAlignment="Center">
+                <WrapPanel VerticalAlignment="Center">
+                    <materialDesign:PackIcon Kind="SkipPrevious"
+                                             VerticalAlignment="Center"
+                                             Foreground="White"
+                                             Width="40"
+                                             Height="40" />
+                    <materialDesign:PackIcon Kind="PlayCircle"
+                                             VerticalAlignment="Center"
+                                             Foreground="White"
+                                             Width="40"
+                                             Height="40" />
+                    <materialDesign:PackIcon Kind="SkipNext"
+                                             VerticalAlignment="Center"
+                                             Foreground="White"
+                                             Width="40"
+                                             Height="40" />
+                    <Border CornerRadius="10"
+                            Width="80"
+                            Height="80"
+                            Margin="10,0">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Assets/musica.jpg" />
+                        </Border.Background>
+                    </Border>
+                    <StackPanel VerticalAlignment="Center"
+                                Margin="10 0 30 0">
+                        <TextBlock Text="{Binding Cancion.IdArtistaNavigation.Nombre}"
+                                   Foreground="{StaticResource color4}"
+                                   FontSize="25"
+                                   TextWrapping="Wrap" />
+                        <TextBlock FontSize="15"
+                                   TextWrapping="Wrap"
+                                   Text="{Binding Cancion.IdGeneroNavigation.Nombre}"
+                                   Foreground="{StaticResource color4}" />
+                    </StackPanel>
+                    <CheckBox IsChecked="{Binding Cancion.MeGusta}"
+                              Style="{StaticResource MeGustaChk}"
+                              Command="{Binding ActualizarMeGustaCommand}"
+                              CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self},Path=IsChecked}">
+                    </CheckBox>
+                    <TextBlock Text="0:00"
+                               FontSize="20"
+                               VerticalAlignment="Center"
+                               TextWrapping="Wrap"
+                               Foreground="{StaticResource color4}" />
+                    <Image gif:ImageBehavior.AnimatedSource="/Assets/musicagif.gif" 
+                           Width="300" Height="80"
+                           Margin="15,0"/>
+                    <TextBlock Text="{Binding Cancion.Duracion}"
+                               FontSize="20"
+                               TextWrapping="Wrap"
+                               Foreground="{StaticResource color4}"
+                               VerticalAlignment="Center" />
+                    <materialDesign:PackIcon Kind="ShuffleVariant"
+                                             VerticalAlignment="Center"
+                                             Foreground="White"
+                                             Width="40"
+                                             Height="40" />
+                </WrapPanel>
+            </WrapPanel>
+        </Grid>
     </Grid>
 </UserControl>

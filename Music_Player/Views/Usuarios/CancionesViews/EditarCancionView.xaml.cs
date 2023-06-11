@@ -13,19 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Music_Player.Views.CancionesViews
+namespace Music_Player.Views.Usuarios.CancionesViews
 {
     /// <summary>
-    /// Lógica de interacción para VerCancionesView.xaml
+    /// Lógica de interacción para EditarCancionView.xaml
     /// </summary>
-    public partial class VerCancionesView : UserControl
+    public partial class EditarCancionView : UserControl
     {
-        public VerCancionesView()
+        public EditarCancionView()
         {
             InitializeComponent();
-
         }
-
-        
     }
 }

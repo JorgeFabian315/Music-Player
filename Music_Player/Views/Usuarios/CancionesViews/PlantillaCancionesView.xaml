@@ -44,22 +44,9 @@
                            TextWrapping="Wrap"
                            Foreground="{StaticResource color2}" />
             </StackPanel>
-            <Button Padding="0"
-                    Height="35"
-                    Width="35"
-                    BorderThickness="0"
-                    BorderBrush="Transparent"
-                    Background="Transparent"
-                    VerticalAlignment="Top"
-                    HorizontalAlignment="Right"
-                    Margin="10">
-                <materialDesign:PackIcon Kind="delete"
-                                         Foreground="White"
-                                         VerticalAlignment="Center"
-                                         HorizontalAlignment="Center"
-                                         Height="20"
-                                         Width="20" />
-            </Button>
+            <Button Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ScrollViewer}},Path=DataContext.VerEditarCancionCommand}"
+                    CommandParameter="{Binding Id}"
+                />
         </Grid>
     </Border>
 </UserControl>

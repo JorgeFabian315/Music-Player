@@ -13,6 +13,7 @@
     <None Remove="Assets\logo.png" />
     <None Remove="Assets\musica.jpg" />
     <None Remove="Assets\musicagif.gif" />
+    <None Remove="Assets\sonido.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,6 +38,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\musicagif.gif" />
+    <Resource Include="Assets\sonido.png" />
   </ItemGroup>
 
 </Project>
