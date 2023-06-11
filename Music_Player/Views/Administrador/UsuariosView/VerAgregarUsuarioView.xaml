@@ -25,7 +25,7 @@
                                      Height="30" />
             </Button>
 
-            <StackPanel DockPanel.Dock="Top"  HorizontalAlignment="Center">
+            <!--<StackPanel DockPanel.Dock="Top"  HorizontalAlignment="Center">
                 <TextBlock
   Style="{StaticResource MaterialDesignHeadline1TextBlock}"
   Text="Nombre del usuario:"
@@ -106,12 +106,89 @@
     Width="480" />
                 </StackPanel>
 
+            </StackPanel>-->
+
+
+            <StackPanel DockPanel.Dock="Top" Margin="120,0,0,0">
+
+
+                <WrapPanel Margin="10,0,0,0">
+
+                    <TextBlock
+  Style="{StaticResource MaterialDesignHeadline1TextBlock}"
+  Text="Nombre del usuario:"
+                    FontSize="20"
+                    />
+                    <TextBox Width="530" Margin="5,0,0,0"  Text="{Binding usuario.Nombre}" FontSize="15"></TextBox>
+                </WrapPanel>
+
+
+                <WrapPanel Margin="20,40,0,0">
+                    <TextBlock
+  Style="{StaticResource MaterialDesignHeadline1TextBlock}"
+  Text="Correo Electrónico:"
+                    FontSize="20"
+                    />
+                    <TextBox Width="530" Margin="5,0,0,0" Text="{Binding usuario.CorreoElectronico}" FontSize="15"></TextBox>
+                </WrapPanel>
+
+                <WrapPanel Margin="80,30,0,0">
+                    <TextBlock
+  Style="{StaticResource MaterialDesignHeadline1TextBlock}"
+  Text="Contraseña:"
+                    Margin="0,20,0,0"
+  FontSize="20"    
+            />
+
+                    <TextBox Visibility="Collapsed"
+                             Name="txtPassword"
+                             Text="{Binding usuario.Contraseña, UpdateSourceTrigger= PropertyChanged}" />
+                    <PasswordBox Name="pwb1"
+                        HorizontalAlignment="Left"
+                                 FontSize="20"
+                             Margin="5,0,0,0"
+                                 Width="530"
+                                 LostFocus="pwb1_LostFocus"
+                         Loaded="pwb1_Loaded"
+                             Padding="0"
+                                 materialDesign:TextFieldAssist.HasClearButton="True"
+                                 materialDesign:HintAssist.FloatingOffset="0,-25"
+                                 Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                                ></PasswordBox>
+                </WrapPanel>
+
+                <WrapPanel Margin="125,50,0,0">
+                    <TextBlock
+  Style="{StaticResource MaterialDesignHeadline1TextBlock}"
+  Text="Rol:"
+                    FontSize="20"
+                    />
+                    <ComboBox
+    x:Name="OutlinedComboBox"
+                        Margin="30,0,0,0"
+    Style="{StaticResource MaterialDesignOutlinedComboBox}"
+    IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
+    
+    ItemsSource="{Binding ListaRoles}"
+    SelectedItem="{Binding rol}"
+                        HorizontalAlignment="Left"
+    DisplayMemberPath="Nombre"
+    SelectedValue="{Binding usuario.IdRol}"
+    SelectedValuePath="Id"
+    SelectedIndex="0"
+                        FontSize="12"
+    Width="530"
+                        Height="45"
+                        />
+                </WrapPanel>
+                
             </StackPanel>
+            
+            
+            
 
-
-
-            <WrapPanel HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="0,23,0,0">
-                <Grid Margin="0,0,20,0"
+            <WrapPanel HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="40,60,0,0">
+                <Grid Margin="0,0,40,0"
   Width="120">
                     <Button
     Style="{StaticResource MaterialDesignRaisedLightButton}"
@@ -145,7 +222,7 @@
             </WrapPanel>
 
 
-            <TextBlock DockPanel.Dock="Bottom" VerticalAlignment="Center" Margin="0,20,0,0" HorizontalAlignment="Center" TextAlignment="Center" FontSize="13" Text="{Binding Error}" Foreground="Red"></TextBlock>
+            <TextBlock DockPanel.Dock="Bottom" VerticalAlignment="Center" Margin="40,20,0,0" HorizontalAlignment="Center" TextAlignment="Center" FontSize="13" Text="{Binding Error}" Foreground="Red"></TextBlock>
 
 
         </DockPanel>
