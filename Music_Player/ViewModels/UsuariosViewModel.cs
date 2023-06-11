@@ -148,8 +148,14 @@ namespace Music_Player.ViewModels
         private void VerEliminar(int id)
         {
             usuario = catalagousuario.GetIdUsuario(id);
-            Regresar();
-            Actualizar();
+
+            if(usuario != null)
+            {
+                Vista = VistaAdministrador.VerEliminar;
+                Actualizar();
+            }
+            //Regresar();
+            
         }
 
         private void VerAgregar()

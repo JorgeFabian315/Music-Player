@@ -45,6 +45,12 @@ namespace Music_Player.Validaciones
                     .WithMessage("La contraseña debe ser mayor a 1 caracter.")
                     .NotNull();
             });
+            RuleSet("Rol", () => {
+                RuleFor(u => u.IdRol)
+                    .Cascade(CascadeMode.Stop)
+                    .NotEmpty()
+                    .WithMessage("Establezca el rol correspondiente.");
+            });
 
 
         }
