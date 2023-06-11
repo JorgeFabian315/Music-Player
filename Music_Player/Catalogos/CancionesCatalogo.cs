@@ -81,5 +81,10 @@ namespace Music_Player.Catalogos
             _context.Cancion.Update(exis);
             _context.SaveChanges();  
         }
+
+        public void Recargar(Genero g)
+        {
+            _context.Entry(g).Reload();
+        }
     }
 }

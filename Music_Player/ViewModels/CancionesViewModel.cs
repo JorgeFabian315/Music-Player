@@ -111,7 +111,7 @@ namespace Music_Player.ViewModels
                     if (Cancion.Id > 0)
                     {
                         var existe = catalogo_can.GetCancion(Cancion.Id);
-                        
+
                         if (existe != null)
                         {
                             // existe = _mapper.Map<Cancion>(Cancion);
@@ -119,8 +119,10 @@ namespace Music_Player.ViewModels
                         }
                     }
                     else
+                    {
                         catalogo_can.AgregarCancion(Cancion);
-
+                        catalogo_can.Recargar(Cancion.IdGeneroNavigation);
+                    }
                     GetCanciones(Usuario.Id);
                     Regresar();
                 }

@@ -46,7 +46,15 @@
             </StackPanel>
             <Button Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ScrollViewer}},Path=DataContext.VerEditarCancionCommand}"
                     CommandParameter="{Binding Id}"
-                />
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Width="30"
+                    Padding="3"
+                    Height="30">
+                <materialDesign:PackIcon Kind="Pencil" Foreground="White"
+                                         Width="auto"
+                                         Height="auto"/>
+            </Button>
         </Grid>
     </Border>
 </UserControl>

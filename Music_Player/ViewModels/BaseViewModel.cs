@@ -43,7 +43,8 @@ namespace Music_Player.Operaciones
                 ListaCanciones.Add(item);
             }
 
-            ListaCanciones.OrderBy(c => c.FechaAgregada).ThenBy(c => c.Titulo);
+            ListaCanciones.OrderByDescending(c => c.FechaAgregada).ThenBy(c => c.Titulo);
+            
             Actualizar();
         }
 
