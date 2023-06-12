@@ -58,7 +58,6 @@ namespace Music_Player.ViewModels
                 var cancion = catalogo_can.GetCancion(id);
                 catalogo_can.EliminarCancion(cancion);
                 GetCanciones();
-              //  RecargarC(ListaCanciones);
                 Actualizar();
            }
         }
@@ -155,24 +154,6 @@ namespace Music_Player.ViewModels
             Actualizar();
         }
 
-
-        //public void RecargarCanciones(ObservableCollection<Cancion> lista)
-        //{
-        //    foreach (var item in lista)
-        //    {
-        //        catalogo_can.ReloadCanciones(item);
-        //    }
-        //    Actualizar();
-        //}
-
-        //public void RecargarGeneros(ObservableCollection<Genero> lista)
-        //{
-        //    foreach (var item in lista)
-        //    {
-        //        catalogo_can.Reload(item);
-        //    }
-        //    Actualizar();
-        //}
-    }
+    } 
 
 }
