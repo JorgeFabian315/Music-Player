@@ -56,42 +56,19 @@ namespace Music_Player.ViewModels
 
         private void VerEditarCancion(int id)
         {
-            Cancion = catalogo_can.GetCancion(id);
-            if (Cancion != null)
-            {
-                Vista = VistaUsuario.EditarCancion;
-                //var clon = new Cancion()
-                //{
-                //    Id = Cancion.Id,
-                //    Titulo = Cancion.Titulo,
-                //    Duracion = Cancion.Duracion,
-                //    IdArtista = Cancion.IdArtista,
-                //    IdGenero = Cancion.IdGenero,
-                //    IdUsuario = Cancion.IdUsuario,
-                //    MeGusta = Cancion.MeGusta,
-                //    FechaAgregada = Cancion.FechaAgregada,
-                //    IdArtistaNavigation = Cancion.IdArtistaNavigation,
-                //    IdGeneroNavigation = Cancion.IdGeneroNavigation,
-                //    IdUsuarioNavigation = Cancion.IdUsuarioNavigation
-                //};
+         
 
-                var clon = _mapper.Map<Cancion>(Cancion);
-
-                Cancion = clon;
-
-                _idGeneroViejo = Cancion.IdGenero;
-
-                Actualizar();
-            }
-        }
-
-        private void EliminarCancion(int id)
-        {
             if (id > 0)
             {
                 catalogo_can.EliminarCancion(id);
                 //GetCanciones();
             }
+                var cancion = catalogo_can.GetCancion(id);
+                catalogo_can.EliminarCancion(cancion);
+                GetCanciones();
+              //  RecargarC(ListaCanciones);
+                Actualizar();
+           }
         }
 
         private void AgregarCancion()
@@ -205,5 +182,24 @@ namespace Music_Player.ViewModels
             Actualizar();
         }
 
+
+        //public void RecargarCanciones(ObservableCollection<Cancion> lista)
+        //{
+        //    foreach (var item in lista)
+        //    {
+        //        catalogo_can.ReloadCanciones(item);
+        //    }
+        //    Actualizar();
+        //}
+
+        //public void RecargarGeneros(ObservableCollection<Genero> lista)
+        //{
+        //    foreach (var item in lista)
+        //    {
+        //        catalogo_can.Reload(item);
+        //    }
+        //    Actualizar();
+        //}
     }
+
 }

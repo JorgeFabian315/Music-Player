@@ -49,18 +49,29 @@ namespace Music_Player.Catalogos
                 .ExecuteUpdate(c => c.SetProperty(f => f.MeGusta, estado));
         }
 
-        public void EliminarCancion(int id)
+        //public void EliminarCancion(int id)
+        //{
+        //    context.Cancion.Where(c => c.Id == id).ExecuteDelete();
+        //}
+
+
+        public void EliminarCancion(Cancion c)
         {
+            var cancion1 = context.Cancion.FirstOrDefault(x => x.Id == c.Id);
+            context.Database.ExecuteSqlRaw($"CALL sp_EliminarCancion ({c.Id})");
+
+         //  context.Genero.Where(g => g.Id == cancion1.IdGenero).ExecuteUpdate(g => g.SetProperty(b => b.TotalCanciones, a => a.TotalCanciones - 1));
+         //  context.Artista.Where(g => g.Id == cancion1.IdArtista).ExecuteUpdate(g => g.SetProperty(b => b.TotalCanciones, a => a.TotalCanciones - 1));
+
+          context.SaveChanges();
             _context.Cancion.Where(c => c.Id == id).ExecuteDelete();
         }
 
 
         //public void EliminarCancion(Cancion c)
         //{
-        //    context.Database.ExecuteSqlRaw($"CALL sp_EliminarCancion ({c.Id})");
-        //    context.SaveChanges();
+        //    context.Entry(g).Reload();
         //}
-
         public IEnumerable<Genero> GetGeneros()
         {
             return _context.Genero.OrderByDescending(x => x.TotalCanciones);

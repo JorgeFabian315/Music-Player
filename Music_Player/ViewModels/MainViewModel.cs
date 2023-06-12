@@ -160,6 +160,7 @@ namespace Music_Player.ViewModels
         {
             if (vista == VistaUsuario.Artista)
             {
+                //bvm.RecargarArtistas(bvm.ListaArtistas);
                 ViewModelAactual = artistasviewmodel;
             }
             else
