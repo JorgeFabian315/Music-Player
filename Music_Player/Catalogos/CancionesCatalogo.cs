@@ -55,16 +55,16 @@ namespace Music_Player.Catalogos
         //}
 
 
-        public void EliminarCancion(Cancion c)
+        public void EliminarCancion(Cancion can)
         {
-            var cancion1 = context.Cancion.FirstOrDefault(x => x.Id == c.Id);
-            context.Database.ExecuteSqlRaw($"CALL sp_EliminarCancion ({c.Id})");
+            var cancion1 = _context.Cancion.FirstOrDefault(x => x.Id == can.Id);
+            _context.Database.ExecuteSqlRaw($"CALL sp_EliminarCancion ({can.Id})");
 
          //  context.Genero.Where(g => g.Id == cancion1.IdGenero).ExecuteUpdate(g => g.SetProperty(b => b.TotalCanciones, a => a.TotalCanciones - 1));
          //  context.Artista.Where(g => g.Id == cancion1.IdArtista).ExecuteUpdate(g => g.SetProperty(b => b.TotalCanciones, a => a.TotalCanciones - 1));
 
-          context.SaveChanges();
-            _context.Cancion.Where(c => c.Id == id).ExecuteDelete();
+          _context.SaveChanges();
+            _context.Cancion.Where(c => c.Id == can.Id).ExecuteDelete();
         }
 
 

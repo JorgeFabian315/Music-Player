@@ -67,7 +67,7 @@
                        HorizontalAlignment="Center" />
             <WrapPanel HorizontalAlignment="Center"
                        Margin="0 15">
-                <Button Content="Agregar"
+                <Button Content="Guardar"
                         Foreground="{StaticResource color4}"
                         FontSize="20"
                         Padding="10"

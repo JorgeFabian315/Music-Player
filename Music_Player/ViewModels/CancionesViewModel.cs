@@ -49,27 +49,25 @@ namespace Music_Player.ViewModels
         public ICommand RegresarCommand => new RelayCommand(Regresar);
         public ICommand VerAgregarCancionCommand => new RelayCommand(VerAgregarCancion);
         public ICommand AgregarCancionCommand => new RelayCommand(AgregarCancion);
-        public ICommand EliminarCancionCommand => new RelayCommand<int>(EliminarCancion);
+        //public ICommand EliminarCancionCommand => new RelayCommand<int>(EliminarCancion);
         public ICommand VerCancionesGeneroCommand => new RelayCommand<int>(VerCancionesGenero);
         public ICommand ActualizarMeGustaCommand => new RelayCommand<bool>(ActualizarEstadoCancion);
-        public ICommand VerEditarCancionCommand => new RelayCommand<int>(VerEditarCancion);
+        //public ICommand VerEditarCancionCommand => new RelayCommand<int>(VerEditarCancion);
 
-        private void VerEditarCancion(int id)
-        {
-         
-
-            if (id > 0)
-            {
-                catalogo_can.EliminarCancion(id);
-                //GetCanciones();
-            }
-                var cancion = catalogo_can.GetCancion(id);
-                catalogo_can.EliminarCancion(cancion);
-                GetCanciones();
-              //  RecargarC(ListaCanciones);
-                Actualizar();
-           }
-        }
+        //private void VerEditarCancion(int id)
+        //{
+        //    if (id > 0)
+        //    {
+        //        catalogo_can.EliminarCancion(id);
+        //        //GetCanciones();
+        //    }
+        //        var cancion = catalogo_can.GetCancion(id);
+        //        catalogo_can.EliminarCancion(cancion);
+        //        GetCanciones(Usuario.Id);
+        //      //  RecargarC(ListaCanciones);
+        //        Actualizar();
+        //   }
+        //}
 
         private void AgregarCancion()
         {
