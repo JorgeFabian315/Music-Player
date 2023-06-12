@@ -13,6 +13,10 @@ namespace Music_Player.Catalogos
 
         MusicPlayerContext context = new();
 
+        public IEnumerable<Vistaultrasuperperrona> GetMasPopulares()
+        {
+            return context.Vistaultrasuperperrona.OrderBy(x => x.Nombre);
+        }
         public IEnumerable<Artista> GetArtistas()
         {
             return context.Artista.OrderBy(artista => artista.Nombre);

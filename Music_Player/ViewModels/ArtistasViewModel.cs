@@ -33,7 +33,9 @@ namespace Music_Player.ViewModels
         public ICommand AgregarArtistaCommand { get; set; }
         public ICommand EditarArtistaCommand { get; set; }
         public ICommand EliminarArtistaCommand { get; set; }
+        public ICommand VerMasPopularesCommand { get; set; }
         public VistaArtista Vista { get; set; } = VistaArtista.VerArtistas;
+        public List<Vistaultrasuperperrona> Lista_Para_Ver_Los_Mas_Populars_Asi_Es { get; set; } = new();
         public Artista? artista { get; set; }
         public string Error { get; set; } = "";
         public ArtistasViewModel()
@@ -46,8 +48,19 @@ namespace Music_Player.ViewModels
             AgregarArtistaCommand = new RelayCommand(AgregarArtista);
             EditarArtistaCommand = new RelayCommand(EditarArtista);
             EliminarArtistaCommand = new RelayCommand(EliminarArtista);
+            VerMasPopularesCommand = new RelayCommand(Llenar_la_lista_de_nombre_cuestionable);
+            
         }
-
+        public void Llenar_la_lista_de_nombre_cuestionable()
+        {
+            Lista_Para_Ver_Los_Mas_Populars_Asi_Es.Clear();
+            foreach (Vistaultrasuperperrona item_de_nombre_innecesariamente_largo_para_que_se_vea_mucho_codigo in catalogo_Art.GetMasPopulares())
+            {
+                Lista_Para_Ver_Los_Mas_Populars_Asi_Es.Add(item_de_nombre_innecesariamente_largo_para_que_se_vea_mucho_codigo);
+            }
+            Vista = VistaArtista.VerCancionesPorArtista;
+            Actualizar();
+        }
         
         public void Volver()
         {
