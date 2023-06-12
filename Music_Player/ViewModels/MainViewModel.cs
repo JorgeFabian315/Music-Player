@@ -28,6 +28,7 @@ namespace Music_Player.ViewModels
         ArtistasViewModel artistasviewmodel = new();
         EstadisticasViewModel estadisticasViewModel = new();
         UsuariosCatalogo catalogo_us = new();
+       // BaseViewModel bvm = new();
 
 
         public Usuario Usuario { get; set; } = new();
@@ -147,17 +148,21 @@ namespace Music_Player.ViewModels
             Actualizar();
         }
 
-
+        
 
         private void NavegarUsuarios(VistaUsuario vista)
         {
             if (vista == VistaUsuario.Artista)
             {
+                //bvm.RecargarArtistas(bvm.ListaArtistas);
                 ViewModelAactual = artistasviewmodel;
             }
             else
             {
                 MediadorViewModel.ActualizarVista(vista);
+                //  bvm.RecargarCanciones(bvm.ListaCanciones);
+                // bvm.RecargarGeneros(bvm.ListaGeneros);  
+                //bvm.RecargarArtistas(bvm.ListaArtistas);
                 ViewModelAactual = cancionesviewmodel;
             }
         }

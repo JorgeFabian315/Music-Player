@@ -49,6 +49,9 @@ namespace Music_Player.Catalogos
             context.Entry(a).Reload();
         }
 
-
+        //public void Reload(Artista a)
+        //{
+        //    context.Entry(a).Reload();
+        //}
     }
 }

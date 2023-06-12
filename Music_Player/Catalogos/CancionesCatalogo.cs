@@ -38,18 +38,31 @@ namespace Music_Player.Catalogos
         }
 
 
-        public void EliminarCancion(int id)
-        {
-            context.Cancion.Where(c => c.Id == id).ExecuteDelete();
-        }
-
-
-        //public void EliminarCancion(Cancion c)
+        //public void EliminarCancion(int id)
         //{
-        //    context.Database.ExecuteSqlRaw($"CALL sp_EliminarCancion ({c.Id})");
-        //    context.SaveChanges();
+        //    context.Cancion.Where(c => c.Id == id).ExecuteDelete();
         //}
 
+
+        public void EliminarCancion(Cancion c)
+        {
+            var cancion1 = context.Cancion.FirstOrDefault(x => x.Id == c.Id);
+            context.Database.ExecuteSqlRaw($"CALL sp_EliminarCancion ({c.Id})");
+
+         //  context.Genero.Where(g => g.Id == cancion1.IdGenero).ExecuteUpdate(g => g.SetProperty(b => b.TotalCanciones, a => a.TotalCanciones - 1));
+         //  context.Artista.Where(g => g.Id == cancion1.IdArtista).ExecuteUpdate(g => g.SetProperty(b => b.TotalCanciones, a => a.TotalCanciones - 1));
+
+          context.SaveChanges();
+        }
+
+        //public void ReloadCanciones(Cancion c)
+        //{
+        //    context.Entry(c).Reload();
+        //}
+        //public void Reload(Genero g)
+        //{
+        //    context.Entry(g).Reload();
+        //}
         public IEnumerable<Genero> GetGeneros()
         {
             return context.Genero.OrderByDescending(x => x.TotalCanciones);

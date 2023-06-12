@@ -28,7 +28,6 @@ namespace Music_Player.Operaciones
         UsuariosCatalogo catalogo_us = new();
 
 
-
         public  ObservableCollection<Cancion> ListaCanciones { get; set; } = new();
         public ObservableCollection<Cancion> ListaCancionesMegusta { get; set; } = new();
         public ObservableCollection<Genero> ListaGeneros { get; set; } = new();
@@ -52,7 +51,8 @@ namespace Music_Player.Operaciones
             }
             Actualizar();
         }
-        
+
+      
         public void GetCancionesMeGusta()
         {
             ListaCancionesMegusta = new();
@@ -76,7 +76,7 @@ namespace Music_Player.Operaciones
 
             Actualizar();
         }
-        
+       
         public void GetArtistas()
         {
             ListaArtistas = new();
@@ -87,7 +87,32 @@ namespace Music_Player.Operaciones
             Actualizar();
         }
 
+        //public void RecargarArtistas(ObservableCollection<Artista> lista)
+        //{
+        //    foreach (var item in lista)
+        //    {
+        //        catalogo_Art.Reload(item);
+        //    }
+        //    Actualizar();
+        //}
 
+        //public void RecargarCanciones(ObservableCollection<Cancion> lista)
+        //{
+        //    foreach (var item in lista)
+        //    {
+        //        catalogo_can.ReloadCanciones(item);
+        //    }
+        //    Actualizar();
+        //}
+
+        //public void RecargarGeneros(ObservableCollection<Genero> lista)
+        //{
+        //    foreach (var item in lista)
+        //    {
+        //        catalogo_can.Reload(item);
+        //    }
+        //    Actualizar();
+        //}
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
