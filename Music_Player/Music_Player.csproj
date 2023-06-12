@@ -39,8 +39,4 @@
     <Resource Include="Assets\musicagif.gif" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Administrador\ArtistasViews\" />
-  </ItemGroup>
-
 </Project>

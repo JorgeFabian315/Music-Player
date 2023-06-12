@@ -1,4 +1,5 @@
-﻿using Music_Player.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Music_Player.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,12 +19,13 @@ namespace Music_Player.Catalogos
         }
         public Artista? GetArtista(int id)
         {
-            return context.Artista.FirstOrDefault(x=>x.Id == id);
+            //return context.Artista.FirstOrDefault(x=>x.Id == id);
+            return context.Artista.Include(x=>x.Cancion.OrderBy(w=>w.Titulo)).FirstOrDefault(x => x.Id == id);
         }
-        public IEnumerable<Cancion> GetCancionesPorArtistas(int id)
-        {
-            return context.Cancion.OrderBy(x => x.IdArtista == id);
-        }
+        //public IEnumerable<Cancion> GetCancionesPorArtistas(int id)
+        //{
+        //    return context.Cancion.OrderBy(x => x.IdArtista == id);
+        //}
         public void AgregarArtista(Artista a)
         {
             context.Add(a);
