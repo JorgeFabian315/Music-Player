@@ -42,4 +42,8 @@
     <Resource Include="Assets\sonido.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Administrador\ArtistasViews\" />
+  </ItemGroup>
+
 </Project>
