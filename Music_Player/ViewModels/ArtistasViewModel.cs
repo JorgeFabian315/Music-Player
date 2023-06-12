@@ -24,7 +24,6 @@ namespace Music_Player.ViewModels
     public class ArtistasViewModel:BaseViewModel
     {
 
-       
         public ICommand  VerCancionesPorArtistaCommand { get; set; }
         public ICommand VerAgregarArtistaCommand { get; set; }
         public ICommand VerEliminarArtistaCommand { get; set; }
@@ -38,7 +37,7 @@ namespace Music_Player.ViewModels
         public List<Vistaultrasuperperrona> Lista_Para_Ver_Los_Mas_Populars_Asi_Es { get; set; } = new();
         public Artista? artista { get; set; }
         public string Error { get; set; } = "";
-        public ArtistasViewModel()
+        public ArtistasViewModel(MusicPlayerContext context):base(context)
         {
             VerCancionesPorArtistaCommand = new RelayCommand<Artista>(VerInfoArtista);
             VerAgregarArtistaCommand = new RelayCommand(VerAgregarArtista);
@@ -48,19 +47,20 @@ namespace Music_Player.ViewModels
             AgregarArtistaCommand = new RelayCommand(AgregarArtista);
             EditarArtistaCommand = new RelayCommand(EditarArtista);
             EliminarArtistaCommand = new RelayCommand(EliminarArtista);
-            VerMasPopularesCommand = new RelayCommand(Llenar_la_lista_de_nombre_cuestionable);
+            //VerMasPopularesCommand = new RelayCommand(Llenar_la_lista_de_nombre_cuestionable);
             
         }
-        public void Llenar_la_lista_de_nombre_cuestionable()
-        {
-            Lista_Para_Ver_Los_Mas_Populars_Asi_Es.Clear();
-            foreach (Vistaultrasuperperrona item_de_nombre_innecesariamente_largo_para_que_se_vea_mucho_codigo in catalogo_Art.GetMasPopulares())
-            {
-                Lista_Para_Ver_Los_Mas_Populars_Asi_Es.Add(item_de_nombre_innecesariamente_largo_para_que_se_vea_mucho_codigo);
-            }
-            Vista = VistaArtista.VerCancionesPorArtista;
-            Actualizar();
-        }
+        //public void Llenar_la_lista_de_nombre_cuestionable()
+        //{
+        //    Lista_Para_Ver_Los_Mas_Populars_Asi_Es.Clear();
+        //    foreach (Vistaultrasuperperrona item_de_nombre_innecesariamente_largo_para_que_se_vea_mucho_codigo in 
+        //        catalogo_art.GetMasPopulares())
+        //    {
+        //        Lista_Para_Ver_Los_Mas_Populars_Asi_Es.Add(item_de_nombre_innecesariamente_largo_para_que_se_vea_mucho_codigo);
+        //    }
+        //    Vista = VistaArtista.VerCancionesPorArtista;
+        //    Actualizar();
+        //}
         
         public void Volver()
         {
@@ -71,7 +71,7 @@ namespace Music_Player.ViewModels
         public void ActualizarListaArtistas()
         {
             ListaArtistas.Clear();
-            foreach (var item in catalogo_Art.GetArtistas())
+            foreach (var item in catalogo_art.GetArtistas())
             {
                 ListaArtistas.Add(item);
             }
@@ -95,7 +95,7 @@ namespace Music_Player.ViewModels
 
                 if(Result.IsValid)
                 {
-                    catalogo_Art.AgregarArtista(artista);
+                    catalogo_art.AgregarArtista(artista);
                     ActualizarListaArtistas();
                     Vista = VistaArtista.VerArtistas;
                     Volver();
@@ -127,7 +127,7 @@ namespace Music_Player.ViewModels
         {
             if(artista!= null )
             {
-                catalogo_Art.EliminarArtista(artista);
+                catalogo_art.EliminarArtista(artista);
                 ActualizarListaArtistas();
                 Vista = VistaArtista.VerArtistas;
                 Volver();
@@ -163,7 +163,7 @@ namespace Music_Player.ViewModels
             {
                 ArtistaValidator Validator = new();
                 var Result = Validator.Validate(artista, options => { options.IncludeAllRuleSets(); });
-                var exist = catalogo_Art.GetArtista(artista.Id);
+                var exist = catalogo_art.GetArtista(artista.Id);
                 if (Result.IsValid && exist != null)
                 {
                     exist.Id = artista.Id;
@@ -174,7 +174,7 @@ namespace Music_Player.ViewModels
                     exist.Nombre = artista.Nombre;
                     exist.TotalCanciones = artista.TotalCanciones;
                     exist.IdGeneroNavigation= artista.IdGeneroNavigation;
-                    catalogo_Art.EditarArtista(exist);
+                    catalogo_art.EditarArtista(exist);
                     Vista = VistaArtista.VerArtistas;
                     Volver();
                 }
