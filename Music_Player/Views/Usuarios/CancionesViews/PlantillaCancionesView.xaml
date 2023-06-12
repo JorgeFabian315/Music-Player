@@ -27,8 +27,8 @@
             <Grid Height="170"
                   Margin="7"
                   Width="200">
-                <Image Source="/Assets/musica.jpg"
-                       Stretch="Fill" />
+                <!--<Image Source="/Assets/musica.jpg"
+                       Stretch="Fill" />-->
                 <Border Background="{StaticResource color1}"
                         Opacity=".5" />
             </Grid>

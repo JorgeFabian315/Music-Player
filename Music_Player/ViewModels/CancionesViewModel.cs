@@ -26,18 +26,18 @@ namespace Music_Player.ViewModels
         public Usuario? Usuario { get; set; }
 
         private IMapper _mapper;
-        public CancionesViewModel(MusicPlayerContext _context):base(_context)
+        public CancionesViewModel(MusicPlayerContext _context) : base(_context)
         {
 
-            _mapper = (Mapper) CancionProfile.Initialize();
+            _mapper = (Mapper)CancionProfile.Initialize();
 
             MediadorViewModel.VistaActualizada += MediadorViewModel_VistaActualizada;
             MediadorViewModel.UusarioConectado += MediadorViewModel_UusarioConectado;
         }
 
-
-        public Cancion Cancion { get; set; } 
-        public Genero Genero { get;  set; }
+        private int _idGeneroViejo;
+        public Cancion Cancion { get; set; }
+        public Genero Genero { get; set; }
 
 
         public int Minutos { get; set; }
@@ -57,7 +57,7 @@ namespace Music_Player.ViewModels
         private void VerEditarCancion(int id)
         {
             Cancion = catalogo_can.GetCancion(id);
-            if(Cancion != null)
+            if (Cancion != null)
             {
                 Vista = VistaUsuario.EditarCancion;
                 //var clon = new Cancion()
@@ -78,7 +78,9 @@ namespace Music_Player.ViewModels
                 var clon = _mapper.Map<Cancion>(Cancion);
 
                 Cancion = clon;
-                
+
+                _idGeneroViejo = Cancion.IdGenero;
+
                 Actualizar();
             }
         }
@@ -89,7 +91,7 @@ namespace Music_Player.ViewModels
             {
                 catalogo_can.EliminarCancion(id);
                 //GetCanciones();
-           }
+            }
         }
 
         private void AgregarCancion()
@@ -116,13 +118,20 @@ namespace Music_Player.ViewModels
                         {
                             // existe = _mapper.Map<Cancion>(Cancion);
                             catalogo_can.EditarCancion(existe, Cancion);
+                            if (Cancion.Id != _idGeneroViejo)
+                            {
+                                catalogo_can.Recargar(_idGeneroViejo);
+
+                            }
+
                         }
                     }
                     else
                     {
                         catalogo_can.AgregarCancion(Cancion);
-                        catalogo_can.Recargar(Cancion.IdGeneroNavigation);
                     }
+
+                    catalogo_can.Recargar(Cancion.IdGenero);
                     GetCanciones(Usuario.Id);
                     Regresar();
                 }
@@ -176,7 +185,7 @@ namespace Music_Player.ViewModels
             Vista = vista;
             if (vista == VistaUsuario.VerCancionesMegustan)
                 GetCancionesMeGusta(Usuario.Id);
-            else if(vista == VistaUsuario.Home)
+            else if (vista == VistaUsuario.Home)
                 GetTopArtistas();
             TotalCancionesMegustas = ListaCancionesMegusta.Count;
 
@@ -187,18 +196,6 @@ namespace Music_Player.ViewModels
             GetCanciones(id);
             Usuario = catalogo_us.GetIdUsuario(id);
         }
-
-
-        //private void GetCancionesBusqueda(string titulo = "")
-        //{
-        //    ListaCanciones2.Clear();
-        //    var lis = ListaCanciones.Where(x => x.Titulo.ToLower().Contains(titulo.ToLower()));
-        //    foreach (var item in lis)
-        //    {
-        //        ListaCanciones2.Add(item);
-        //    }
-        //    Actualizar();
-        //}
 
         private void VerCancionesGenero(int id)
         {

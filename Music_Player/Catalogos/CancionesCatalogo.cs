@@ -82,9 +82,11 @@ namespace Music_Player.Catalogos
             _context.SaveChanges();  
         }
 
-        public void Recargar(Genero g)
+        public void Recargar(int id)
         {
-            _context.Entry(g).Reload();
+            var g = _context.Genero.Find(id);
+            if(g != null)
+                _context.Entry(g).Reload();
         }
     }
 }
