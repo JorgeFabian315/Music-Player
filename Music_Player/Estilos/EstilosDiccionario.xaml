@@ -17,7 +17,7 @@
     <Color x:Key="Color_4">#fcfcff</Color>
     <!--#ENDREGION COLORES USADOS-->
     <!--#REGION ESTILOS ICONOS MENU-->
-    <Style TargetType="{x:Type materialDesign:PackIcon}"
+    <Style TargetType="materialDesign:PackIcon"
            x:Key="IconosMenu_materialde">
         <Setter Property="Foreground"
                 Value="{StaticResource color2}" />
@@ -37,7 +37,9 @@
                         Value="{StaticResource color4}" />
                 <Setter Property="Effect">
                     <Setter.Value>
-                        <DropShadowEffect BlurRadius="10" Color="White"/>
+                        <DropShadowEffect BlurRadius="20"
+                                          ShadowDepth="1"
+                                          Color="{StaticResource Color_4}" />
                     </Setter.Value>
                 </Setter>
             </DataTrigger>
@@ -65,7 +67,7 @@
                     <Setter.Value>
                         <DropShadowEffect BlurRadius="18"
                                           ShadowDepth="1"
-                                          Color="White" />
+                                          Color="{StaticResource Color_4}" />
                     </Setter.Value>
                 </Setter>
             </DataTrigger>
