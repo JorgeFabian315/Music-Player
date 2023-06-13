@@ -60,7 +60,7 @@ namespace Music_Player.ViewModels
             {
                 var cancion = catalogo_can.GetCancion(id);
                 catalogo_can.EliminarCancion(cancion);
-                GetCanciones();
+               // GetCanciones();
                 Actualizar();
            }
         }

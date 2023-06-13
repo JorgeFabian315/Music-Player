@@ -38,8 +38,9 @@
                 <RadioButton Style="{StaticResource BotonesMenu}"
                              Command="{Binding NavegarUsuariosCommand}"
                              CommandParameter="{x:Static vista:VistaUsuario.Home}">
-                    <materialDesign:PackIcon Kind="Home"
-                                             Style="{StaticResource IconosMenu_materialde}" />
+                    <fa:ImageAwesome Icon="Home"
+                                     Tag="red"
+                                     Style="{StaticResource IconosMenu_fa}" />
                 </RadioButton>
                 <RadioButton Style="{StaticResource BotonesMenu}"
                              Command="{Binding NavegarUsuariosCommand}"

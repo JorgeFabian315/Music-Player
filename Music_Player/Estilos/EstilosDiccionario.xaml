@@ -35,6 +35,11 @@
                          Value="True">
                 <Setter Property="Foreground"
                         Value="{StaticResource color4}" />
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect BlurRadius="10" Color="White"/>
+                    </Setter.Value>
+                </Setter>
             </DataTrigger>
         </Style.Triggers>
     </Style>
@@ -56,6 +61,13 @@
                          Value="True">
                 <Setter Property="Foreground"
                         Value="{StaticResource color4}" />
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect BlurRadius="18"
+                                          ShadowDepth="1"
+                                          Color="White" />
+                    </Setter.Value>
+                </Setter>
             </DataTrigger>
         </Style.Triggers>
     </Style>

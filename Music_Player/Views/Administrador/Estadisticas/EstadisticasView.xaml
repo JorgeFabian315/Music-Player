@@ -11,14 +11,19 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height=".1*"/>
+            <RowDefinition Height=".2*"/>
+            <RowDefinition Height=".4*"/>
+            <RowDefinition Height=".3*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width=".2*"/>
             <ColumnDefinition Width=".8*"/>
         </Grid.ColumnDefinitions>
-        <WrapPanel HorizontalAlignment="Center" Grid.ColumnSpan="2">
+        <TextBlock Text="Estadísticas" FontSize="35" VerticalAlignment="Center"/>
+        <WrapPanel HorizontalAlignment="Center"
+                   Grid.Row="1"
+                   Grid.ColumnSpan="2">
             <Grid Width="250" Height="100">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width=".4*" />
@@ -133,7 +138,7 @@
                 </StackPanel>
             </Grid>
         </WrapPanel>
-        <Grid Grid.Row="1" Margin="10 0">
+        <Grid Grid.Row="2" Margin="10 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
