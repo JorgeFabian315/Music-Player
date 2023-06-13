@@ -9,8 +9,16 @@
              d:DesignHeight="450" d:DesignWidth="800">
     
     <Grid>
-        
-        <Border>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="9*"/>
+        </Grid.RowDefinitions>
+        <Border Background="{StaticResource color1}" CornerRadius="30" Margin="10 0 10 3">
+            
+            <Label Foreground="White" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Margin="0 0 0 0">Lo + TOP</Label>
+        </Border>
+        <Border Grid.Row="1">
             <ScrollViewer >
                 <ItemsControl ItemsSource="{Binding Lista_Populares}">
                     <ItemsControl.ItemTemplate>
@@ -21,7 +29,8 @@
                                         <Style TargetType="Label">
                                             <Setter Property="FontSize" Value="15"/>
                                             <Setter Property="Foreground" Value="White"/>
-                                            
+                                            <Setter Property="VerticalAlignment" Value="Center"/>
+
                                         </Style>
                                     </Grid.Resources>
                                     <Grid.ColumnDefinitions>
@@ -31,28 +40,39 @@
                                         <ColumnDefinition/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
-                                    <Label Grid.Column="1" VerticalAlignment="Center" Content="{Binding Rank}"></Label>
-                                    <Rectangle Height="100"  >
-                                        <Rectangle.Fill>
-                                            <RadialGradientBrush Center="0.5,0.5"
-                                     RadiusX="0.5"
-                                     RadiusY="0.5"
-                                     GradientOrigin="0.5,0.5"
+                                    <Label Grid.Column="1" VerticalAlignment="Center" FontSize="60" HorizontalAlignment="Left" Content="{Binding Rank}"></Label>
+                                    <Grid Grid.ColumnSpan="5" Margin="0">
+                                        
+
+                                        
+                                        <Rectangle Height="100"  >
+                                            <Rectangle.Fill >
+                                                <RadialGradientBrush Center="0.5,0.5"
+                                     RadiusX="0.2"
+                                     RadiusY="09"
+                                     GradientOrigin="-1.1,0.5"
                                      >
-                                                <GradientStop Color="White" Offset="0"/>
-                                                <GradientStop Color="PowderBlue" Offset="0.2"/>
+                                                    <GradientStop Color="White" Offset="0"/>
+                                                    <GradientStop Color="White" Offset="0.2"/>
 
-                                                <GradientStop Color="Black" Offset="1"/>
-                                            </RadialGradientBrush>
-                                        </Rectangle.Fill>
-                                    </Rectangle>
+                                                    <GradientStop Color="Transparent" Offset="1"/>
+                                                </RadialGradientBrush>
+                                            </Rectangle.Fill>
+                                        </Rectangle>
+                                    </Grid>
+                                    <Border Height="100" Width="100" HorizontalAlignment="Left" Opacity="0.8" CornerRadius="30">
+                                        <Border.Background>
+                                            
+                                            <ImageBrush Stretch="Fill"   ImageSource="/Assets/NewFolder1/MusicoDefault.jpeg"></ImageBrush>
+                                        </Border.Background>
+                                    </Border>
 
-                                        <StackPanel Grid.Column="2">
+                                    <StackPanel Grid.Column="2" VerticalAlignment="Center">
                                         <Label Content="{Binding Vista.Nombre}"></Label>
                                         <Label Content="{Binding Vista.Apodo}"></Label>
                                         <Label></Label>
-                                    </StackPanel>
-                                    <StackPanel Grid.Column="3">
+                                    </StackPanel >
+                                    <StackPanel Grid.Column="3" VerticalAlignment="Center">
                                         <Label Content="{Binding Vista.Nacionalidad}"></Label>
                                         <Label Content="{Binding Vista.FechaNacimiento}"></Label>
                                     </StackPanel>
