@@ -3,9 +3,7 @@ using FluentValidation.Validators;
 using Microsoft.EntityFrameworkCore;
 using Music_Player.Models;
 using MySqlConnector;
-
 ﻿using Music_Player.Models;
-
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -19,8 +17,11 @@ namespace Music_Player.Catalogos
     {
 
         private readonly MusicPlayerContext _context = new();
-        
 
+        public ArtistasCatalogo(MusicPlayerContext context)
+        {
+            _context = context;
+        }
         public IEnumerable<Vistaultrasuperperrona> GetPopulares()
         {
 
