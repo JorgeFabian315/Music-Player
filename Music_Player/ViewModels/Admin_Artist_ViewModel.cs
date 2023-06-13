@@ -58,7 +58,7 @@ namespace Music_Player.ViewModels
 
                 if (Result.IsValid)
                 {
-                    catalogo_Art.AgregarArtista(artista);
+                    catalogo_art.AgregarArtista(artista);
                     ActualizarListaArtistas();
                     Vista = VistaAdministrador.VerArtista;
                     Volver();
@@ -90,7 +90,7 @@ namespace Music_Player.ViewModels
         {
             if (artista != null)
             {
-                catalogo_Art.EliminarArtista(artista);
+                catalogo_art.EliminarArtista(artista);
                 ActualizarListaArtistas();
                 Vista = VistaAdministrador.VerArtista;
                 Volver();
@@ -157,7 +157,7 @@ namespace Music_Player.ViewModels
         public void ActualizarListaArtistas()
         {
             ListaArtistas.Clear();
-            foreach (var item in catalogo_Art.GetArtistas())
+            foreach (var item in catalogo_art.GetArtistas())
             {
                 ListaArtistas.Add(item);
             }

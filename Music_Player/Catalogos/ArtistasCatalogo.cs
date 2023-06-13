@@ -1,10 +1,11 @@
-<<<<<<< HEAD
-﻿using Microsoft.EntityFrameworkCore;
+
+using FluentValidation.Validators;
+using Microsoft.EntityFrameworkCore;
 using Music_Player.Models;
 using MySqlConnector;
-=======
+
 ﻿using Music_Player.Models;
->>>>>>> f33bcec5e0f2d0fb4141c63e0d9e3441d362c128
+
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -17,17 +18,14 @@ namespace Music_Player.Catalogos
     public class ArtistasCatalogo
     {
 
-        private readonly MusicPlayerContext _context;
+        private readonly MusicPlayerContext _context = new();
+        
 
-        public ArtistasCatalogo(MusicPlayerContext context)
+        public IEnumerable<Vistaultrasuperperrona> GetPopulares()
         {
-<<<<<<< HEAD
-           return context.Vistaultrasuperperrona.OrderBy(x => x.Genero);
-           
-          
-=======
-            _context = context;
->>>>>>> f33bcec5e0f2d0fb4141c63e0d9e3441d362c128
+
+           return _context.Vistaultrasuperperrona.OrderBy(x => x.Genero);
+
         }
 
         public IEnumerable<Artista> GetArtistas()
