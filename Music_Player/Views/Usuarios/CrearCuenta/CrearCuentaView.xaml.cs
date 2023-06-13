@@ -13,16 +13,27 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Music_Player.Views.Administrador.ArtistasViews
+namespace Music_Player.Views.Usuarios.CrearCuenta
 {
     /// <summary>
-    /// Lógica de interacción para IndexArtistas_Administrador.xaml
+    /// Lógica de interacción para CrearCuentaView.xaml
     /// </summary>
-    public partial class IndexArtistas_Administrador : UserControl
+    public partial class CrearCuentaView : UserControl
     {
-        public IndexArtistas_Administrador()
+        public CrearCuentaView()
         {
             InitializeComponent();
+        }
+
+        private void pwb1_LostFocus(object sender, RoutedEventArgs e)
+        {
+            txtPassword.Text = "";
+            txtPassword.Text = pwb1.Password;
+        }
+
+        private void pwb1_Loaded(object sender, RoutedEventArgs e)
+        {
+            pwb1.Clear();
         }
     }
 }

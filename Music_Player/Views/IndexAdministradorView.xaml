@@ -20,7 +20,6 @@
             <DataTemplate DataType="{x:Type viewmodels:EstadisticasViewModel}">
                 <estadisticas:EstadisticasView />
             </DataTemplate>
-        
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -50,12 +49,6 @@
                              CommandParameter="{x:Static vista:VistaAdministrador.VerUsuarios }">
                     <materialDesign:PackIcon Kind="AccountGroup"
                                              Style="{StaticResource IconosMenu_materialde}" />
-                </RadioButton>
-                <RadioButton Style="{StaticResource BotonesMenu}" 
-                             Command="{Binding NavegarAdminCommand}"
-                             CommandParameter="{x:Static vista:VistaAdministrador.VerArtista}"
-                             >
-                    <materialDesign:PackIcon Kind="AccountMusic"  Style="{StaticResource IconosMenu_materialde}"/>
                 </RadioButton>
             </StackPanel>
             

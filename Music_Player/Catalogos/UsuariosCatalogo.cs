@@ -130,10 +130,7 @@ namespace Music_Player.Catalogos
         }
         public IEnumerable<Rol> GetRoles()
         {
-            foreach (var rol in _context.Rol)
-            {
-                yield return rol;
-            }
+            return _context.Rol.OrderByDescending(x => x.Valor);
         }
     }
 }

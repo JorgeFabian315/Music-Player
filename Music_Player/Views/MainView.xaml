@@ -21,8 +21,7 @@
         <viewmodels:MainViewModel />
     </Window.DataContext>
     
-    <Border CornerRadius="10"
-            Background="{StaticResource color1}">
+    <Border CornerRadius="10" Background="{StaticResource color1}">
         <Grid Background="Transparent"
               Margin="10,0,10,10">
             
