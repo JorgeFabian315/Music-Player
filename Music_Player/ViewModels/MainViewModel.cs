@@ -29,7 +29,7 @@ namespace Music_Player.ViewModels
         CancionesViewModel cancionesviewmodel = new(_context);
         UsuariosViewModel usuariosviewmodel = new(_context);
         ArtistasViewModel artistasviewmodel = new(_context);
-        Admin_Artist_ViewModel adminartistasviewmodel = new(_context);
+        //Admin_Artist_ViewModel adminartistasviewmodel = new(_context);
         EstadisticasViewModel estadisticasViewModel = new(_context);
         UsuariosCatalogo catalogo_us = new(_context);
      
@@ -187,10 +187,10 @@ namespace Music_Player.ViewModels
             {
                 ViewModelAactual = usuariosviewmodel;
             }
-            else if (vista == VistaAdministrador.VerArtista) 
-            {
-                ViewModelAactual = adminartistasviewmodel;
-            }
+            //else if (vista == VistaAdministrador.VerArtista) 
+            //{
+            //    ViewModelAactual = adminartistasviewmodel;
+            //}
         }
         #endregion NAVEGAR ADMINISTRADOR
 

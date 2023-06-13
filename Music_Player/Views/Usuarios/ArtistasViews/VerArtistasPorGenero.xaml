@@ -12,28 +12,51 @@
         
         <Border>
             <ScrollViewer >
-                <ItemsControl ItemsSource="{Binding Lista_Para_Ver_Los_Mas_Populars_Asi_Es}">
+                <ItemsControl ItemsSource="{Binding Lista_Populares}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border Background="Gray" CornerRadius="30">
+                            <Border Background="{StaticResource color1}" CornerRadius="30" Margin="3">
                                 <Grid>
+                                    <Grid.Resources>
+                                        <Style TargetType="Label">
+                                            <Setter Property="FontSize" Value="15"/>
+                                            <Setter Property="Foreground" Value="White"/>
+                                            
+                                        </Style>
+                                    </Grid.Resources>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition/>
                                         <ColumnDefinition/>
                                         <ColumnDefinition/>
                                         <ColumnDefinition/>
+                                        <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
-                                    <Image></Image>
-                                    <StackPanel>
-                                        <Label Content="{Binding Nombre}"></Label>
-                                        <Label Content="{Binding Apodo}"></Label>
+                                    <Label Grid.Column="1" VerticalAlignment="Center" Content="{Binding Rank}"></Label>
+                                    <Rectangle Height="100"  >
+                                        <Rectangle.Fill>
+                                            <RadialGradientBrush Center="0.5,0.5"
+                                     RadiusX="0.5"
+                                     RadiusY="0.5"
+                                     GradientOrigin="0.5,0.5"
+                                     >
+                                                <GradientStop Color="White" Offset="0"/>
+                                                <GradientStop Color="PowderBlue" Offset="0.2"/>
+
+                                                <GradientStop Color="Black" Offset="1"/>
+                                            </RadialGradientBrush>
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+
+                                        <StackPanel Grid.Column="2">
+                                        <Label Content="{Binding Vista.Nombre}"></Label>
+                                        <Label Content="{Binding Vista.Apodo}"></Label>
                                         <Label></Label>
                                     </StackPanel>
-                                    <StackPanel>
-                                        <Label Content="{Binding Nacionalida}"></Label>
-                                        <Label Content="{Binding FechaDeNacimietno}"></Label>
+                                    <StackPanel Grid.Column="3">
+                                        <Label Content="{Binding Vista.Nacionalidad}"></Label>
+                                        <Label Content="{Binding Vista.FechaNacimiento}"></Label>
                                     </StackPanel>
-                                    <Label Content="{Binding Genero}"></Label>
+                                    <Label Grid.Column="4" Content="{Binding Vista.Genero}"></Label>
                                     
                                 </Grid>
                             </Border>
