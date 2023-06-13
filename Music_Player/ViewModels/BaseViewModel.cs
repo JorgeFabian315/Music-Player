@@ -36,15 +36,12 @@ namespace Music_Player.Operaciones
 
         public void GetCanciones(int id)
         {
-            ListaCanciones = new();
+            ListaCanciones.Clear();
 
             foreach (var item in catalogo_can.GetCanciones(id))
             {
                 ListaCanciones.Add(item);
-            }
-
-            ListaCanciones.OrderByDescending(c => c.FechaAgregada).ThenBy(c => c.Titulo);
-            
+            }            
             Actualizar();
         }
 

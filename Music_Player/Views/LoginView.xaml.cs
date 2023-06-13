@@ -23,7 +23,6 @@ namespace Music_Player.Views
         public LoginView()
         {
             InitializeComponent();
-            txtCorreo.Focus();
         }
 
         private void pwb1_LostFocus(object sender, RoutedEventArgs e)

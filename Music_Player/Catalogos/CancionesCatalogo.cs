@@ -23,15 +23,17 @@ namespace Music_Player.Catalogos
         {
             return _context.Cancion
                  .Include(c => c.IdArtistaNavigation)
-                 .Include(c => c.IdGeneroNavigation)
-                 .Where(c => c.IdUsuario == id);
+                 .Where(c => c.IdUsuario == id)
+                 .OrderByDescending(c => c.FechaAgregada)
+                 .ThenBy(c => c.Titulo); 
         }
 
 
         public Cancion GetCancion(int id)
         {
-            var cancion = _context.Cancion.Find(id);
-
+            var cancion = _context.Cancion
+                .Include(c => c.IdGeneroNavigation)
+                .FirstOrDefault(c => c.Id == id);
             if (cancion != null)
                 return cancion;
             else

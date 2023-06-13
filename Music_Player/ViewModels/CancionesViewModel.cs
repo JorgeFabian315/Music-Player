@@ -36,8 +36,8 @@ namespace Music_Player.ViewModels
         }
 
         private int _idGeneroViejo;
-        public Cancion Cancion { get; set; }
-        public Genero Genero { get; set; }
+        public Cancion? Cancion { get; set; }
+        public Genero? Genero { get; set; }
 
 
         public int Minutos { get; set; }
@@ -54,20 +54,20 @@ namespace Music_Player.ViewModels
         public ICommand ActualizarMeGustaCommand => new RelayCommand<bool>(ActualizarEstadoCancion);
         //public ICommand VerEditarCancionCommand => new RelayCommand<int>(VerEditarCancion);
 
-        //private void VerEditarCancion(int id)
-        //{
-        //    if (id > 0)
-        //    {
-        //        catalogo_can.EliminarCancion(id);
-        //        //GetCanciones();
-        //    }
-        //        var cancion = catalogo_can.GetCancion(id);
-        //        catalogo_can.EliminarCancion(cancion);
-        //        GetCanciones(Usuario.Id);
-        //      //  RecargarC(ListaCanciones);
-        //        Actualizar();
-        //   }
-        //}
+        private void VerEditarCancion(int id)
+        {
+            if (id > 0)
+            {
+                catalogo_can.EliminarCancion(Cancion);
+                //GetCanciones();
+            }
+            var cancion = catalogo_can.GetCancion(id);
+            catalogo_can.EliminarCancion(cancion);
+            GetCanciones(Usuario.Id);
+            //  RecargarC(ListaCanciones);
+            Actualizar();
+
+        }
 
         private void AgregarCancion()
         {
@@ -141,10 +141,10 @@ namespace Music_Player.ViewModels
         }
         private void ActualizarEstadoCancion(bool estado)
         {
-            catalogo_can.GetActualizarMeGusta(Cancion.Id, estado);
+            if (Cancion != null)
+                catalogo_can.GetActualizarMeGusta(Cancion.Id, estado);
             Actualizar();
         }
-
 
         private void Regresar()
         {
@@ -159,9 +159,10 @@ namespace Music_Player.ViewModels
         {
             Vista = vista;
             if (vista == VistaUsuario.VerCancionesMegustan)
-                GetCancionesMeGusta(Usuario.Id);
-            else if (vista == VistaUsuario.Home)
-                GetTopArtistas();
+                if (Usuario != null)
+                    GetCancionesMeGusta(Usuario.Id);
+                else if (vista == VistaUsuario.Home)
+                    GetTopArtistas();
             TotalCancionesMegustas = ListaCancionesMegusta.Count;
 
             Actualizar();

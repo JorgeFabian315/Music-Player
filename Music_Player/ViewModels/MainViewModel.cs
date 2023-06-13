@@ -31,7 +31,7 @@ namespace Music_Player.ViewModels
         CancionesViewModel cancionesviewmodel = new(_context);
         UsuariosViewModel usuariosviewmodel = new(_context);
         ArtistasViewModel artistasviewmodel = new(_context);
-        EstadisticasViewModel estadisticasViewModel = new();
+        EstadisticasViewModel estadisticasViewModel = new(_context);
         UsuariosCatalogo catalogo_us = new(_context);
 
 
@@ -127,12 +127,16 @@ namespace Music_Player.ViewModels
         {
             View = new IndexUsuNVIPView();
             NavegarUsuarios(VistaUsuario.Home);
+            MediadorViewModel.BuscarUsuario(Usuario.Id);
+
         }
 
         private void AccionesUsuarioVIP()
         {
             View = new IndexUsuNVIPView();
             NavegarUsuarios(VistaUsuario.Home);
+            MediadorViewModel.BuscarUsuario(Usuario.Id);
+
         }
 
         #endregion ACCIONES USUARIOS
@@ -165,7 +169,6 @@ namespace Music_Player.ViewModels
             }
             else
             {
-                MediadorViewModel.BuscarUsuario(Usuario.Id);
                 MediadorViewModel.ActualizarVista(vista);
 
                 ViewModelAactual = cancionesviewmodel;
