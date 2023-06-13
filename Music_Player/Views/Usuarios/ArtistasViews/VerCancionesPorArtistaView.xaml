@@ -4,9 +4,49 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Music_Player.Views.ArtistasViews"
-             mc:Ignorable="d" 
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+    mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="35*"/>
+            <ColumnDefinition Width="65*"/>
+        </Grid.ColumnDefinitions>
+        <Border Background="Gray" CornerRadius="20" Margin="10" Grid.RowSpan="2">
+            <DockPanel >
+                <Border CornerRadius="10" DockPanel.Dock="Bottom" >
+                     <Button Command="{Binding VolverCommand}">Volver</Button>
+                </Border>
+               
+                <Image></Image>
+            </DockPanel>
+        </Border>
+        <Border Grid.Column="1" Grid.Row="1" Margin="10" Background="LightSlateGray" CornerRadius="20">
+            <ScrollViewer>
+                <ItemsControl ItemsSource="{Binding artista.Cancion}" Margin="20">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <TextBlock FontSize="20" Text="{Binding Duracion}"><Run FontSize="30">•</Run> <Run Text="{Binding Titulo}"></Run>  </TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Border>
+        <Border Background="DimGray" CornerRadius="20" Margin="10" Grid.Column="1">
+            <StackPanel VerticalAlignment="Center" Margin="10">
+                <TextBlock>Nombre <Run Text="{Binding artista.Nombre}"></Run></TextBlock>
+                <TextBlock>Apodo <Run Text="{Binding artista.Apodo}"></Run></TextBlock>
+                <TextBlock>Nacionalidad <Run Text="{Binding artista.Nacionalidad}"></Run></TextBlock>
+                <TextBlock>Fecha de nacimiento <Run Text="{Binding artista.FechaNacimiento
+                    }"></Run></TextBlock>
+                
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>

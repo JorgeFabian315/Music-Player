@@ -1,4 +1,11 @@
+
+using FluentValidation.Validators;
+using Microsoft.EntityFrameworkCore;
+using Music_Player.Models;
+using MySqlConnector;
+
 ﻿using Music_Player.Models;
+
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -11,11 +18,14 @@ namespace Music_Player.Catalogos
     public class ArtistasCatalogo
     {
 
-        private readonly MusicPlayerContext _context;
+        private readonly MusicPlayerContext _context = new();
+        
 
-        public ArtistasCatalogo(MusicPlayerContext context)
+        public IEnumerable<Vistaultrasuperperrona> GetPopulares()
         {
-            _context = context;
+
+           return _context.Vistaultrasuperperrona.OrderBy(x => x.Genero);
+
         }
 
         public IEnumerable<Artista> GetArtistas()

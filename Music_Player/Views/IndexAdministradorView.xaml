@@ -10,6 +10,7 @@
              xmlns:viewmodels="clr-namespace:Music_Player.ViewModels"
             xmlns:admi="clr-namespace:Music_Player.Views.Estadisticas"
              xmlns:vista="clr-namespace:Music_Player.Views.Enum_CambiarVista"
+             xmlns:artist ="clr-namespace:Music_Player.Views.Administrador.ArtistasViews"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -19,6 +20,9 @@
             <DataTemplate DataType="{x:Type viewmodels:EstadisticasViewModel}">
                 <estadisticas:EstadisticasView />
             </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:Admin_Artist_ViewModel}">
+            <artist:IndexArtistas_Administrador></artist:IndexArtistas_Administrador>
+        </DataTemplate>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -48,6 +52,12 @@
                              CommandParameter="{x:Static vista:VistaAdministrador.VerUsuarios }">
                     <materialDesign:PackIcon Kind="AccountGroup"
                                              Style="{StaticResource IconosMenu_materialde}" />
+                </RadioButton>
+                <RadioButton Style="{StaticResource BotonesMenu}" 
+                             Command="{Binding NavegarAdminCommand}"
+                             CommandParameter="{x:Static vista:VistaAdministrador.VerArtista}"
+                             >
+                    <materialDesign:PackIcon Kind="AccountMusic" Foreground="red" Style="{StaticResource IconosMenu_materialde}"/>
                 </RadioButton>
             </StackPanel>
             
