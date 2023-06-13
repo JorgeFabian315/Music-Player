@@ -29,7 +29,7 @@ namespace Music_Player.Catalogos
         }
 
 
-        public Cancion GetCancion(int id = 1)
+        public Cancion? GetCancion(int id = 1)
         {
             var cancion = _context.Cancion
                 .Include(c => c.IdGeneroNavigation)
@@ -37,7 +37,7 @@ namespace Music_Player.Catalogos
             if (cancion != null)
                 return cancion;
             else
-                return new Cancion();
+                return null;
         }
         public void AgregarCancion(Cancion cancion)
         {
