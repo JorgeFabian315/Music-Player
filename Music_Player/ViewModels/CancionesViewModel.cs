@@ -49,10 +49,26 @@ namespace Music_Player.ViewModels
         public ICommand RegresarCommand => new RelayCommand(Regresar);
         public ICommand VerAgregarCancionCommand => new RelayCommand(VerAgregarCancion);
         public ICommand AgregarCancionCommand => new RelayCommand(AgregarCancion);
-        //public ICommand EliminarCancionCommand => new RelayCommand<int>(EliminarCancion);
+        public ICommand EliminarCancionCommand => new RelayCommand<int>(EliminarCancion);
+
         public ICommand VerCancionesGeneroCommand => new RelayCommand<int>(VerCancionesGenero);
         public ICommand ActualizarMeGustaCommand => new RelayCommand<bool>(ActualizarEstadoCancion);
         //public ICommand VerEditarCancionCommand => new RelayCommand<int>(VerEditarCancion);
+
+        private void EliminarCancion(int id)
+        {
+            if (id != 0)
+            {
+                var cancion1 = catalogo_can.GetCancion(id);
+                if (cancion1 != null)
+                {
+                    catalogo_can.EliminarCancion(cancion1);
+                    catalogo_can.Recargar(cancion1.IdGenero);
+                    RecargarCanciones(ListaCanciones);
+                    Actualizar();
+                }
+            }
+        }
 
         private void VerEditarCancion(int id)
         {
@@ -174,6 +190,24 @@ namespace Music_Player.ViewModels
             Genero = catalogo_can.GetGenero(id);
             if (Genero != null)
                 Vista = VistaUsuario.VerCancionesPorGenero;
+            Actualizar();
+        }
+
+        //private void RecargarGeneros(ObservableCollection<Genero> lista)
+        //{
+        //    foreach (var item in lista)
+        //    {
+        //        catalogo_can.ReloadGeneros(item);
+        //    }
+        //    Actualizar();
+        //}
+
+        public void RecargarCanciones(ObservableCollection<Cancion> lista)
+        {
+            foreach (var item in lista)
+            {
+                catalogo_can.ReloadCanciones(item);
+            }
             Actualizar();
         }
 
