@@ -5,7 +5,7 @@ namespace Music_Player.Models;
 
 public partial class VwCancionesfavoritas
 {
-    public long TotalMeGusta { get; set; }
-
     public string Titulo { get; set; } = null!;
+
+    public string Apodo { get; set; } = null!;
 }

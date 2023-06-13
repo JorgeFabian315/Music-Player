@@ -5,9 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Music_Player.Views.CancionesViews"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:helper="clr-namespace:Music_Player.Helper"
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
+    <UserControl.Resources>
+        <helper:URLAImagenCVC x:Key="convert"/>
+    </UserControl.Resources>
     <Grid x:Name="gridpadre">
         <Grid.RowDefinitions>
             <RowDefinition Height=".12*" />
@@ -68,118 +72,73 @@
                                     </Style>
                                 </Border.Resources>
                                 <Border.Background>
-                                    <ImageBrush ImageSource="/Assets/musica.jpg" Stretch="UniformToFill"/>
+                                    <ImageBrush ImageSource="{Binding Caratula,Converter={StaticResource convert}}" Stretch="UniformToFill"/>
                                 </Border.Background>
-
-                                <DockPanel>
-
-                                    <Button DockPanel.Dock="Top"
-                                            Height="30"
-                                            Width="50"
-                                            Margin="10,10,0,0"
-                                            HorizontalAlignment="Left"
-                                            x:Name="btnEliminar"
-                                            Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.EliminarCancionCommand}"
-                                            CommandParameter="{Binding Id}"
-                                            >
-                                        <materialDesign:PackIcon Height="24" Width="30" HorizontalAlignment="Center">
-                                            <materialDesign:PackIcon.Style>
-                                                <Style TargetType="materialDesign:PackIcon">
-                                                    <Setter Property="Kind" Value="Delete"></Setter>
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding ElementName=btnEliminar,Path=IsMouseOver}" Value="True">
-                                                            <Setter Property="Kind" Value="DeleteEmpty"></Setter>
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </materialDesign:PackIcon.Style>
-                                        </materialDesign:PackIcon>
-
-                                    </Button>
-                                    
-                                    
-                                    <Grid Margin=" 0 0 0 10"
-                                      VerticalAlignment="Bottom"
-                                      Height="80"
-                                      Width="230"
-                                          
-                                      >
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width=".7*"/>
-                                            <ColumnDefinition Width=".3*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Border Background="{StaticResource color3}"
-                                            CornerRadius="5"
-                                            Name="fondotitulo"
-                                            Height="80"
-                                            Grid.ColumnSpan="2"
-                                            Opacity=".6"
-                                            Width="230"
-                                            HorizontalAlignment="Center" />
-                                        <StackPanel VerticalAlignment="Center">
-                                            <TextBlock Text="{Binding Titulo}"
-                                                   Foreground="{StaticResource color4}"
-                                                   FontSize="17"
-                                                   Margin="10,5,0,5"
-                                                   TextWrapping="Wrap" />
-                                            <TextBlock Text="{Binding IdArtistaNavigation.Apodo}"
-                                                   Margin="10,0,0,10"
-                                                   FontSize="14"
-                                                   TextWrapping="Wrap"
-                                                   Foreground="{StaticResource color2}" />
-                                        </StackPanel>
-                                        <materialDesign:PackIcon 
-                                        Kind="PlayCircle"
-                                        VerticalAlignment="Center"
-                                        Width="auto"
-                                        Height="auto"
-                                        Margin="10"
-                                        Grid.Column="1"
-                                        Foreground="White"
-                                        />
-                                    </Grid>
-                                </DockPanel>
-
-                                <!--<Grid Margin=" 0 0 0 10"
-                                      VerticalAlignment="Bottom"
-                                      Height="80"
-                                      Width="230"
-                                      >
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width=".7*"/>
-                                        <ColumnDefinition Width=".3*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Border Background="{StaticResource color3}"
-                                            CornerRadius="5"
-                                            Height="80"
-                                            Grid.ColumnSpan="2"
-                                            Opacity=".6"
-                                            Width="230"
-                                            HorizontalAlignment="Center" />
-                                    <StackPanel VerticalAlignment="Center">
-                                        <TextBlock Text="{Binding Titulo}"
-                                                   Foreground="{StaticResource color4}"
-                                                   FontSize="17"
-                                                   Margin="10,5,0,5"
-                                                   TextWrapping="Wrap" />
-                                        <TextBlock Text="{Binding IdArtistaNavigation.Apodo}"
-                                                   Margin="10,0,0,10"
-                                                   FontSize="14"
-                                                   TextWrapping="Wrap"
-                                                   Foreground="{StaticResource color2}" />
-                                    </StackPanel>
-                                    <materialDesign:PackIcon 
-                                        Kind="PlayCircle"
-                                        VerticalAlignment="Center"
-                                        Width="auto"
-                                        Height="auto"
-                                        Margin="10"
-                                        Grid.Column="1"
-                                        Foreground="White"
-                                        />
-                                </Grid>-->
-                            </Border>
-                                
+                                    <DockPanel>
+                                        <Button DockPanel.Dock="Top"
+                                                Height="30"
+                                                Width="50"
+                                                Margin="10,10,0,0"
+                                                HorizontalAlignment="Left"
+                                                x:Name="btnEliminar"
+                                                Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.EliminarCancionCommand}"
+                                                CommandParameter="{Binding Id}">
+                                            <materialDesign:PackIcon Height="24"
+                                                                     Width="30"
+                                                                     HorizontalAlignment="Center">
+                                                <materialDesign:PackIcon.Style>
+                                                    <Style TargetType="materialDesign:PackIcon">
+                                                        <Setter Property="Kind"
+                                                                Value="Delete"></Setter>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding ElementName=btnEliminar,Path=IsMouseOver}"
+                                                                         Value="True">
+                                                                <Setter Property="Kind"
+                                                                        Value="DeleteEmpty"></Setter>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </materialDesign:PackIcon.Style>
+                                            </materialDesign:PackIcon>
+                                        </Button>
+                                        <Grid Margin=" 0 0 0 10"
+                                              VerticalAlignment="Bottom"
+                                              Height="80"
+                                              Width="230">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width=".7*" />
+                                                <ColumnDefinition Width=".3*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Border Background="{StaticResource color3}"
+                                                    CornerRadius="5"
+                                                    Name="fondotitulo"
+                                                    Height="80"
+                                                    Grid.ColumnSpan="2"
+                                                    Opacity=".6"
+                                                    Width="230"
+                                                    HorizontalAlignment="Center" />
+                                            <StackPanel VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Titulo}"
+                                                           Foreground="{StaticResource color4}"
+                                                           FontSize="17"
+                                                           Margin="10,5,0,5"
+                                                           TextWrapping="Wrap" />
+                                                <TextBlock Text="{Binding IdArtistaNavigation.Apodo}"
+                                                           Margin="10,0,0,10"
+                                                           FontSize="14"
+                                                           TextWrapping="Wrap"
+                                                           Foreground="{StaticResource color2}" />
+                                            </StackPanel>
+                                            <materialDesign:PackIcon Kind="PlayCircle"
+                                                                     VerticalAlignment="Center"
+                                                                     Width="auto"
+                                                                     Height="auto"
+                                                                     Margin="10"
+                                                                     Grid.Column="1"
+                                                                     Foreground="White" />
+                                        </Grid>
+                                    </DockPanel>
+                                </Border>
                             </Grid>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

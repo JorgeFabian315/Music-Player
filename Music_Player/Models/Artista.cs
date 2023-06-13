@@ -19,6 +19,8 @@ public partial class Artista
 
     public int IdGenero { get; set; }
 
+    public string? Fotografia { get; set; }
+
     public virtual ICollection<Cancion> Cancion { get; set; } = new List<Cancion>();
 
     public virtual Genero IdGeneroNavigation { get; set; } = null!;

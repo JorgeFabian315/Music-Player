@@ -107,5 +107,9 @@ namespace Music_Player.Catalogos
         {
             return _context.VwCancionesfavoritas;
         }
+        public int TotalCanciones()
+        {
+            return _context.Cancion.Count();
+        }
     }
 }

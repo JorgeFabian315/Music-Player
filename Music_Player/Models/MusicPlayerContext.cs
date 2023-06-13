@@ -51,6 +51,7 @@ public partial class MusicPlayerContext : DbContext
 
             entity.Property(e => e.Apodo).HasMaxLength(50);
             entity.Property(e => e.FechaNacimiento).HasColumnType("datetime");
+            entity.Property(e => e.Fotografia).HasMaxLength(200);
             entity.Property(e => e.Nacionalidad).HasMaxLength(45);
             entity.Property(e => e.Nombre).HasMaxLength(100);
             entity.Property(e => e.TotalCanciones).HasDefaultValueSql("'0'");
@@ -92,6 +93,7 @@ public partial class MusicPlayerContext : DbContext
 
             entity.HasIndex(e => e.IdUsuario, "fk_Musica_Usuario");
 
+            entity.Property(e => e.Caratula).HasMaxLength(200);
             entity.Property(e => e.Duracion).HasMaxLength(45);
             entity.Property(e => e.FechaAgregada)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
@@ -111,7 +113,6 @@ public partial class MusicPlayerContext : DbContext
 
             entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Cancion)
                 .HasForeignKey(d => d.IdUsuario)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_Musica_Usuario");
         });
 
@@ -172,6 +173,7 @@ public partial class MusicPlayerContext : DbContext
                 .HasNoKey()
                 .ToView("vw_cancionesfavoritas");
 
+            entity.Property(e => e.Apodo).HasMaxLength(50);
             entity.Property(e => e.Titulo).HasMaxLength(100);
         });
 

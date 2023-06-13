@@ -21,6 +21,8 @@ public partial class Cancion
 
     public string Duracion { get; set; } = null!;
 
+    public string? Caratula { get; set; }
+
     public virtual Artista IdArtistaNavigation { get; set; } = null!;
 
     public virtual Genero IdGeneroNavigation { get; set; } = null!;

@@ -21,7 +21,6 @@ namespace Music_Player.ViewModels
     {
 
 
-        public ObservableCollection<Usuario> ListaUsuarios { get; set; } = new ObservableCollection<Usuario>();
         public ObservableCollection<Rol> ListaRoles { get; set; } = new ObservableCollection<Rol>();
         public Usuario? usuario { get; set; }
         public Rol? rol { get; set; }
@@ -44,7 +43,6 @@ namespace Music_Player.ViewModels
         public UsuariosViewModel(MusicPlayerContext context):base(context)
         {
 
-            CargarBD();
             CargarRoles();
             Vista = VistaAdministrador.VerUsuarios;
             VerBitacorasCommand = new RelayCommand<Usuario>(VerBitacoras);
@@ -196,16 +194,7 @@ namespace Music_Player.ViewModels
             }
         }
 
-        private void VerUsuarios()
-        {
-            ListaUsuarios.Clear();
-            foreach (var item in catalogo_us.GetUsuariosNormal())
-            {
-                ListaUsuarios.Add(item);
-            }
-            Actualizar();
-        }
-
+      
         private void VerVIP()
         {
             ListaUsuarios.Clear();
@@ -242,15 +231,15 @@ namespace Music_Player.ViewModels
                 Actualizar();
             }
         }
-
-        public void CargarBD()
+        public void VerUsuarios()
         {
             ListaUsuarios.Clear();
-            foreach (var item in catalogo_us.GetUsuarios())
+            foreach (var item in catalogo_us.GetUsuariosNormal())
             {
                 ListaUsuarios.Add(item);
             }
             Actualizar();
         }
+
     }
 }

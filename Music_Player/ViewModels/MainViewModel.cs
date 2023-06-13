@@ -49,7 +49,6 @@ namespace Music_Player.ViewModels
             set
             {
                 _viewmodelactual = value;
-
                 Actualizar();
             }
         }
@@ -132,6 +131,8 @@ namespace Music_Player.ViewModels
             View = new LoginView();
             View.DataContext = this;
         }
+
+        #region CREAR CUENTA USUARIO
         private void VerCrearCuenta()
         {
             Usuario = new();
@@ -175,6 +176,8 @@ namespace Music_Player.ViewModels
                 Actualizar();
             }
         }
+
+        #endregion CREAR CUENTA USUARIO
 
         #region ACCIONES USUARIOS
         private void AccionesUsuarioNormal()
@@ -227,6 +230,7 @@ namespace Music_Player.ViewModels
         {
             if (vista == VistaAdministrador.Estadisticas)
             {
+                MediadorViewModel.ActualizarEstadisticas();
                 ViewModelAactual = estadisticasViewModel;
             }
             else if (vista == VistaAdministrador.VerUsuarios)

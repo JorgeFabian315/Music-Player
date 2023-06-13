@@ -163,7 +163,7 @@
                                     <TextBlock Text="{Binding Titulo}"
                                                FontSize="20"
                                                TextWrapping="Wrap" />
-                                    <TextBlock Text="{Binding IdArtistaNavigation.Apodo}"
+                                    <TextBlock Text="{Binding Apodo}"
                                                FontSize="15"
                                                Foreground="Gray"
                                                TextWrapping="Wrap"

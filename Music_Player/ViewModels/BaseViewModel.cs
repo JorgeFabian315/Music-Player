@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Music_Player.Catalogos;
 using Music_Player.Views.Enum_CambiarVista;
+using Music_Player.ViewModels;
 
 namespace Music_Player.Operaciones
 {
@@ -22,6 +23,7 @@ namespace Music_Player.Operaciones
             catalogo_art = new(context);
             catalogo_us = new(context);
             GetArtistas();
+            CargarBD();
             GetGeneros();
         }
 
@@ -32,7 +34,14 @@ namespace Music_Player.Operaciones
         public ObservableCollection<Artista> ListaArtistas { get; set; } = new();
         public ObservableCollection<Artista> ListaTopArtistas { get; set; } = new();
         public ObservableCollection<VwCancionesfavoritas> ListaTopCanciones { get; set; } = new();
+        public ObservableCollection<Usuario> ListaUsuarios { get; set; } = new ObservableCollection<Usuario>();
 
+        public int TotalUs { get; set; }
+        public int TotalUsN { get; set; }
+        public int TotalUsVIP { get; set; }
+        public int TotalCan { get; set; }
+        public int TotalArt { get; set; }
+        public int TotalGen { get; set; }
 
         public void GetCanciones(int id)
         {
@@ -41,7 +50,7 @@ namespace Music_Player.Operaciones
             foreach (var item in catalogo_can.GetCanciones(id))
             {
                 ListaCanciones.Add(item);
-            }            
+            }
             Actualizar();
         }
 
@@ -50,7 +59,7 @@ namespace Music_Player.Operaciones
         {
             ListaCancionesMegusta.Clear();
             var lista = ListaCanciones.Where(x => x.MeGusta == true).OrderBy(c => c.FechaAgregada);
-            
+
             foreach (var item in lista)
             {
                 ListaCancionesMegusta.Add(item);
@@ -102,9 +111,30 @@ namespace Music_Player.Operaciones
 
         public void Actualizar(string? propertyName = null)
         {
+
+            MediadorViewModel.AlActualizarEstadisticas += Estadisticas;
+
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        private void Estadisticas()
+        {
+            TotalUs = ListaUsuarios.Count;
+            TotalUsN = ListaUsuarios.Where(c => c.IdRol == 3).Count();
+            TotalUsVIP = ListaUsuarios.Where(c => c.IdRol == 2).Count();
+            TotalCan = catalogo_can.TotalCanciones();
+            TotalGen = ListaGeneros.Count;
+            TotalArt = ListaArtistas.Count;
+        }
 
+        public void CargarBD()
+        {
+            ListaUsuarios.Clear();
+            foreach (var item in catalogo_us.GetUsuarios())
+            {
+                ListaUsuarios.Add(item);
+            }
+            Actualizar();
+        }
     }
 }

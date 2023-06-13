@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\artista.jpg" />
     <None Remove="Assets\Gif.gif" />
     <None Remove="Assets\login.jpg" />
     <None Remove="Assets\logo.png" />
@@ -33,6 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\artista.jpg" />
     <Resource Include="Assets\login.jpg" />
     <Resource Include="Assets\logo.png" />
     <Resource Include="Assets\musica.jpg">

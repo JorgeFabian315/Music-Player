@@ -21,5 +21,11 @@ namespace Music_Player.ViewModels
         {
             UusarioConectado?.Invoke(id);
         }
+        public static event Action? AlActualizarEstadisticas;
+
+        public static void ActualizarEstadisticas()
+        {
+            AlActualizarEstadisticas?.Invoke();
+        }
     }
 }
