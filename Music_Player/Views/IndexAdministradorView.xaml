@@ -57,7 +57,7 @@
                              Command="{Binding NavegarAdminCommand}"
                              CommandParameter="{x:Static vista:VistaAdministrador.VerArtista}"
                              >
-                    <materialDesign:PackIcon Kind="AccountMusic" Foreground="red" Style="{StaticResource IconosMenu_materialde}"/>
+                    <materialDesign:PackIcon Kind="AccountMusic"  Style="{StaticResource IconosMenu_materialde}"/>
                 </RadioButton>
             </StackPanel>
             

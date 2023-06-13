@@ -15,7 +15,6 @@ namespace Music_Player.ViewModels
 {
     public class Admin_Artist_ViewModel : BaseViewModel
     {
-
         public ICommand VerAgregarArtistaCommand { get; set; }
         public ICommand VerEliminarArtistaCommand { get; set; }
         public ICommand VerEditarArtistaCommand { get; set; }
@@ -26,7 +25,7 @@ namespace Music_Player.ViewModels
         public Artista? artista { get; set; }
         public VistaAdministrador Vista { get; set; } = VistaAdministrador.VerArtista;
         public string Error { get; set; } = "";
-        public Admin_Artist_ViewModel()
+        public Admin_Artist_ViewModel(MusicPlayerContext context):base(context)
         {
             VerAgregarArtistaCommand = new RelayCommand(VerAgregarArtista);
             VerEliminarArtistaCommand = new RelayCommand(VerEliminarArtista);
@@ -126,7 +125,7 @@ namespace Music_Player.ViewModels
             {
                 ArtistaValidator Validator = new();
                 var Result = Validator.Validate(artista, options => { options.IncludeAllRuleSets(); });
-                var exist = catalogo_Art.GetArtista(artista.Id);
+                var exist = catalogo_art.GetArtista(artista.Id);
                 if (Result.IsValid && exist != null)
                 {
                     exist.Id = artista.Id;
@@ -137,7 +136,7 @@ namespace Music_Player.ViewModels
                     exist.Nombre = artista.Nombre;
                     exist.TotalCanciones = artista.TotalCanciones;
                     exist.IdGeneroNavigation = artista.IdGeneroNavigation;
-                    catalogo_Art.EditarArtista(exist);
+                    catalogo_art.EditarArtista(exist);
                     Vista = VistaAdministrador.VerArtista;
                     Volver();
                 }
