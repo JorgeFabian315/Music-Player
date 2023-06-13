@@ -10,7 +10,7 @@
              xmlns:viewmodels="clr-namespace:Music_Player.ViewModels"
             xmlns:admi="clr-namespace:Music_Player.Views.Estadisticas"
              xmlns:vista="clr-namespace:Music_Player.Views.Enum_CambiarVista"
-             xmlns:artist ="clr-namespace:Music_Player.Views.Administrador.ArtistasViews"
+            
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
