@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Music_Player.Models;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,9 @@ namespace Music_Player.Catalogos
 
         public IEnumerable<Vistaultrasuperperrona> GetMasPopulares()
         {
-            return context.Vistaultrasuperperrona.OrderBy(x => x.Nombre);
+           return context.Vistaultrasuperperrona.OrderBy(x => x.Genero);
+           
+          
         }
         public IEnumerable<Artista> GetArtistas()
         {

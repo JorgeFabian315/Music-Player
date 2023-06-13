@@ -26,6 +26,7 @@ namespace Music_Player.ViewModels
         CancionesViewModel cancionesviewmodel = new();
         UsuariosViewModel usuariosviewmodel = new();
         ArtistasViewModel artistasviewmodel = new();
+        Admin_Artist_ViewModel adminartistasviewmodel = new();
         EstadisticasViewModel estadisticasViewModel = new();
         UsuariosCatalogo catalogo_us = new();
        // BaseViewModel bvm = new();
@@ -175,6 +176,10 @@ namespace Music_Player.ViewModels
             else if (vista == VistaAdministrador.VerUsuarios)
             {
                 ViewModelAactual = usuariosviewmodel;
+            }
+            else if (vista == VistaAdministrador.VerArtista) 
+            {
+                ViewModelAactual = adminartistasviewmodel;
             }
         }
 
