@@ -25,31 +25,47 @@ namespace Music_Player.ViewModels
     {
 
         public ICommand  VerCancionesPorArtistaCommand { get; set; }
-        public ICommand VerAgregarArtistaCommand { get; set; }
-        public ICommand VerEliminarArtistaCommand { get; set; }
-        public ICommand VerEditarArtistaCommand { get; set; }
+      
         public ICommand VolverCommand { get; set; }
-        public ICommand AgregarArtistaCommand { get; set; }
-        public ICommand EditarArtistaCommand { get; set; }
-        public ICommand EliminarArtistaCommand { get; set; }
+       
         public ICommand VerMasPopularesCommand { get; set; }
         public VistaArtista Vista { get; set; } = VistaArtista.VerArtistas;
         public List<Vistaultrasuperperrona> Lista_Para_Ver_Los_Mas_Populars_Asi_Es { get; set; } = new();
         public Artista? artista { get; set; }
+<<<<<<< HEAD
+        public ArtistasViewModel()
+=======
         public string Error { get; set; } = "";
         public ArtistasViewModel(MusicPlayerContext context):base(context)
+>>>>>>> f33bcec5e0f2d0fb4141c63e0d9e3441d362c128
         {
-            VerCancionesPorArtistaCommand = new RelayCommand<Artista>(VerInfoArtista);
-            VerAgregarArtistaCommand = new RelayCommand(VerAgregarArtista);
-            VerEliminarArtistaCommand = new RelayCommand(VerEliminarArtista);
-            VerEditarArtistaCommand = new RelayCommand(VerEditarArtista);
+            VerCancionesPorArtistaCommand = new RelayCommand<int>(VerInfoArtista);
+            
             VolverCommand = new RelayCommand(Volver);
+<<<<<<< HEAD
+            
+            VerMasPopularesCommand = new RelayCommand(Llenar_la_lista_de_nombre_cuestionable);
+=======
             AgregarArtistaCommand = new RelayCommand(AgregarArtista);
             EditarArtistaCommand = new RelayCommand(EditarArtista);
             EliminarArtistaCommand = new RelayCommand(EliminarArtista);
             //VerMasPopularesCommand = new RelayCommand(Llenar_la_lista_de_nombre_cuestionable);
+>>>>>>> f33bcec5e0f2d0fb4141c63e0d9e3441d362c128
+            
             
         }
+<<<<<<< HEAD
+        public void Llenar_la_lista_de_nombre_cuestionable()
+        {
+            Lista_Para_Ver_Los_Mas_Populars_Asi_Es.Clear();
+            foreach (var item_de_nombre_innecesariamente_largo_para_que_se_vea_mucho_codigo in catalogo_Art.GetMasPopulares())
+            {
+                Lista_Para_Ver_Los_Mas_Populars_Asi_Es.Add(item_de_nombre_innecesariamente_largo_para_que_se_vea_mucho_codigo);
+            }
+            Vista = VistaArtista.VerArtistasPorGenero;
+            Actualizar();
+        }
+=======
         //public void Llenar_la_lista_de_nombre_cuestionable()
         //{
         //    Lista_Para_Ver_Los_Mas_Populars_Asi_Es.Clear();
@@ -61,6 +77,7 @@ namespace Music_Player.ViewModels
         //    Vista = VistaArtista.VerCancionesPorArtista;
         //    Actualizar();
         //}
+>>>>>>> f33bcec5e0f2d0fb4141c63e0d9e3441d362c128
         
         public void Volver()
         {
@@ -80,6 +97,9 @@ namespace Music_Player.ViewModels
         }
 
         //Agregar
+<<<<<<< HEAD
+       
+=======
         public void VerAgregarArtista()
         {
             artista = new();
@@ -190,12 +210,14 @@ namespace Music_Player.ViewModels
 
             }
         }
+>>>>>>> f33bcec5e0f2d0fb4141c63e0d9e3441d362c128
 
         //Metodo que hace cosas perronas
-        public void VerInfoArtista(Artista a)
+        public void VerInfoArtista(int a)
         {
-            artista = a;
+            artista = catalogo_Art.GetArtista(a) ;
             Vista = VistaArtista.VerCancionesPorArtista;
+            
             Actualizar();
         }
 

@@ -14,6 +14,10 @@ namespace Music_Player.Views.Enum_CambiarVista
         VerAgregar,
         VerEliminar,
         VerEditar,
-        Estadisticas
+        Estadisticas,
+        VerArtista,
+        AgregarArtista,
+        EliminarArtista,
+        EditarArtista
     }
 }

@@ -28,6 +28,13 @@
                                 </Setter.Value>
                             </Setter>
                         </DataTrigger>
+                        <DataTrigger Binding="{Binding Vista}" Value="{x:Static Vista:VistaArtista.VerArtistasPorGenero}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <artistasviews:VerArtistasPorGenero/>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
                     </Style.Triggers>
 
                 </Style>
