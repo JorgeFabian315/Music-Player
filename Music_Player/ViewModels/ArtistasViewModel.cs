@@ -54,13 +54,13 @@ namespace Music_Player.ViewModels
 
         public void Llenar_la_lista_de_nombre_cuestionable()
         {
-            //Lista_Para_Ver_Los_Mas_Populars_Asi_Es.Clear();
-            //foreach (var item_de_nombre_innecesariamente_largo_para_que_se_vea_mucho_codigo in catalogo_art.GetMasPopulares())
-            //{
-            //    Lista_Para_Ver_Los_Mas_Populars_Asi_Es.Add(item_de_nombre_innecesariamente_largo_para_que_se_vea_mucho_codigo);
-            //}
-            //Vista = VistaArtista.VerArtistasPorGenero;
-            //Actualizar();
+            Lista_Para_Ver_Los_Mas_Populars_Asi_Es.Clear();
+            foreach (var item_de_nombre_innecesariamente_largo_para_que_se_vea_mucho_codigo in catalogo_art.GetPopulares())
+            {
+                Lista_Para_Ver_Los_Mas_Populars_Asi_Es.Add(item_de_nombre_innecesariamente_largo_para_que_se_vea_mucho_codigo);
+            }
+            Vista = VistaArtista.VerArtistasPorGenero;
+            Actualizar();
         }
 
     
