@@ -41,24 +41,24 @@ namespace Music_Player.Catalogos
         {
             return _context.Cancion.OrderBy(x => x.IdArtista == id);
         }
-        public void AgregarArtista(Artista a)
-        {
-            _context.Add(a);
-            _context.SaveChanges();
-            _context.Entry(a).Reload();
-        }
-        public void EliminarArtista(Artista a)
-        {
-            _context.Remove(a);
-            _context.SaveChanges();
-            _context.Entry(a).Reload();
-        }
-        public void EditarArtista(Artista a)
-        {
-            _context.Remove(a);
-            _context.SaveChanges();
-            _context.Entry(a).Reload();
-        }
+        //public void AgregarArtista(Artista a)
+        //{
+        //    _context.Add(a);
+        //    _context.SaveChanges();
+        //    _context.Entry(a).Reload();
+        //}
+        //public void EliminarArtista(Artista a)
+        //{
+        //    _context.Remove(a);
+        //    _context.SaveChanges();
+        //    _context.Entry(a).Reload();
+        //}
+        //public void EditarArtista(Artista a)
+        //{
+        //    _context.Remove(a);
+        //    _context.SaveChanges();
+        //    _context.Entry(a).Reload();
+        //}
 
         //public void Reload(Artista a)
         //{
