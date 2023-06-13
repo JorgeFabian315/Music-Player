@@ -58,15 +58,11 @@ namespace Music_Player.ViewModels
         {
             if (id > 0)
             {
-                catalogo_can.EliminarCancion(Cancion);
-                //GetCanciones();
-            }
-            var cancion = catalogo_can.GetCancion(id);
-            catalogo_can.EliminarCancion(cancion);
-            GetCanciones(Usuario.Id);
-            //  RecargarC(ListaCanciones);
-            Actualizar();
-
+                var cancion = catalogo_can.GetCancion(id);
+                catalogo_can.EliminarCancion(cancion);
+                GetCanciones();
+                Actualizar();
+           }
         }
 
         private void AgregarCancion()
@@ -181,24 +177,6 @@ namespace Music_Player.ViewModels
             Actualizar();
         }
 
-
-        //public void RecargarCanciones(ObservableCollection<Cancion> lista)
-        //{
-        //    foreach (var item in lista)
-        //    {
-        //        catalogo_can.ReloadCanciones(item);
-        //    }
-        //    Actualizar();
-        //}
-
-        //public void RecargarGeneros(ObservableCollection<Genero> lista)
-        //{
-        //    foreach (var item in lista)
-        //    {
-        //        catalogo_can.Reload(item);
-        //    }
-        //    Actualizar();
-        //}
-    }
+    } 
 
 }

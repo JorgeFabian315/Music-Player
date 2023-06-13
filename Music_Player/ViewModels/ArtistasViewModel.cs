@@ -199,14 +199,6 @@ namespace Music_Player.ViewModels
             Actualizar();
         }
 
-        //public void RecargarArtistas(ObservableCollection<Artista> lista)
-        //{
-        //    foreach (var item in lista)
-        //    {
-        //        catalogo_Art.Reload(item);
-        //    }
-        //    Actualizar();
-        //}
-
+        
     }
 }
