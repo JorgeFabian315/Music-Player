@@ -65,6 +65,7 @@ namespace Music_Player.ViewModels
                     catalogo_can.EliminarCancion(cancion1);
                     catalogo_can.Recargar(cancion1.IdGenero);
                     RecargarCanciones(ListaCanciones);
+                    GetCanciones(Usuario.Id);
                     Actualizar();
                 }
             }
