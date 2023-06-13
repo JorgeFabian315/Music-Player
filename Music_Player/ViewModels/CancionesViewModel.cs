@@ -155,10 +155,12 @@ namespace Music_Player.ViewModels
         {
             Vista = vista;
             if (vista == VistaUsuario.VerCancionesMegustan)
+            {
                 if (Usuario != null)
                     GetCancionesMeGusta(Usuario.Id);
-                else if (vista == VistaUsuario.Home)
-                    GetTopArtistas();
+            }
+            else if (vista == VistaUsuario.Home)
+                GetTopArtistas();
             TotalCancionesMegustas = ListaCancionesMegusta.Count;
 
             Actualizar();

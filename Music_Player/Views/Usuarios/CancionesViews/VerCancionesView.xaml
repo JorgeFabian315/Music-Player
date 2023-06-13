@@ -25,16 +25,48 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border Width="250"
-                                    Height="170"
-                                    Margin="10"
-                                    CornerRadius="5">
-                                <Border.InputBindings>
+                            <Grid Width="270"
+                                  Height="190">
+                                <Grid.InputBindings>
                                     <MouseBinding  Gesture="LeftClick"
                                                    Command="{Binding
                                     RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.VerCancionCommand}"
                                                    CommandParameter="{Binding Id}" />
-                                </Border.InputBindings>
+                                </Grid.InputBindings>
+                            <Border Width="250"
+                                    Height="170"
+                                    CornerRadius="5">
+                                <Border.Resources>
+                                    <Style TargetType="Border">
+                                        <Style.Triggers>
+                                            <EventTrigger RoutedEvent="MouseEnter">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation 
+                                                            Storyboard.TargetProperty="Width"
+                                                            To="265"
+                                                            Duration="0:0:0.2"/>
+                                                        <DoubleAnimation Storyboard.TargetProperty="Height"
+                                                                         To="185"
+                                                                         Duration="0:0:0.2" />
+                                                        </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                            <EventTrigger RoutedEvent="MouseLeave">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                                         To="250"
+                                                                         Duration="0:0:0.2" />
+                                                        <DoubleAnimation Storyboard.TargetProperty="Height"
+                                                                         To="170"
+                                                                         Duration="0:0:0.2" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Resources>
                                 <Border.Background>
                                     <ImageBrush ImageSource="/Assets/musica.jpg" Stretch="UniformToFill"/>
                                 </Border.Background>
@@ -48,6 +80,7 @@
                                     </Grid.ColumnDefinitions>
                                     <Border Background="{StaticResource color3}"
                                             CornerRadius="5"
+                                            Name="fondotitulo"
                                             Height="80"
                                             Grid.ColumnSpan="2"
                                             Opacity=".6"
@@ -76,6 +109,8 @@
                                         />
                                 </Grid>
                             </Border>
+                                
+                            </Grid>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -91,7 +126,7 @@
                                          Width="40" />
             </Button>
         </Grid>
-        <Border Background="Red"
+        <!--<Border Background="Red"
                 CornerRadius="10"
                 HorizontalAlignment="Right"
                 Name="VerCancion"
@@ -104,6 +139,6 @@
                 <TextBlock Text="{Binding Cancion.Titulo}"
                            Foreground="White" />
             </Grid>
-        </Border>
+        </Border>-->
     </Grid>
 </UserControl>

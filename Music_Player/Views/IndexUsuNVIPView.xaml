@@ -36,6 +36,7 @@
             </Grid.RowDefinitions>
             <StackPanel>
                 <RadioButton Style="{StaticResource BotonesMenu}"
+                             IsChecked="True"
                              Command="{Binding NavegarUsuariosCommand}"
                              CommandParameter="{x:Static vista:VistaUsuario.Home}">
                     <fa:ImageAwesome Icon="Home"

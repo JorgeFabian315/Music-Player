@@ -174,7 +174,15 @@
                                         <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}}"
                                                      Value="True">
                                             <Setter Property="Foreground"
-                                                    Value="{StaticResource color3}" />
+                                                    Value="#FFD50000" />
+                                            <Setter Property="Effect">
+                                                <Setter.Value>
+                                                    <DropShadowEffect
+                                                        BlurRadius="15"
+                                                        ShadowDepth="0"
+                                                                      Color="#FFFF1744"/>
+                                                </Setter.Value>
+                                            </Setter>
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>

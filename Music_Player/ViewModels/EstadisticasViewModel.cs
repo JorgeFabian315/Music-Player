@@ -15,12 +15,26 @@ namespace Music_Player.ViewModels
         public int TotalCan { get; set; }
         public int TotalArt { get; set; }
         public int TotalGen { get; set; }
+        public ObservableCollection<Genero> ListaTopGeneros { get; set; } = new();
+
         public EstadisticasViewModel(MusicPlayerContext context):base(context)
         {
             TotalCan = ListaCanciones.Count;
             TotalGen = ListaGeneros.Count;
             TotalArt = ListaArtistas.Count;
         }
+
+        private void GetTopGeneros()
+        {
+            ListaTopGeneros.Clear();
+            var lista = ListaGeneros.OrderByDescending(c => c.TotalCanciones).Take(3);
+            foreach (var item in lista)
+            {
+                ListaTopGeneros.Add(item);
+            }
+            Actualizar();
+        }
+
 
     }
 }

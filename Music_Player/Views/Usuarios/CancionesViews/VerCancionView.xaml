@@ -69,8 +69,14 @@
                                              VerticalAlignment="Center"
                                              Foreground="White"
                                              Width="40"
-                                             Height="40" />
-                    <materialDesign:PackIcon Kind="SkipNext"
+                                             Height="40">
+                        <materialDesign:PackIcon.Effect>
+                            <DropShadowEffect BlurRadius="50" ShadowDepth="0"
+                                              Color="{StaticResource Color_2}"/>
+                        </materialDesign:PackIcon.Effect>
+                    </materialDesign:PackIcon>
+                        
+                        <materialDesign:PackIcon Kind="SkipNext"
                                              VerticalAlignment="Center"
                                              Foreground="White"
                                              Width="40"

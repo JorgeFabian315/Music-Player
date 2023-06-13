@@ -29,7 +29,7 @@ namespace Music_Player.Catalogos
         }
 
 
-        public Cancion GetCancion(int id)
+        public Cancion GetCancion(int id = 1)
         {
             var cancion = _context.Cancion
                 .Include(c => c.IdGeneroNavigation)

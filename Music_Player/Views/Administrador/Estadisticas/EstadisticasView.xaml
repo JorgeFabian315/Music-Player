@@ -13,12 +13,12 @@
         <Grid.RowDefinitions>
             <RowDefinition Height=".1*"/>
             <RowDefinition Height=".2*"/>
-            <RowDefinition Height=".4*"/>
-            <RowDefinition Height=".3*"/>
+            <RowDefinition Height=".35*"/>
+            <RowDefinition Height=".35*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width=".2*"/>
             <ColumnDefinition Width=".8*"/>
+            <ColumnDefinition Width=".2*"/>
         </Grid.ColumnDefinitions>
         <TextBlock Text="Estadísticas" FontSize="35" VerticalAlignment="Center"/>
         <WrapPanel HorizontalAlignment="Center"
@@ -138,7 +138,10 @@
                 </StackPanel>
             </Grid>
         </WrapPanel>
-        <Grid Grid.Row="2" Margin="10 0">
+
+        <Grid Grid.Row="3"
+              Grid.Column="1"
+              Margin="20 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -148,20 +151,24 @@
                 <RowDefinition Height=".2*"/>
             </Grid.RowDefinitions>
                 <TextBlock Text="Usuarios VIP"
+                       FontSize="15"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        Grid.Row="1"/>
                 <ProgressBar Value="5"
                              Orientation="Vertical"
-                             Height="20" />
+                             Height="30" />
             <TextBlock Text="Usuarios"
+                       FontSize="15"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        Grid.Row="1" Grid.Column="1" />
             <ProgressBar Value="5"
                          Grid.Column="1"
                          Orientation="Vertical"
-                         Height="20" />
+                         Height="30" />
         </Grid>
+        <Border Background="red"
+                Grid.Row="3" />
     </Grid>
 </UserControl>

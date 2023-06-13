@@ -29,7 +29,7 @@
                             CornerRadius="10" />
                     <TextBlock VerticalAlignment="Center"
                                Text="¡Bienvenido!"
-                               FontSize="50"
+                               FontSize="70"
                                Foreground="White"
                                FontFamily="{StaticResource MaterialDesignFont}"
                                FontWeight="Light"
