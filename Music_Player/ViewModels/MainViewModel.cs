@@ -19,6 +19,8 @@ using Music_Player.Views.UsuariosView;
 using System.Threading;
 using Music_Player.Views.ArtistasViews;
 using Microsoft.EntityFrameworkCore;
+using Music_Player.Views.Usuarios.CrearCuenta;
+using System.Collections.ObjectModel;
 
 namespace Music_Player.ViewModels
 {
@@ -29,10 +31,10 @@ namespace Music_Player.ViewModels
         CancionesViewModel cancionesviewmodel = new(_context);
         UsuariosViewModel usuariosviewmodel = new(_context);
         ArtistasViewModel artistasviewmodel = new(_context);
-        Admin_Artist_ViewModel adminartistasviewmodel = new(_context);
         EstadisticasViewModel estadisticasViewModel = new(_context);
         UsuariosCatalogo catalogo_us = new(_context);
-     
+
+        public ObservableCollection<Rol> ListaRoles { get; set; } = new ObservableCollection<Rol>();
 
 
         public Usuario Usuario { get; set; } = new();
@@ -66,6 +68,7 @@ namespace Music_Player.ViewModels
 
         public MainViewModel()
         {
+            CargarRoles();
             View = new LoginView();
             View.DataContext = this;
         }
@@ -76,9 +79,11 @@ namespace Music_Player.ViewModels
         public ICommand NavegarAdminCommand => new RelayCommand<VistaAdministrador>(NavegarAdministrador);
         public ICommand IniciarSesionCommand => new RelayCommand(IniciarSesion);
         public ICommand CerrarSesionCommand => new RelayCommand(CerrarSesion);
+        public ICommand VerCrearCuentaCommand => new RelayCommand(VerCrearCuenta);
+        public ICommand CrearCuentaCommand => new RelayCommand(CrearCuenta);
+
+
         #endregion
-
-
 
         private void IniciarSesion()
         {
@@ -100,7 +105,6 @@ namespace Music_Player.ViewModels
                         Usuario = catalogo_us.GetUsuario(Usuario.CorreoElectronico) ?? new Usuario();
                         if (Thread.CurrentPrincipal is not null)
                         {
-                            // var nose = Thread.CurrentPrincipal.Identity.Name;
                             if (Thread.CurrentPrincipal.IsInRole("Administrador"))
                                 AccionesAdministrador();
                             if (Thread.CurrentPrincipal.IsInRole("Usuario VIP"))
@@ -118,6 +122,56 @@ namespace Music_Player.ViewModels
                         Error = $"{Error} {error} {Environment.NewLine}";
                     }
 
+                Actualizar();
+            }
+        }
+        private void CerrarSesion()
+        {
+            Usuario = new();
+            Error = "";
+            View = new LoginView();
+            View.DataContext = this;
+        }
+        private void VerCrearCuenta()
+        {
+            Usuario = new();
+            Error = "";
+            View = new CrearCuentaView();
+            View.DataContext = this;
+        }
+        public void CargarRoles()
+        {
+            ListaRoles.Clear();
+            foreach (var item in catalogo_us.GetRoles())
+            {
+                if(item.Id != 1)
+                    ListaRoles.Add(item);
+            }
+        }
+
+        private void CrearCuenta()
+        {
+            if (Usuario != null)
+            {
+                Error = "";
+
+                UsuarioValidator validation = new UsuarioValidator();
+
+                var result = validation.Validate(Usuario, options =>
+                {
+                    options.IncludeAllRuleSets();
+                });
+
+                if (result.IsValid)
+                {
+                    catalogo_us.Agregar(Usuario);
+                    IniciarSesion();
+                }
+                else
+                {
+                    foreach (var item in result.Errors)
+                        Error = $"{Error} {item} {Environment.NewLine}";
+                }
                 Actualizar();
             }
         }
@@ -149,14 +203,6 @@ namespace Music_Player.ViewModels
         }
         #endregion ACCIONES ADMINISTRADOR
 
-        private void CerrarSesion()
-        {
-            Usuario = new();
-            Error = "";
-            View = new LoginView();
-            View.DataContext = this;
-            Actualizar();
-        }
 
 
         #region NAVEGAR USUARIOS
@@ -186,10 +232,6 @@ namespace Music_Player.ViewModels
             else if (vista == VistaAdministrador.VerUsuarios)
             {
                 ViewModelAactual = usuariosviewmodel;
-            }
-            else if (vista == VistaAdministrador.VerArtista) 
-            {
-                ViewModelAactual = adminartistasviewmodel;
             }
         }
         #endregion NAVEGAR ADMINISTRADOR
