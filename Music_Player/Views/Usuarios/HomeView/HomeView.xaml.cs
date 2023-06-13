@@ -9,9 +9,11 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Music_Player.Views.CancionesViews
 {
@@ -20,9 +22,12 @@ namespace Music_Player.Views.CancionesViews
     /// </summary>
     public partial class HomeView : UserControl
     {
+        
         public HomeView()
         {
             InitializeComponent();
+          
         }
+
     }
 }

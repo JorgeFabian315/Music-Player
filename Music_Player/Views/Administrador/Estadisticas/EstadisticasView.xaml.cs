@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace Music_Player.Views.Estadisticas
 {
     /// <summary>
@@ -23,6 +24,7 @@ namespace Music_Player.Views.Estadisticas
         public EstadisticasView()
         {
             InitializeComponent();
+         
         }
     }
 }

@@ -13,9 +13,11 @@
     <None Remove="Assets\logo.png" />
     <None Remove="Assets\musica.jpg" />
     <None Remove="Assets\musicagif.gif" />
+    <None Remove="Assets\sonido.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="FluentValidation" Version="11.5.2" />
     <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
     <PackageReference Include="MaterialDesignColors" Version="2.1.4" />
@@ -37,6 +39,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\musicagif.gif" />
+    <Resource Include="Assets\sonido.png" />
   </ItemGroup>
 
 </Project>

@@ -4,9 +4,164 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Music_Player.Views.Estadisticas"
-             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             
+             FontWeight="Light"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Green">
-        <TextBlock Text="Soy estadisticas" Foreground="White" FontSize="30"/>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".1*"/>
+            <RowDefinition Height=".2*"/>
+            <RowDefinition Height=".4*"/>
+            <RowDefinition Height=".3*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".2*"/>
+            <ColumnDefinition Width=".8*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Estadísticas" FontSize="35" VerticalAlignment="Center"/>
+        <WrapPanel HorizontalAlignment="Center"
+                   Grid.Row="1"
+                   Grid.ColumnSpan="2">
+            <Grid Width="250" Height="100">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".4*" />
+                    <ColumnDefinition Width=".6*" />
+                </Grid.ColumnDefinitions>
+
+                <Border Background="{StaticResource color3}" CornerRadius="5" Grid.ColumnSpan="2"/>
+                <materialDesign:PackIcon Kind="AccountCircle" Foreground="White"
+                                         VerticalAlignment="Center"
+                                         HorizontalAlignment="Center"
+                                         Width="auto"
+                                         Height="auto"
+                                         Margin="20"/>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding TotalUs}" Foreground="White" FontSize="30" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Total usuarios"
+                               Foreground="White"
+                               FontSize="18"
+                               HorizontalAlignment="Center" />
+                </StackPanel>
+            </Grid>
+            <Grid Width="250"
+                  Margin="10 0"
+                  Height="100">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".3*" />
+                    <ColumnDefinition Width=".7*" />
+                </Grid.ColumnDefinitions>
+                <Border Background="#FF3D5AFE"
+                        CornerRadius="5"
+                        Grid.ColumnSpan="2" />
+                <materialDesign:PackIcon Kind="AccountMusic"
+                                         Foreground="White"
+                                         VerticalAlignment="Center"
+                                         HorizontalAlignment="Center"
+                                         Width="auto"
+                                         Height="auto"
+                                         Margin="10" />
+                <StackPanel Grid.Column="1"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding TotalArt}"
+                               Foreground="White"
+                               FontSize="30"
+                               HorizontalAlignment="Center" />
+                    <TextBlock Text="Total artistas"
+                               Foreground="White"
+                               FontSize="18"
+                               HorizontalAlignment="Center" />
+                </StackPanel>
+            </Grid>
+            <Grid Width="250"
+                  Height="100">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".4*" />
+                    <ColumnDefinition Width=".6*" />
+                </Grid.ColumnDefinitions>
+                <Border Background="#FFD50000"
+                        CornerRadius="5"
+                        Grid.ColumnSpan="2" />
+                <materialDesign:PackIcon Kind="MusicCircle"
+                                         Foreground="White"
+                                         VerticalAlignment="Center"
+                                         HorizontalAlignment="Center"
+                                         Width="auto"
+                                         Height="auto"
+                                         Margin="20" />
+                <StackPanel Grid.Column="1"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+                    <TextBlock 
+                               Text="{Binding TotalCan}"
+                               Foreground="White"
+                               FontSize="30"
+                               HorizontalAlignment="Center" />
+                    <TextBlock Text="Total canciones"
+                               Foreground="White"
+                               FontSize="18"
+                               HorizontalAlignment="Center" />
+                </StackPanel>
+            </Grid>
+            <Grid Width="250"
+                  Margin="10 0 0 0"
+                  Height="100">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".4*" />
+                    <ColumnDefinition Width=".6*" />
+                </Grid.ColumnDefinitions>
+                <Border Background="#FF16DD25"
+                        CornerRadius="5"
+                        Grid.ColumnSpan="2" />
+                <materialDesign:PackIcon Kind="FolderMusicOutline"
+                                         Foreground="White"
+                                         VerticalAlignment="Center"
+                                         HorizontalAlignment="Center"
+                                         Width="auto"
+                                         Height="auto"
+                                         Margin="20" />
+                <StackPanel Grid.Column="1"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding TotalGen}"
+                               Foreground="White"
+                               FontSize="30"
+                               HorizontalAlignment="Center" />
+                    <TextBlock Text="Total generos musicales"
+                               Foreground="White"
+                               FontSize="18"
+                               TextWrapping="Wrap"
+                               HorizontalAlignment="Center" />
+                </StackPanel>
+            </Grid>
+        </WrapPanel>
+        <Grid Grid.Row="2" Margin="10 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".8*"/>
+                <RowDefinition Height=".2*"/>
+            </Grid.RowDefinitions>
+                <TextBlock Text="Usuarios VIP"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Grid.Row="1"/>
+                <ProgressBar Value="5"
+                             Orientation="Vertical"
+                             Height="20" />
+            <TextBlock Text="Usuarios"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Grid.Row="1" Grid.Column="1" />
+            <ProgressBar Value="5"
+                         Grid.Column="1"
+                         Orientation="Vertical"
+                         Height="20" />
+        </Grid>
     </Grid>
 </UserControl>

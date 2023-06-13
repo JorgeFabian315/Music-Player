@@ -18,11 +18,14 @@ using Music_Player.Views.Enum_CambiarVista;
 using Music_Player.Views.UsuariosView;
 using System.Threading;
 using Music_Player.Views.ArtistasViews;
+using Microsoft.EntityFrameworkCore;
+
 namespace Music_Player.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
 
+<<<<<<< HEAD
         CancionesViewModel cancionesviewmodel = new();
         UsuariosViewModel usuariosviewmodel = new();
         ArtistasViewModel artistasviewmodel = new();
@@ -30,11 +33,22 @@ namespace Music_Player.ViewModels
         EstadisticasViewModel estadisticasViewModel = new();
         UsuariosCatalogo catalogo_us = new();
        // BaseViewModel bvm = new();
+=======
+        public static MusicPlayerContext _context = new();
+
+
+        CancionesViewModel cancionesviewmodel = new(_context);
+        UsuariosViewModel usuariosviewmodel = new(_context);
+        ArtistasViewModel artistasviewmodel = new(_context);
+        EstadisticasViewModel estadisticasViewModel = new(_context);
+        UsuariosCatalogo catalogo_us = new(_context);
+>>>>>>> f33bcec5e0f2d0fb4141c63e0d9e3441d362c128
 
 
         public Usuario Usuario { get; set; } = new();
 
         public bool Conectado => Usuario.Id != 0;
+        public string Error { get; set; } = string.Empty;
 
         private object? _viewmodelactual;
         public object? ViewModelAactual
@@ -47,9 +61,9 @@ namespace Music_Player.ViewModels
                 Actualizar();
             }
         }
-        private UserControl _view;
+        private UserControl? _view;
 
-        public UserControl View
+        public UserControl? View
         {
             get { return _view; }
             set
@@ -75,12 +89,10 @@ namespace Music_Player.ViewModels
         #endregion
 
 
-        public string Error { get; private set; }
 
         private void IniciarSesion()
         {
             Error = "";
-
             if (Usuario != null)
             {
                 UsuarioValidator rules = new();
@@ -125,20 +137,27 @@ namespace Music_Player.ViewModels
         {
             View = new IndexUsuNVIPView();
             NavegarUsuarios(VistaUsuario.Home);
+            MediadorViewModel.BuscarUsuario(Usuario.Id);
+
         }
 
         private void AccionesUsuarioVIP()
         {
             View = new IndexUsuNVIPView();
             NavegarUsuarios(VistaUsuario.Home);
+            MediadorViewModel.BuscarUsuario(Usuario.Id);
+
         }
 
+        #endregion ACCIONES USUARIOS
+
+        #region ACCIONES ADMINISTRADOR
         private void AccionesAdministrador()
         {
             View = new IndexAdministradorView();
             NavegarAdministrador(VistaAdministrador.Estadisticas);
         }
-        #endregion ACCIONES USUARIOS
+        #endregion ACCIONES ADMINISTRADOR
 
         private void CerrarSesion()
         {
@@ -149,8 +168,8 @@ namespace Music_Player.ViewModels
             Actualizar();
         }
 
-        
 
+        #region NAVEGAR USUARIOS
         private void NavegarUsuarios(VistaUsuario vista)
         {
             if (vista == VistaUsuario.Artista)
@@ -161,12 +180,13 @@ namespace Music_Player.ViewModels
             else
             {
                 MediadorViewModel.ActualizarVista(vista);
-                //  bvm.RecargarCanciones(bvm.ListaCanciones);
-                // bvm.RecargarGeneros(bvm.ListaGeneros);  
-                //bvm.RecargarArtistas(bvm.ListaArtistas);
+
                 ViewModelAactual = cancionesviewmodel;
             }
         }
+        #endregion NAVEGAR USUARIOS
+
+        #region NAVEGAR ADMINISTRADOR
         private void NavegarAdministrador(VistaAdministrador vista)
         {
             if (vista == VistaAdministrador.Estadisticas)
@@ -182,7 +202,7 @@ namespace Music_Player.ViewModels
                 ViewModelAactual = adminartistasviewmodel;
             }
         }
-
+        #endregion NAVEGAR ADMINISTRADOR
 
         #region ACTUALIZAR CAMBIOS
         public event PropertyChangedEventHandler? PropertyChanged;

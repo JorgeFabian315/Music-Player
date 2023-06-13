@@ -1,9 +1,11 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using Music_Player.Models;
 using System.Windows;
 
 namespace Music_Player
@@ -13,5 +15,7 @@ namespace Music_Player
     /// </summary>
     public partial class App : Application
     {
+        
+       
     }
 }

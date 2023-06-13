@@ -17,7 +17,7 @@
     <Color x:Key="Color_4">#fcfcff</Color>
     <!--#ENDREGION COLORES USADOS-->
     <!--#REGION ESTILOS ICONOS MENU-->
-    <Style TargetType="{x:Type materialDesign:PackIcon}"
+    <Style TargetType="materialDesign:PackIcon"
            x:Key="IconosMenu_materialde">
         <Setter Property="Foreground"
                 Value="{StaticResource color2}" />
@@ -35,6 +35,13 @@
                          Value="True">
                 <Setter Property="Foreground"
                         Value="{StaticResource color4}" />
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect BlurRadius="20"
+                                          ShadowDepth="1"
+                                          Color="{StaticResource Color_4}" />
+                    </Setter.Value>
+                </Setter>
             </DataTrigger>
         </Style.Triggers>
     </Style>
@@ -56,6 +63,13 @@
                          Value="True">
                 <Setter Property="Foreground"
                         Value="{StaticResource color4}" />
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect BlurRadius="18"
+                                          ShadowDepth="1"
+                                          Color="{StaticResource Color_4}" />
+                    </Setter.Value>
+                </Setter>
             </DataTrigger>
         </Style.Triggers>
     </Style>
@@ -132,4 +146,44 @@
         </Style.Triggers>
     </Style>
     <!--#ENDREGION ESTILOS NOMBRE DEL USUARIO-->
+    <!--#REGION ESTILO CORAZON ME GUSTA CANCION-->
+    <Style TargetType="{x:Type CheckBox}"
+           x:Key="MeGustaChk">
+        <Setter Property="Width"
+                Value="40" />
+        <Setter Property="Height"
+                Value="40" />
+        <Setter Property="Margin"
+                Value="10 0 20 0" />
+        <Setter Property="Cursor"
+                Value="Hand" />
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <Border Background="{TemplateBinding Background}">
+                        <fa:ImageAwesome Icon="Heart"
+                                         Width="auto"
+                                         Height="auto">
+                            <fa:ImageAwesome.Style>
+                                <Style TargetType="fa:ImageAwesome">
+                                    <Setter Property="Foreground"
+                                            Value="White" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}}"
+                                                     Value="True">
+                                            <Setter Property="Foreground"
+                                                    Value="{StaticResource color3}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </fa:ImageAwesome.Style>
+                        </fa:ImageAwesome>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#ENDREGION ESTILO CORAZON ME GUSTA CANCION-->
 </ResourceDictionary>

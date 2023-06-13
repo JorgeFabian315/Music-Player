@@ -23,6 +23,9 @@ namespace Music_Player.Views.CancionesViews
         public VerCancionesView()
         {
             InitializeComponent();
+
         }
+
+        
     }
 }

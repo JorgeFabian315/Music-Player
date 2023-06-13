@@ -15,25 +15,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Threading;
+using AutoMapper;
+using Music_Player.Profile;
 
 namespace Music_Player.ViewModels
 {
     public class CancionesViewModel : BaseViewModel
     {
-        public ObservableCollection<Cancion> ListaCanciones2 { get; set; } = new();
 
-        public CancionesViewModel()
+        public Usuario? Usuario { get; set; }
+
+        private IMapper _mapper;
+        public CancionesViewModel(MusicPlayerContext _context) : base(_context)
         {
 
+            _mapper = (Mapper)CancionProfile.Initialize();
+
             MediadorViewModel.VistaActualizada += MediadorViewModel_VistaActualizada;
-
-            GetCancionesBusqueda();
-
-            Actualizar();
+            MediadorViewModel.UusarioConectado += MediadorViewModel_UusarioConectado;
         }
 
-        public Cancion Cancion { get; set; } = new();
-        public Genero Genero { get;  set; }
+        private int _idGeneroViejo;
+        public Cancion? Cancion { get; set; }
+        public Genero? Genero { get; set; }
 
 
         public int Minutos { get; set; }
@@ -41,35 +45,33 @@ namespace Music_Player.ViewModels
         public VistaUsuario Vista { get; set; }
         public string Error { get; set; } = "";
         public int TotalCancionesMegustas { get; set; }
-
         public ICommand VerCancionCommand => new RelayCommand<int>(VerCancion);
         public ICommand RegresarCommand => new RelayCommand(Regresar);
         public ICommand VerAgregarCancionCommand => new RelayCommand(VerAgregarCancion);
         public ICommand AgregarCancionCommand => new RelayCommand(AgregarCancion);
-        public ICommand EliminarCancionCommand => new RelayCommand<int>(EliminarCancion);
-        public ICommand BuscarCancionCommand => new RelayCommand<string>(GetCancionesBusqueda);
+        //public ICommand EliminarCancionCommand => new RelayCommand<int>(EliminarCancion);
         public ICommand VerCancionesGeneroCommand => new RelayCommand<int>(VerCancionesGenero);
+        public ICommand ActualizarMeGustaCommand => new RelayCommand<bool>(ActualizarEstadoCancion);
+        //public ICommand VerEditarCancionCommand => new RelayCommand<int>(VerEditarCancion);
 
-
-        private void EliminarCancion(int id)
+        private void VerEditarCancion(int id)
         {
             if (id > 0)
             {
                 var cancion = catalogo_can.GetCancion(id);
                 catalogo_can.EliminarCancion(cancion);
-                GetCanciones();
+               // GetCanciones();
                 Actualizar();
            }
         }
 
         private void AgregarCancion()
         {
-            if (Cancion != null)
+            if (Cancion != null && Usuario != null)
             {
                 Error = "";
 
-                Cancion.Duracion = $"{Minutos}:{Segundos}";
-                Cancion.IdUsuario = 1;
+                Cancion.IdUsuario = Usuario.Id;
 
                 CancionValidator validations = new CancionValidator();
                 var result = validations.Validate(Cancion, options =>
@@ -79,9 +81,29 @@ namespace Music_Player.ViewModels
 
                 if (result.IsValid)
                 {
-                    catalogo_can.AgregarCancion(Cancion);
-                    GetCanciones();
-                    GetCancionesBusqueda();
+                    if (Cancion.Id > 0)
+                    {
+                        var existe = catalogo_can.GetCancion(Cancion.Id);
+
+                        if (existe != null)
+                        {
+                            // existe = _mapper.Map<Cancion>(Cancion);
+                            catalogo_can.EditarCancion(existe, Cancion);
+                            if (Cancion.Id != _idGeneroViejo)
+                            {
+                                catalogo_can.Recargar(_idGeneroViejo);
+
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        catalogo_can.AgregarCancion(Cancion);
+                    }
+
+                    catalogo_can.Recargar(Cancion.IdGenero);
+                    GetCanciones(Usuario.Id);
                     Regresar();
                 }
                 else
@@ -113,6 +135,12 @@ namespace Music_Player.ViewModels
                 Vista = VistaUsuario.VerCancion;
             Actualizar();
         }
+        private void ActualizarEstadoCancion(bool estado)
+        {
+            if (Cancion != null)
+                catalogo_can.GetActualizarMeGusta(Cancion.Id, estado);
+            Actualizar();
+        }
 
         private void Regresar()
         {
@@ -127,23 +155,18 @@ namespace Music_Player.ViewModels
         {
             Vista = vista;
             if (vista == VistaUsuario.VerCancionesMegustan)
-                GetCancionesMeGusta();
-
+                if (Usuario != null)
+                    GetCancionesMeGusta(Usuario.Id);
+                else if (vista == VistaUsuario.Home)
+                    GetTopArtistas();
             TotalCancionesMegustas = ListaCancionesMegusta.Count;
 
             Actualizar();
         }
-
-
-        private void GetCancionesBusqueda(string titulo = "")
+        private void MediadorViewModel_UusarioConectado(int id)
         {
-            ListaCanciones2.Clear();
-            var lis = ListaCanciones.Where(x => x.Titulo.ToLower().Contains(titulo.ToLower()));
-            foreach (var item in lis)
-            {
-                ListaCanciones2.Add(item);
-            }
-            Actualizar();
+            GetCanciones(id);
+            Usuario = catalogo_us.GetIdUsuario(id);
         }
 
         private void VerCancionesGenero(int id)

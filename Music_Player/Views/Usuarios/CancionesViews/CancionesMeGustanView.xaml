@@ -49,7 +49,7 @@
         <ScrollViewer Grid.Row="1" Margin="10 20 0 0">
             <DataGrid ItemsSource="{Binding ListaCancionesMegusta}" IsReadOnly="True"
                       AutoGenerateColumns="False"
-                      FontSize="15" SelectionMode="Single" 
+                      FontSize="16" SelectionMode="Single" 
                       SelectionUnit="FullRow"
                       CanUserDeleteRows="False"
                       CanUserResizeColumns="False" >
@@ -57,27 +57,26 @@
                     <DataGridTextColumn Header="Título" Binding="{Binding Titulo}" Width=".3*"/>
                     <DataGridTextColumn Header="Artista"
                                         Binding="{Binding IdArtistaNavigation.Apodo}"
-                                        Width=".2*" />
+                                        Width=".3*" />
                     <DataGridTextColumn Header="Género musical"
                                         Binding="{Binding IdGeneroNavigation.Nombre}"
-                                        Width=".2*" />
+                                        Width=".3*" />
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Grid>
                                     <materialDesign:PackIcon Kind="CardsHeart"
-                                                             Width="20"
+                                                             Width="auto"
                                                              Foreground="{StaticResource color3}"
                                                              VerticalAlignment="Center"
                                                              HorizontalAlignment="Left"
-                                                             Height="20" />
+                                                             Height="auto" />
                                 </Grid>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Header="Duración"
-                                        Width=".1*"
-                                        MaxWidth="100"
+                                        Width=".2*"
                                         Binding="{Binding Duracion}" />
                 </DataGrid.Columns>
                 
