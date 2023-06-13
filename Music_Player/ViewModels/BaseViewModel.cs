@@ -31,7 +31,7 @@ namespace Music_Player.Operaciones
         public ObservableCollection<Genero> ListaGeneros { get; set; } = new();
         public ObservableCollection<Artista> ListaArtistas { get; set; } = new();
         public ObservableCollection<Artista> ListaTopArtistas { get; set; } = new();
-        public ObservableCollection<Cancion> ListaTopCanciones { get; set; } = new();
+        public ObservableCollection<VwCancionesfavoritas> ListaTopCanciones { get; set; } = new();
 
 
         public void GetCanciones(int id)
@@ -85,13 +85,11 @@ namespace Music_Player.Operaciones
             ListaTopArtistas.Clear();
             ListaTopCanciones.Clear();
             var lista_art = ListaArtistas.OrderByDescending(x => x.TotalCanciones).Take(6);
-            var lista_can = ListaCanciones.OrderByDescending(x => x.FechaAgregada).Take(6);
-
             foreach (var art in lista_art)
             {
                 ListaTopArtistas.Add(art);
             }
-            foreach (var can in lista_can)
+            foreach (var can in catalogo_can.GetCancionesFavoritas())
             {
                 ListaTopCanciones.Add(can);
             }

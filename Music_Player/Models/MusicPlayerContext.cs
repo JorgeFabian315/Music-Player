@@ -29,9 +29,11 @@ public partial class MusicPlayerContext : DbContext
 
     public virtual DbSet<Vistaultrasuperperrona> Vistaultrasuperperrona { get; set; }
 
+    public virtual DbSet<VwCancionesfavoritas> VwCancionesfavoritas { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=localhost;database=Music_Player;password=root;user=root", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.28-mysql"));
+        => optionsBuilder.UseMySql("server=localhost;database=Music_Player;password=root;user=root", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.32-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -162,6 +164,15 @@ public partial class MusicPlayerContext : DbContext
             entity.Property(e => e.Genero).HasMaxLength(100);
             entity.Property(e => e.Nacionalidad).HasMaxLength(45);
             entity.Property(e => e.Nombre).HasMaxLength(100);
+        });
+
+        modelBuilder.Entity<VwCancionesfavoritas>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("vw_cancionesfavoritas");
+
+            entity.Property(e => e.Titulo).HasMaxLength(100);
         });
 
         OnModelCreatingPartial(modelBuilder);

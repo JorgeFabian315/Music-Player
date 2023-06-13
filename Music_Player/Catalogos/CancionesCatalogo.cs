@@ -101,5 +101,10 @@ namespace Music_Player.Catalogos
             if(g != null)
                 _context.Entry(g).Reload();
         }
+
+        public IEnumerable<VwCancionesfavoritas> GetCancionesFavoritas()
+        {
+            return _context.VwCancionesfavoritas;
+        }
     }
 }

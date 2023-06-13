@@ -16,21 +16,30 @@ namespace Music_Player.ViewModels
         public int TotalArt { get; set; }
         public int TotalGen { get; set; }
         public ObservableCollection<Genero> ListaTopGeneros { get; set; } = new();
+        public ObservableCollection<VwCancionesfavoritas> ListaCancionesFavoritas { get; set; } = new();
 
         public EstadisticasViewModel(MusicPlayerContext context):base(context)
         {
             TotalCan = ListaCanciones.Count;
             TotalGen = ListaGeneros.Count;
             TotalArt = ListaArtistas.Count;
+            Cargar();
+            
         }
 
-        private void GetTopGeneros()
+        private void Cargar()
         {
             ListaTopGeneros.Clear();
+            ListaCancionesFavoritas.Clear();
+
             var lista = ListaGeneros.OrderByDescending(c => c.TotalCanciones).Take(3);
             foreach (var item in lista)
             {
                 ListaTopGeneros.Add(item);
+            }
+            foreach (var item2 in catalogo_can.GetCancionesFavoritas())
+            {
+                ListaCancionesFavoritas.Add(item2);
             }
             Actualizar();
         }

@@ -21,7 +21,7 @@
             <ColumnDefinition Width=".2*"/>
         </Grid.ColumnDefinitions>
         <TextBlock Text="Estadísticas" FontSize="35" VerticalAlignment="Center"/>
-        <WrapPanel HorizontalAlignment="Center"
+        <WrapPanel HorizontalAlignment="Left"
                    Grid.Row="1"
                    Grid.ColumnSpan="2">
             <Grid Width="250" Height="100">
@@ -139,9 +139,9 @@
             </Grid>
         </WrapPanel>
 
-        <Grid Grid.Row="3"
+        <Grid Grid.Row="2"
               Grid.Column="1"
-              Margin="20 0">
+              Margin="30 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -168,7 +168,124 @@
                          Orientation="Vertical"
                          Height="30" />
         </Grid>
-        <Border Background="red"
-                Grid.Row="3" />
+        <DockPanel Grid.Row="2">
+            <TextBlock Text="Top generos musicales"
+                       FontSize="20"
+                       Margin="0,0,0,10"
+                       DockPanel.Dock="Top"/>
+            <ListBox ItemsSource="{Binding ListaTopGeneros}">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Width="250"
+                                Height="150"
+                                CornerRadius="5">
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Assets/musica.jpg"
+                                            Stretch="UniformToFill" />
+                            </Border.Background>
+                            <Grid Margin=" 0 0 0 10"
+                                  VerticalAlignment="Bottom"
+                                  Height="80"
+                                  Width="230">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".7*" />
+                                    <ColumnDefinition Width=".3*" />
+                                </Grid.ColumnDefinitions>
+                                <Border Background="{StaticResource color3}"
+                                        CornerRadius="5"
+                                        Name="fondotitulo"
+                                        Height="80"
+                                        Grid.ColumnSpan="2"
+                                        Opacity=".6"
+                                        Width="230"
+                                        HorizontalAlignment="Center" />
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Nombre}"
+                                               Foreground="{StaticResource color4}"
+                                               FontSize="17"
+                                               Margin="10,5,0,5"
+                                               TextWrapping="Wrap" />
+                                 
+                                </StackPanel>
+                                <materialDesign:PackIcon Kind="PlayCircle"
+                                                         VerticalAlignment="Center"
+                                                         Width="auto"
+                                                         Height="auto"
+                                                         Margin="10"
+                                                         Grid.Column="1"
+                                                         Foreground="White" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
+        <DockPanel Grid.Row="3"
+                   Grid.ColumnSpan="2">
+            <TextBlock Text="Canciones favoritas"
+                       Margin="0,0,0,10"
+                       FontSize="20"
+                       DockPanel.Dock="Top" />
+            <ListBox ItemsSource="{Binding ListaCancionesFavoritas}">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Width="300"
+                                Height="150"
+                                CornerRadius="5">
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Assets/musica.jpg"
+                                            Stretch="UniformToFill" />
+                            </Border.Background>
+                            <Grid Margin=" 0 0 0 10"
+                                  VerticalAlignment="Bottom"
+                                  Height="80"
+                                  Width="230">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".7*" />
+                                    <ColumnDefinition Width=".3*" />
+                                </Grid.ColumnDefinitions>
+                                <Border Background="{StaticResource color3}"
+                                        CornerRadius="5"
+                                        Name="fondotitulo"
+                                        Height="80"
+                                        Grid.ColumnSpan="2"
+                                        Opacity=".6"
+                                        Width="230"
+                                        HorizontalAlignment="Center" />
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Titulo}"
+                                               Foreground="{StaticResource color4}"
+                                               FontSize="17"
+                                               Margin="10,5,0,5"
+                                               TextWrapping="Wrap" />
+                                    <TextBlock Text="{Binding IdArtistaNavigation.Apodo}"
+                                               Margin="10,0,0,10"
+                                               FontSize="14"
+                                               TextWrapping="Wrap"
+                                               Foreground="{StaticResource color2}" />
+                                </StackPanel>
+                                <materialDesign:PackIcon Kind="PlayCircle"
+                                                         VerticalAlignment="Center"
+                                                         Width="auto"
+                                                         Height="auto"
+                                                         Margin="10"
+                                                         Grid.Column="1"
+                                                         Foreground="White" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
     </Grid>
 </UserControl>
