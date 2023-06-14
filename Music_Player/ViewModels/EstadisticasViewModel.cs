@@ -17,11 +17,23 @@ namespace Music_Player.ViewModels
 
         public EstadisticasViewModel(MusicPlayerContext context):base(context)
         {
+            MediadorViewModel.AlActualizarEstadisticas += Estadisticas;
 
             Cargar();
             
         }
 
+
+        private void Estadisticas()
+        {
+            TotalUs = ListaUsuarios.Count;
+            TotalUsN = ListaUsuarios.Where(c => c.IdRol == 3).Count();
+            TotalUsVIP = ListaUsuarios.Where(c => c.IdRol == 2).Count();
+            TotalCan = catalogo_can.TotalCanciones();
+            TotalGen = ListaGeneros.Count;
+            TotalArt = ListaArtistas.Count;
+            Actualizar();
+        }
         private void Cargar()
         {
             ListaTopGeneros.Clear();

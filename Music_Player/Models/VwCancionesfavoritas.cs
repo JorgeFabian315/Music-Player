@@ -8,4 +8,6 @@ public partial class VwCancionesfavoritas
     public string Titulo { get; set; } = null!;
 
     public string Apodo { get; set; } = null!;
+
+    public string? Caratula { get; set; }
 }

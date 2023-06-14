@@ -20,20 +20,18 @@
     <Window.DataContext>
         <viewmodels:MainViewModel />
     </Window.DataContext>
-    
-    <Border CornerRadius="10" Background="{StaticResource color1}">
+    <Border CornerRadius="10"
+            Background="{StaticResource color1}">
         <Grid Background="Transparent"
               Margin="10,0,10,10">
-            
             <Grid.RowDefinitions>
-                <RowDefinition Height=".07*" />
-                <RowDefinition Height=".93*" />
+                <RowDefinition Height=".08*" />
+                <RowDefinition Height=".92*" />
             </Grid.RowDefinitions>
-            
             <WrapPanel Grid.Column="1"
-                       HorizontalAlignment="Right"
+                       HorizontalAlignment="Left"
                        VerticalAlignment="Center"
-                       Margin="0,5">
+                       Margin="-10,5">
                 <WrapPanel.Resources>
                     <Style TargetType="{x:Type WrapPanel}">
                         <Setter Property="Visibility"
@@ -47,30 +45,52 @@
                         </Style.Triggers>
                     </Style>
                 </WrapPanel.Resources>
-                <StackPanel Margin="15,0"
+                    <Menu Padding="0"
+                          Margin="0">
+                        <MenuItem>
+                            <MenuItem.Header>
+                                    <materialDesign:PackIcon Kind="AccountCircle"
+                                                             Width="35"
+                                                             Height="35"
+                                                             Margin="0"
+                                                             Foreground="{StaticResource color4}"
+                                                             VerticalAlignment="Top"
+                                                             HorizontalAlignment="Center" />
+                            </MenuItem.Header>
+                            <MenuItem Header="Test 1" />
+                        </MenuItem>
+                    </Menu>
+                <StackPanel Margin="1,0"
                             VerticalAlignment="Center">
-                    <TextBlock Text="{Binding Usuario.Nombre}" Style="{StaticResource EstilosNombreUs}"/>
+                    <TextBlock Text="{Binding Usuario.Nombre}"
+                               Style="{StaticResource EstilosNombreUs}"
+                               HorizontalAlignment="Left" />
                     <TextBlock Text="{Binding Usuario.IdRolNavigation.Nombre}"
+                               HorizontalAlignment="Left"
                                FontSize="11"
-                               Style="{StaticResource EstilosNombreUs}"/>
+                               Style="{StaticResource EstilosNombreUs}" />
                 </StackPanel>
-                <Grid VerticalAlignment="Center"
-                      Margin="0,2"
-                      HorizontalAlignment="Right">
-                    <Ellipse Width="auto"
-                             Height="auto"
-                             Fill="{StaticResource color3}" />
-                    <materialDesign:PackIcon Kind="Account"
-                                             Width="auto"
-                                             Margin="4"
-                                             Height="auto"
-                                             Foreground="{StaticResource color4}"
-                                             VerticalAlignment="Center"
-                                             HorizontalAlignment="Center"
-                                             Style="{StaticResource IconosMenu_materialde}" />
-                </Grid>
             </WrapPanel>
-            
+            <WrapPanel Grid.Column="1"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Margin="0,5">
+                <Button Height="30"
+                        Width="30"
+                        Name="btnMinimize"
+                        Click="btnMinimize_Click"
+                        Padding="0">
+                    <materialDesign:PackIcon Kind="Minimize" />
+                </Button>
+                <Button Height="30"
+                        Width="30"
+                        Name="btnCerrar"
+                        Click="btnCerrar_Click"
+                        Margin="7 0 0 0"
+                        Padding="0">
+                    <materialDesign:PackIcon Kind="Close" />
+                </Button>
+            </WrapPanel>
             <ContentControl Grid.Row="1"
                             Content="{Binding View}" />
         </Grid>

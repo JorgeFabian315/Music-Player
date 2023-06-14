@@ -33,7 +33,7 @@ namespace Music_Player.Views
 
         private void btnCerrar_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            this.Close();
         }
 
         private void Ventana_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -42,6 +42,11 @@ namespace Music_Player.Views
             {
                 this.DragMove();
             }
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
         }
     }
 }

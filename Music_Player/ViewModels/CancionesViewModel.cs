@@ -39,6 +39,7 @@ namespace Music_Player.ViewModels
         public Cancion? Cancion { get; set; }
         public Genero? Genero { get; set; }
 
+        public bool ActivarEliminarCancion { get; set; } = false;
 
         public int Minutos { get; set; }
         public int Segundos { get; set; }
@@ -50,11 +51,23 @@ namespace Music_Player.ViewModels
         public ICommand VerAgregarCancionCommand => new RelayCommand(VerAgregarCancion);
         public ICommand AgregarCancionCommand => new RelayCommand(AgregarCancion);
         public ICommand EliminarCancionCommand => new RelayCommand<int>(EliminarCancion);
+        public ICommand VerEliminarCancionCommand => new RelayCommand<int>(VerEliminarCancion);
+
 
         public ICommand VerCancionesGeneroCommand => new RelayCommand<int>(VerCancionesGenero);
         public ICommand ActualizarMeGustaCommand => new RelayCommand<bool>(ActualizarEstadoCancion);
         public ICommand VerEditarCancionCommand => new RelayCommand<int>(VerEditarCancion);
 
+        private void VerEliminarCancion(int obj)
+        {
+           var cancion1 = catalogo_can.GetCancion(obj);
+            if(cancion1 != null) 
+            {
+                Cancion = cancion1;
+                ActivarEliminarCancion = true;
+                Actualizar();
+            }
+        }
         private void EliminarCancion(int id)
         {
             if (id != 0 && Usuario != null)
@@ -169,6 +182,9 @@ namespace Music_Player.ViewModels
                 Vista = VistaUsuario.VerGeneros;
             else
                 Vista = VistaUsuario.VerCanciones;
+
+            ActivarEliminarCancion = false;
+
             Actualizar();
         }
 

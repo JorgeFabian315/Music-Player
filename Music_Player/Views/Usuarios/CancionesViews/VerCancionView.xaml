@@ -11,8 +11,8 @@
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
-        <UserControl.Resources>
-            <helper:URLAImagenCVC x:Key="convert" />
+    <UserControl.Resources>
+        <helper:URLAImagenCVC x:Key="convert" />
     </UserControl.Resources>
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
@@ -31,14 +31,15 @@
                                      Width="30"
                                      Height="30" />
         </Button>
-        <WrapPanel HorizontalAlignment="Right">
+        <WrapPanel HorizontalAlignment="Right"
+                   Margin="0 0 15 0">
             <Button DockPanel.Dock="Top"
                     Height="30"
                     Width="50"
                     Margin="10,10,0,0"
                     HorizontalAlignment="Left"
                     x:Name="btnEliminar"
-                    Command="{Binding EliminarCancionCommand}"
+                    Command="{Binding VerEliminarCancionCommand}"
                     CommandParameter="{Binding Cancion.Id}">
                 <materialDesign:PackIcon Height="24"
                                          Width="30"
@@ -73,7 +74,7 @@
         </WrapPanel>
         <Grid Grid.Row="1"
               Width="340"
-              Height="300"
+              Height="280"
               VerticalAlignment="Bottom"
               HorizontalAlignment="Center">
             <Border CornerRadius="10">
@@ -82,6 +83,7 @@
                                 Stretch="UniformToFill" />
                 </Border.Background>
             </Border>
+            <Border Background="Black" CornerRadius="10" Opacity=".3"/>
         </Grid>
         <TextBlock Text="{Binding Cancion.Titulo}"
                    Foreground="{StaticResource color1}"
@@ -111,12 +113,12 @@
                                              Width="40"
                                              Height="40">
                         <materialDesign:PackIcon.Effect>
-                            <DropShadowEffect BlurRadius="50" ShadowDepth="0"
-                                              Color="{StaticResource Color_2}"/>
+                            <DropShadowEffect BlurRadius="50"
+                                              ShadowDepth="0"
+                                              Color="{StaticResource Color_2}" />
                         </materialDesign:PackIcon.Effect>
                     </materialDesign:PackIcon>
-                        
-                        <materialDesign:PackIcon Kind="SkipNext"
+                    <materialDesign:PackIcon Kind="SkipNext"
                                              VerticalAlignment="Center"
                                              Foreground="White"
                                              Width="40"
@@ -126,7 +128,8 @@
                             Height="80"
                             Margin="10,0">
                         <Border.Background>
-                            <ImageBrush ImageSource="/Assets/musica.jpg" />
+                            <ImageBrush ImageSource="{Binding Cancion.IdArtistaNavigation.Fotografia,Converter={StaticResource convert}}"
+                                        Stretch="UniformToFill" />
                         </Border.Background>
                     </Border>
                     <StackPanel VerticalAlignment="Center"
@@ -143,16 +146,16 @@
                     <CheckBox IsChecked="{Binding Cancion.MeGusta}"
                               Style="{StaticResource MeGustaChk}"
                               Command="{Binding ActualizarMeGustaCommand}"
-                              CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self},Path=IsChecked}">
-                    </CheckBox>
+                              CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self},Path=IsChecked}"></CheckBox>
                     <TextBlock Text="0:00"
                                FontSize="20"
                                VerticalAlignment="Center"
                                TextWrapping="Wrap"
                                Foreground="{StaticResource color4}" />
-                    <Image gif:ImageBehavior.AnimatedSource="/Assets/musicagif.gif" 
-                           Width="300" Height="80"
-                           Margin="15,0"/>
+                    <Image gif:ImageBehavior.AnimatedSource="/Assets/musicagif.gif"
+                           Width="300"
+                           Height="80"
+                           Margin="15,0" />
                     <TextBlock Text="{Binding Cancion.Duracion}"
                                FontSize="20"
                                TextWrapping="Wrap"
@@ -167,5 +170,82 @@
                 </WrapPanel>
             </WrapPanel>
         </Grid>
+        <Grid Grid.RowSpan="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".2*" />
+                <ColumnDefinition Width=".6*" />
+                <ColumnDefinition Width=".2*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".1*" />
+                <RowDefinition Height=".8*" />
+                <RowDefinition Height=".1*" />
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility"
+                            Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ActivarEliminarCancion}"
+                                     Value="true">
+                            <Setter Property="Visibility"
+                                    Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Resources>
+            
+            <Border Background="Black"
+                    Opacity=".3"
+                    Grid.ColumnSpan="3"
+                    Grid.RowSpan="3"
+                    CornerRadius="10" />
+            <Border Background="White"
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    CornerRadius="10">
+                <StackPanel Margin="0 0 0 0">
+                    <Border Background="Red"
+                            CornerRadius="10 10 0 0"
+                            Height="80">
+                        <TextBlock Text="¿Desea eliminar está canción?"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="35" Foreground="White"/>
+                    </Border>
+                    <TextBlock Text="{Binding Cancion.Titulo}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Margin="0 10"
+                               FontSize="35" Foreground="{StaticResource color3}" />
+                    <!--<TextBlock Text="{Binding Cancion.Titulo, StringFormat='Desea eliminar la canción: {0}'}" />-->
+                    <Border CornerRadius="10" HorizontalAlignment="Center" Width="300" Height="200" 
+                            Margin="0 15" BorderBrush="{StaticResource color3}"
+                            BorderThickness="2">
+                        <Border.Background>
+                            <ImageBrush ImageSource="{Binding Cancion.Caratula,Converter={StaticResource convert}}"
+                                        Stretch="UniformToFill" />
+                        </Border.Background>
+                    </Border>
+                    <WrapPanel Margin="0 20 0 0" HorizontalAlignment="Center">
+                        <Button Width="100"
+                                Content="Eliminar"
+                                Command="{Binding EliminarCancionCommand}"
+                                CommandParameter="{Binding Cancion.Id}"
+                                Background="#FFD50000"
+                                BorderBrush="Transparent"
+                                Height="50" />
+                        <Button Width="100"
+                                Margin="10 0"
+                                Background="#008600"
+                                BorderBrush="Transparent"
+                                Content="Conservar"
+                                Command="{Binding RegresarCommand}"
+                                Height="50" />
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>
+ 

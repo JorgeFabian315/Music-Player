@@ -30,7 +30,7 @@
                 CornerRadius="10"
                 Grid.Column="1"/>
         <Grid HorizontalAlignment="Left"
-              Margin="4,0,0,0">
+              Margin="4,10,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height=".9*" />
                 <RowDefinition Height=".1*" />

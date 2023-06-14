@@ -174,6 +174,7 @@ public partial class MusicPlayerContext : DbContext
                 .ToView("vw_cancionesfavoritas");
 
             entity.Property(e => e.Apodo).HasMaxLength(50);
+            entity.Property(e => e.Caratula).HasMaxLength(200);
             entity.Property(e => e.Titulo).HasMaxLength(100);
         });
 

@@ -27,7 +27,7 @@ namespace Music_Player.Validaciones
                 .MinimumLength(1);
             RuleFor(c => c.IdGenero)
                 .GreaterThanOrEqualTo(1)
-                .WithMessage("Selecciona un Género musical");
+                .WithMessage("Selecciona un Género musical.");
             RuleFor(c => c.IdArtista)
                 .GreaterThanOrEqualTo(1)
                 .WithMessage("Selecciona un Artista");
@@ -35,8 +35,11 @@ namespace Music_Player.Validaciones
             RuleFor(c => c.IdUsuario)
                 .GreaterThan(0);
             RuleFor(c => c.Duracion)
-                .Must(c => !regex.IsMatch(c))
-                .WithMessage("Error en la duración");
+                .Cascade(CascadeMode.Stop)
+                .NotNull()
+                .WithMessage("La duración no puede estar vacía.")
+                .Must(c => regex.IsMatch(c))
+                .WithMessage("Formato incorrecto de la duración.");
         }
 
     }

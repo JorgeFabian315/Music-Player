@@ -194,4 +194,33 @@
         </Setter>
     </Style>
     <!--#ENDREGION ESTILO CORAZON ME GUSTA CANCION-->
+    <Style TargetType="Border"
+           x:Key="bordeplantilla">
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="MouseEnter">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="Width"
+                                         To="265"
+                                         Duration="0:0:0.2" />
+                        <DoubleAnimation Storyboard.TargetProperty="Height"
+                                         To="185"
+                                         Duration="0:0:0.2" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="MouseLeave">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="Width"
+                                         To="250"
+                                         Duration="0:0:0.2" />
+                        <DoubleAnimation Storyboard.TargetProperty="Height"
+                                         To="170"
+                                         Duration="0:0:0.2" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

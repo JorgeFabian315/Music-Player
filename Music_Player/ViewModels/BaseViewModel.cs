@@ -112,20 +112,10 @@ namespace Music_Player.Operaciones
         public void Actualizar(string? propertyName = null)
         {
 
-            MediadorViewModel.AlActualizarEstadisticas += Estadisticas;
 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void Estadisticas()
-        {
-            TotalUs = ListaUsuarios.Count;
-            TotalUsN = ListaUsuarios.Where(c => c.IdRol == 3).Count();
-            TotalUsVIP = ListaUsuarios.Where(c => c.IdRol == 2).Count();
-            TotalCan = catalogo_can.TotalCanciones();
-            TotalGen = ListaGeneros.Count;
-            TotalArt = ListaArtistas.Count;
-        }
 
         public void CargarBD()
         {
