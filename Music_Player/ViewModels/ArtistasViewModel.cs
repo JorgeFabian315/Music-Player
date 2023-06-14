@@ -37,6 +37,8 @@ namespace Music_Player.ViewModels
             VerMasPopularesCommand = new RelayCommand(LlenarListaPopulares);
             VerCancionesPorArtistaCommand = new RelayCommand<int>(VerInfoArtista);
             VolverCommand = new RelayCommand(Volver);
+            ActualizarListaArtistas();
+            
         }
 
         public string Error { get; set; } = "";
@@ -47,11 +49,17 @@ namespace Music_Player.ViewModels
             Lista_Populares.Clear();
             foreach (var item in catalogo_art.GetPopulares())
             {
+                var e = ListaArtistas.FirstOrDefault(x => x.Nombre == item.Nombre);
+                string? img = e.Fotografia;
+                if (img == null) { img = "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png"; }
                 Populares p = new Populares
                 {
                     Rank = a,
+                    Imagen = img,
                     Vista = item
                 };
+                
+                
                 Lista_Populares.Add(p);
                 a++;
             }
@@ -74,6 +82,10 @@ namespace Music_Player.ViewModels
             ListaArtistas.Clear();
             foreach (var item in catalogo_art.GetArtistas())
             {
+                if(item.Fotografia == null)
+                {
+                    item.Fotografia = "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png";
+                }
                 ListaArtistas.Add(item);
             }
             Actualizar();
@@ -207,6 +219,7 @@ namespace Music_Player.ViewModels
     public class Populares
     {
         public int Rank { get; set; }
+        public string? Imagen { get; set; } 
         public Vistaultrasuperperrona Vista { get; set; }
     }
 }

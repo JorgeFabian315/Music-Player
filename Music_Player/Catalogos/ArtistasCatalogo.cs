@@ -28,6 +28,11 @@ namespace Music_Player.Catalogos
            return _context.Vistaultrasuperperrona.OrderBy(x => x.Genero);
 
         }
+        //public string? GetImagen(string nombre)
+        //{
+        //    var a = _context.Artista.FirstOrDefault(x => x.Nombre == nombre);
+        //    return a.Fotografia;
+        //}
 
         public IEnumerable<Artista> GetArtistas()
         {

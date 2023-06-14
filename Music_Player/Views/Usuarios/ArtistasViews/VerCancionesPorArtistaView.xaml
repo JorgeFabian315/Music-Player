@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Music_Player.Views.ArtistasViews"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
+             
     mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -16,34 +17,93 @@
             <ColumnDefinition Width="35*"/>
             <ColumnDefinition Width="65*"/>
         </Grid.ColumnDefinitions>
-        <Border Background="Gray" CornerRadius="20" Margin="10" Grid.RowSpan="2">
+        <Border Background="White" CornerRadius="30" Margin="10" Grid.RowSpan="2">
             <DockPanel >
-                <Border CornerRadius="10" DockPanel.Dock="Bottom" >
-                     <Button Command="{Binding VolverCommand}">Volver</Button>
+                <Border CornerRadius="30" DockPanel.Dock="Bottom" >
+                    <Button Command="{Binding VolverCommand}" fa:Awesome.Content="Backward" FontSize="30" Height="60">
+                        </Button>
                 </Border>
-               
-                <Image></Image>
+                <Border CornerRadius="30" Margin="10"  Height="600">
+                   
+                    <Border.Background>
+                        <ImageBrush ImageSource="{Binding artista.Fotografia}" Stretch="UniformToFill"></ImageBrush>
+                    </Border.Background>
+                    
+                </Border>
+                
             </DockPanel>
         </Border>
-        <Border Grid.Column="1" Grid.Row="1" Margin="10" Background="LightSlateGray" CornerRadius="20">
+        <Border Grid.Column="1" Grid.Row="1" Margin="10" Background="White" CornerRadius="20">
             <ScrollViewer>
                 <ItemsControl ItemsSource="{Binding artista.Cancion}" Margin="20">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Grid>
-                                <TextBlock FontSize="20" Text="{Binding Duracion}"><Run FontSize="30">•</Run> <Run Text="{Binding Titulo}"></Run>  </TextBlock>
-                            </Grid>
+                            <Border Background="{StaticResource color1}" CornerRadius="30" Margin="3">
+                                <Grid>
+                                    <Grid.Resources>
+                                        <Style TargetType="Label">
+                                            <Setter Property="FontSize" Value="15"/>
+                                            <Setter Property="Foreground" Value="White"/>
+                                            <Setter Property="VerticalAlignment" Value="Center"/>
+
+                                        </Style>
+                                    </Grid.Resources>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="4" VerticalAlignment="Center" FontSize="15" HorizontalAlignment="Left" Content="{Binding Duracion}"></Label>
+                                    <Grid Grid.ColumnSpan="5" Margin="0">
+
+
+
+                                        <Rectangle Height="35"  >
+                                            <Rectangle.Fill >
+                                                <RadialGradientBrush Center="0.5,0.5"
+                                     RadiusX="0.2"
+                                     RadiusY="9"
+                                     GradientOrigin="-1.1,0.5"
+                                     >
+                                                    <GradientStop Color="White" Offset="0"/>
+                                                    <GradientStop Color="White" Offset="0.2"/>
+
+                                                    <GradientStop Color="Transparent" Offset="1"/>
+                                                </RadialGradientBrush>
+                                            </Rectangle.Fill>
+                                        </Rectangle>
+                                    </Grid>
+                                    
+
+                                    <Label Grid.Column="1" Grid.ColumnSpan="2" Content="{Binding Titulo}"/>
+
+                                    
+                                    <Label Grid.Column="4" Content="{Binding Genero}"></Label>
+
+                                </Grid>
+                            </Border>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </ScrollViewer>
         </Border>
-        <Border Background="DimGray" CornerRadius="20" Margin="10" Grid.Column="1">
-            <StackPanel VerticalAlignment="Center" Margin="10">
-                <TextBlock>Nombre <Run Text="{Binding artista.Nombre}"></Run></TextBlock>
-                <TextBlock>Apodo <Run Text="{Binding artista.Apodo}"></Run></TextBlock>
-                <TextBlock>Nacionalidad <Run Text="{Binding artista.Nacionalidad}"></Run></TextBlock>
-                <TextBlock>Fecha de nacimiento <Run Text="{Binding artista.FechaNacimiento
+        <Border Background="{StaticResource color1}" CornerRadius="20" Margin="10" Grid.Column="1">
+            <StackPanel VerticalAlignment="Center" Margin="50 10">
+                <StackPanel.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="FontSize" Value="15"/>
+                        <Setter Property="Foreground" Value="{StaticResource color2}"/>
+                        <Setter Property="Margin" Value="10"/>
+
+                    </Style>
+                    
+                </StackPanel.Resources>
+                <TextBlock >Nombre: <Run FontSize="20" Foreground="{StaticResource color4}" Text="{Binding artista.Nombre}"></Run></TextBlock>
+                <TextBlock>Apodo: <Run FontSize="20"  Foreground="{StaticResource color4}" Text="{Binding artista.Apodo}"></Run></TextBlock>
+                <TextBlock>Nacionalidad: <Run FontSize="20"  Foreground="{StaticResource color4}" Text="{Binding artista.Nacionalidad}"></Run></TextBlock>
+                <TextBlock>Fecha de nacimiento: <Run FontSize="20"  Foreground="{StaticResource color4}" Text="{Binding artista.FechaNacimiento
                     }"></Run></TextBlock>
                 
             </StackPanel>
