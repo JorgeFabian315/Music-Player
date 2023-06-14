@@ -7,9 +7,13 @@
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:gif="http://wpfanimatedgif.codeplex.com"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:helper="clr-namespace:Music_Player.Helper"
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
+    <UserControl.Resources>
+        <helper:URLAImagenCVC x:Key="convert" />
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width=".65*" />
@@ -94,7 +98,7 @@
                                 <Border CornerRadius="5"
                                         Width="100">
                                     <Border.Background>
-                                        <ImageBrush ImageSource="/Assets/musica.jpg" />
+                                        <ImageBrush ImageSource="{Binding Fotografia,Converter={StaticResource convert}}" />
                                     </Border.Background>
                                 </Border>
                                 <StackPanel Grid.Column="1"
@@ -155,7 +159,8 @@
                                 <Border CornerRadius="5"
                                         Width="100">
                                     <Border.Background>
-                                        <ImageBrush ImageSource="/Assets/musica.jpg" />
+                                        <ImageBrush
+                                            ImageSource="{Binding Caratula,Converter={StaticResource convert}}" />
                                     </Border.Background>
                                 </Border>
                                 <StackPanel Grid.Column="1"

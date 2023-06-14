@@ -53,11 +53,11 @@ namespace Music_Player.ViewModels
 
         public ICommand VerCancionesGeneroCommand => new RelayCommand<int>(VerCancionesGenero);
         public ICommand ActualizarMeGustaCommand => new RelayCommand<bool>(ActualizarEstadoCancion);
-        //public ICommand VerEditarCancionCommand => new RelayCommand<int>(VerEditarCancion);
+        public ICommand VerEditarCancionCommand => new RelayCommand<int>(VerEditarCancion);
 
         private void EliminarCancion(int id)
         {
-            if (id != 0)
+            if (id != 0 && Usuario != null)
             {
                 var cancion1 = catalogo_can.GetCancion(id);
                 if (cancion1 != null)
@@ -66,20 +66,24 @@ namespace Music_Player.ViewModels
                     catalogo_can.Recargar(cancion1.IdGenero);
                     RecargarCanciones(ListaCanciones);
                     GetCanciones(Usuario.Id);
-                    Actualizar();
+                    Regresar();
                 }
             }
         }
 
         private void VerEditarCancion(int id)
         {
-            if (id > 0)
+            if (id != 0 && Usuario != null)
             {
-                var cancion = catalogo_can.GetCancion(id);
-                catalogo_can.EliminarCancion(cancion);
-               // GetCanciones();
-                Actualizar();
-           }
+                var cancion1 = catalogo_can.GetCancion(id);
+                if (cancion1 != null)
+                {
+                    var clon = _mapper.Map<Cancion>(cancion1);
+                    Cancion = clon;
+                    Vista = VistaUsuario.EditarCancion;
+                    Actualizar();
+                }
+            }
         }
 
         private void AgregarCancion()
