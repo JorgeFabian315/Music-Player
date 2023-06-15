@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:Music_Player.Views.Estadisticas"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
-             
              FontWeight="Light"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>

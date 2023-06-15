@@ -18,7 +18,7 @@
             <DockPanel >
                 <Button DockPanel.Dock="Right" Margin="0 0 20 0" Command="{Binding VolverCommand}">Volver</Button>
 <Label Foreground="White" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"
-                   Margin="0 0 0 0">Lo + TOP</Label>
+                   Margin="0 0 0 0">Lo más TOP</Label>
                 
             </DockPanel>
             

@@ -45,30 +45,32 @@
                         </Style.Triggers>
                     </Style>
                 </WrapPanel.Resources>
-                    <Menu Padding="0"
-                          Margin="0">
-                        <MenuItem>
-                            <MenuItem.Header>
-                                    <materialDesign:PackIcon Kind="AccountCircle"
-                                                             Width="35"
-                                                             Height="35"
-                                                             Margin="0"
-                                                             Foreground="{StaticResource color4}"
-                                                             VerticalAlignment="Top"
-                                                             HorizontalAlignment="Center" />
-                            </MenuItem.Header>
-                            <MenuItem Header="Test 1" />
-                        </MenuItem>
-                    </Menu>
-                <StackPanel Margin="1,0"
+                <Menu Padding="0"
+                      Margin="0"
+                      Cursor="Hand">
+                    <MenuItem>
+                        <MenuItem.Header>
+                            <materialDesign:PackIcon Kind="AccountCircle"
+                                                     Width="35"
+                                                     Height="35"
+                                                     Margin="0"
+                                                     Foreground="{StaticResource color4}"
+                                                     VerticalAlignment="Top"
+                                                     HorizontalAlignment="Center" />
+                        </MenuItem.Header>
+                        <MenuItem Header="Ver Perfil" />
+                    </MenuItem>
+                </Menu>
+                <StackPanel Margin="0,0"
                             VerticalAlignment="Center">
                     <TextBlock Text="{Binding Usuario.Nombre}"
+                               FontSize="15"
                                Style="{StaticResource EstilosNombreUs}"
                                HorizontalAlignment="Left" />
                     <TextBlock Text="{Binding Usuario.IdRolNavigation.Nombre}"
                                HorizontalAlignment="Left"
-                               FontSize="11"
-                               Style="{StaticResource EstilosNombreUs}" />
+                               FontSize="12"
+                               Foreground="{StaticResource color2}"/>
                 </StackPanel>
             </WrapPanel>
             <WrapPanel Grid.Column="1"

@@ -145,7 +145,7 @@ namespace Music_Player.ViewModels
             ListaRoles.Clear();
             foreach (var item in catalogo_us.GetRoles())
             {
-                if(item.Id != 1)
+                if (item.Id != 1)
                     ListaRoles.Add(item);
             }
         }
@@ -213,7 +213,6 @@ namespace Music_Player.ViewModels
         {
             if (vista == VistaUsuario.Artista)
             {
-                //bvm.RecargarArtistas(bvm.ListaArtistas);
                 ViewModelAactual = artistasviewmodel;
             }
             else

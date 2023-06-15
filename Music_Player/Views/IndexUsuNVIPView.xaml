@@ -10,6 +10,7 @@
              xmlns:vista="clr-namespace:Music_Player.Views.Enum_CambiarVista"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
+             FontFamily="{StaticResource MaterialDesignFont}"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type viewmodels:CancionesViewModel}">
@@ -25,60 +26,140 @@
             <ColumnDefinition Width=".95*" />
         </Grid.ColumnDefinitions>
         <Border Grid.Row="1"
+                Margin="1"
                 Background="#fcfcff"
                 CornerRadius="10"
                 Grid.Column="1" />
+        <ContentControl Grid.Column="1"
+                        Margin="10"
+                        Content="{Binding ViewModelAactual}" />
         <Grid HorizontalAlignment="Left"
-              Margin="4,10,0,0">
+              Margin="4,0,0,0"
+              Name="menu"
+              Background="{StaticResource color1}" Grid.ColumnSpan="2"
+              Width="50">
             <Grid.RowDefinitions>
                 <RowDefinition Height=".9*" />
                 <RowDefinition Height=".1*" />
             </Grid.RowDefinitions>
-            <StackPanel>
+            <StackPanel HorizontalAlignment="Left" Margin="0 20 0 0">
+                <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}"
+                              HorizontalAlignment="Left"
+                              Cursor="Hand"
+                              Foreground="{StaticResource color4}">
+                    <ToggleButton.Triggers>
+                        <EventTrigger RoutedEvent="ToggleButton.Checked">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="menu"
+                                                     Storyboard.TargetProperty="Width"
+                                                     To="200"
+                                                     Duration="0:0:0.4" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="menu"
+                                                     Storyboard.TargetProperty="Width"
+                                                     To="50"
+                                                     Duration="0:0:0.4" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ToggleButton.Triggers>
+
+                </ToggleButton>
                 <RadioButton Style="{StaticResource BotonesMenu}"
                              IsChecked="True"
                              Command="{Binding NavegarUsuariosCommand}"
                              CommandParameter="{x:Static vista:VistaUsuario.Home}">
+                    <WrapPanel>
                     <fa:ImageAwesome Icon="Home"
                                      Tag="red"
                                      Style="{StaticResource IconosMenu_fa}" />
+
+                        <TextBlock Text="Home" FontSize="20" VerticalAlignment="Center"
+                                   Margin="30 0 0 0"
+                                   FontWeight="Light"
+                                   Foreground="{StaticResource color4}"/>
+                    </WrapPanel>
                 </RadioButton>
                 <RadioButton Style="{StaticResource BotonesMenu}"
                              Command="{Binding NavegarUsuariosCommand}"
                              CommandParameter="{x:Static vista:VistaUsuario.Artista}">
-                    <materialDesign:PackIcon Kind="AccountMusic"
+                    <WrapPanel>
+                        <materialDesign:PackIcon Kind="AccountMusic"
                                              Style="{StaticResource IconosMenu_materialde}" />
+                    <TextBlock Text="Artistas"
+                               FontSize="20"
+                               VerticalAlignment="Center"
+                               Margin="25 0 0 0"
+                               FontWeight="Light"
+                               Foreground="{StaticResource color4}" />
+                    </WrapPanel>
                 </RadioButton>
                 <RadioButton Style="{StaticResource BotonesMenu}"
                              Command="{Binding NavegarUsuariosCommand}"
                              CommandParameter="{x:Static vista:VistaUsuario.VerCanciones}">
-                    <fa:ImageAwesome Icon="Music"
+                    <WrapPanel>
+                        <fa:ImageAwesome Icon="Music"
                                      Style="{StaticResource IconosMenu_fa}" />
+                    <TextBlock Text="Canciones"
+                               FontSize="20"
+                               VerticalAlignment="Center"
+                               Margin="25 0 0 0"
+                               FontWeight="Light"
+                               Foreground="{StaticResource color4}" />
+                    </WrapPanel>
                 </RadioButton>
                 <RadioButton Style="{StaticResource BotonesMenu}"
                              Command="{Binding NavegarUsuariosCommand}"
                              CommandParameter="{x:Static vista:VistaUsuario.VerCancionesMegustan}">
-                    <fa:ImageAwesome Icon="Heart"
+                    <WrapPanel>
+                        <fa:ImageAwesome Icon="Heart"
                                      Tag="red"
                                      Style="{StaticResource IconosMenu_fa}" />
+                    <TextBlock Text="Favoritas"
+                               FontSize="20"
+                               VerticalAlignment="Center"
+                               Margin="25 0 0 0"
+                               FontWeight="Light"
+                               Foreground="{StaticResource color4}" />
+                    </WrapPanel>
                 </RadioButton>
                 <RadioButton Style="{StaticResource BotonesMenu}"
                              Command="{Binding NavegarUsuariosCommand}"
                              CommandParameter="{x:Static vista:VistaUsuario.VerGeneros}">
-                    <fa:ImageAwesome Icon="Folder"
+                    <WrapPanel>
+                        <fa:ImageAwesome Icon="Folder"
                                      Tag="red"
                                      Style="{StaticResource IconosMenu_fa}" />
+                    <TextBlock Text="Géneros musicales"
+                               FontSize="15"
+                               VerticalAlignment="Center"
+                               Margin="25 0 0 0"
+                               FontWeight="Light"
+                               Foreground="{StaticResource color4}" />
+                    </WrapPanel>
                 </RadioButton>
             </StackPanel>
             <RadioButton Style="{StaticResource BotonesMenu}"
                          Grid.Row="1"
+                         HorizontalAlignment="Left"
                          Command="{Binding CerrarSesionCommand}">
-                <materialDesign:PackIcon Kind="Logout"
+                <WrapPanel>
+                    <materialDesign:PackIcon Kind="Logout"
                                          Style="{StaticResource IconosMenu_materialde}" />
+                <TextBlock Text="Cerrar sesión"
+                           FontSize="20"
+                           VerticalAlignment="Center"
+                           Margin="25 0 0 0"
+                           FontWeight="Light"
+                           Foreground="{StaticResource color4}" />
+                </WrapPanel>
             </RadioButton>
         </Grid>
-        <ContentControl Grid.Column="1"
-                        Margin="10"
-                        Content="{Binding ViewModelAactual}" />
     </Grid>
 </UserControl>
