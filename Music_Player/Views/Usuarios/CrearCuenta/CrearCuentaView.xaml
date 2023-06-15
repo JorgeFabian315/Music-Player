@@ -18,7 +18,7 @@
         </Grid.RowDefinitions>
         <Border Background="white"
                 CornerRadius="10"
-                Grid.RowSpan="4" />
+                Grid.RowSpan="4"/>
         <TextBlock Text="Crear cuenta"
                    FontSize="40"
                    HorizontalAlignment="Center"
@@ -48,7 +48,9 @@
             <WrapPanel Margin="0,40,0,0">
                 <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"
                            Text="Correo Electrónico:"
-                           FontSize="20" />
+                           FontSize="20" 
+                           Margin="10,0,0,0"
+                           />
                 <TextBox Width="530"
                          Margin="20,0,0,0"
                          Text="{Binding Usuario.CorreoElectronico}"
@@ -57,8 +59,9 @@
             <WrapPanel Margin="0,30,0,0">
                 <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"
                            Text="Contraseña:"
-                           Margin="0,20,0,0"
-                           FontSize="20" />
+                           Margin="70,20,0,0"
+                           FontSize="20" 
+                           />
                 <TextBox Visibility="Collapsed"
                          Name="txtPassword"
                          Text="{Binding Usuario.Contraseña, UpdateSourceTrigger= PropertyChanged}" />
@@ -66,7 +69,7 @@
                              HorizontalAlignment="Left"
                              FontSize="20"
                              Margin="20,0,0,0"
-                             Width="600"
+                             Width="530"
                              Loaded="pwb1_Loaded"
                              LostFocus="pwb1_LostFocus"
                              Padding="0"
@@ -77,9 +80,11 @@
             <WrapPanel Margin="0,50,0,0">
                 <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"
                            Text="Rol:"
-                           FontSize="20" />
+                           FontSize="20" 
+                           Margin="140,0,0,0"
+                           />
                 <ComboBox x:Name="OutlinedComboBox"
-                          Margin="30,0,0,0"
+                          Margin="25,0,0,0"
                           Style="{StaticResource MaterialDesignOutlinedComboBox}"
                           ItemsSource="{Binding ListaRoles}"
                           HorizontalAlignment="Left"
@@ -94,9 +99,12 @@
         </StackPanel>
         <WrapPanel Grid.Row="3"
                    HorizontalAlignment="Center"
-                   Margin="0,0,0,0">
+                   Margin="0,0,0,0"
+                   VerticalAlignment="Top"
+                   >
             <Grid Margin="0,0,40,0"
-                  Width="120">
+                  Width="120"
+                  >
                 <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
                         Height="50"
                         Padding="20,0"
@@ -129,6 +137,7 @@
                    TextAlignment="Center"
                    FontSize="13"
                    Text="{Binding Error}"
-                   Foreground="Red" />
+                   Foreground="Red"
+                   />
     </Grid>
 </UserControl>
