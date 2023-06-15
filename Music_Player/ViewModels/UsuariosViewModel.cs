@@ -22,6 +22,8 @@ namespace Music_Player.ViewModels
 
 
         public ObservableCollection<Rol> ListaRoles { get; set; } = new ObservableCollection<Rol>();
+        public ObservableCollection<Usuario> ListaUsuarios2 { get; set; } = new ObservableCollection<Usuario>();
+
         public Usuario? usuario { get; set; }
         public Rol? rol { get; set; }
         public VistaAdministrador Vista { get; set; }
@@ -38,6 +40,7 @@ namespace Music_Player.ViewModels
         public ICommand AgregarUsuarioCommand { get; set; }
         public ICommand EliminarUsuarioCommand { get; set; }
         public ICommand EditarUsuarioCommand { get; set; }
+        public ICommand BuscarUsuarioCommand => new RelayCommand<string>(CargarBusqueda);
 
 
         public UsuariosViewModel(MusicPlayerContext context):base(context)
@@ -56,6 +59,7 @@ namespace Music_Player.ViewModels
             AgregarUsuarioCommand = new RelayCommand(Agregar);
             EliminarUsuarioCommand = new RelayCommand(Eliminar);
             EditarUsuarioCommand = new RelayCommand(Editar);
+            CargarBusqueda();
         }
 
         private void Editar()
@@ -240,6 +244,22 @@ namespace Music_Player.ViewModels
             }
             Actualizar();
         }
+
+        public void CargarBusqueda(string parametro = "")
+        {
+            ListaUsuarios.Clear();
+
+            var lista = catalogo_us.GetUsuarios().Where(u => u.Nombre.ToLower().Contains(parametro.ToLower()));
+
+
+            foreach (var item in lista)
+            {
+                ListaUsuarios.Add(item);
+            }
+
+            Actualizar();
+        }
+
 
     }
 }

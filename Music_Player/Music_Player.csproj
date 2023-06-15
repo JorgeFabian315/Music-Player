@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="Assets\artista.jpg" />
+    <None Remove="Assets\disco.png" />
     <None Remove="Assets\Gif.gif" />
     <None Remove="Assets\login.jpg" />
     <None Remove="Assets\logo.png" />
@@ -37,6 +38,7 @@
 
   <ItemGroup>
     <Resource Include="Assets\artista.jpg" />
+    <Resource Include="Assets\disco.png" />
     <Resource Include="Assets\login.jpg" />
     <Resource Include="Assets\logo.png" />
     <Resource Include="Assets\musica.jpg">

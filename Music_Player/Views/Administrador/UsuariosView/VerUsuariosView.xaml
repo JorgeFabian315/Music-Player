@@ -114,7 +114,13 @@
     <Border Background="#2A2F4F"
             CornerRadius="10">
         <DockPanel>
-            <WrapPanel DockPanel.Dock="Top"
+            <Grid DockPanel.Dock="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".2*"/>
+                    <ColumnDefinition Width=".6*"/>
+                    <ColumnDefinition Width=".2*"/>
+                </Grid.ColumnDefinitions>
+                <WrapPanel Grid.Column="1"
                        HorizontalAlignment="Center"
                        Margin="0,15,0,0">
                 <Grid Margin="0,0,10,0"
@@ -162,22 +168,64 @@
                                                  HorizontalAlignment="Center" />
                     </Button>
                 </Grid>
-                <Grid Width="60">
-                    <Button Style="{StaticResource MaterialDesignRaisedButton}"
-                            Height="45"
-                            Command="{Binding VerAgregarUsuarioCommand}"
-                            Padding="0"
-                            materialDesign:ButtonAssist.CornerRadius="3"
-                            ToolTip="MaterialDesignRaisedButton with Round Corners"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
-                        <materialDesign:PackIcon Kind="AccountPlus"
-                                                 Width="40"
-                                                 Height="40"
-                                                 HorizontalAlignment="Center"
-                                                 Foreground="White" />
-                    </Button>
-                </Grid>
-            </WrapPanel>
+                    <Grid Width="60">
+                        <Button Style="{StaticResource MaterialDesignRaisedButton}"
+                                Height="45"
+                                Command="{Binding VerAgregarUsuarioCommand}"
+                                Padding="0"
+                                materialDesign:ButtonAssist.CornerRadius="3"
+                                ToolTip="MaterialDesignRaisedButton with Round Corners"
+                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                            <materialDesign:PackIcon Kind="AccountPlus"
+                                                     Width="40"
+                                                     Height="40"
+                                                     HorizontalAlignment="Center"
+                                                     Foreground="White" />
+                        </Button>
+                    </Grid>
+                </WrapPanel>
+                <materialDesign:ColorZone Mode="Standard"
+                                          Padding="8 4 8 4"
+                                          Grid.Column="2"
+                                          CornerRadius="2"
+                                          Panel.ZIndex="1"
+                                          Margin="16 10 10 0">
+                    <Grid Width="190">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Button Style="{StaticResource MaterialDesignToolButton}"
+                                HorizontalAlignment="Left"
+                                Command="{Binding BuscarUsuarioCommand}"
+                                CommandParameter="{Binding ElementName=txtBuscar, Path=Text}">
+                            <materialDesign:PackIcon Kind="Search"
+                                                     Width="auto"
+                                                     Height="auto"
+                                                     Opacity=".56" />
+                        </Button>
+                        <TextBox Grid.Column="1"
+                                 Margin="8 0 0 0"
+                                 materialDesign:HintAssist.Hint="Buscar usuario"
+                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                 BorderThickness="0"
+                                 MinWidth="210"
+                                 FontSize="14"
+                                 Name="txtBuscar"
+                                 materialDesign:TextFieldAssist.HasClearButton="True"
+                                 VerticalAlignment="Center" />
+                        <Button Style="{StaticResource MaterialDesignToolButton}"
+                                Grid.Column="2">
+                            <materialDesign:PackIcon Kind="Microphone"
+                                                     Opacity=".56"
+                                                     Width="auto"
+                                                     Height="auto"
+                                                     Margin="8 0 0 0" />
+                        </Button>
+                    </Grid>
+                </materialDesign:ColorZone>
+            </Grid>
             <ScrollViewer>
                 <ItemsControl ItemsSource="{Binding ListaUsuarios}"
                               HorizontalContentAlignment="Center"
