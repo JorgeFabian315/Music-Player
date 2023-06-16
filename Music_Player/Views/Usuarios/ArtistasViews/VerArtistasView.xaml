@@ -58,6 +58,19 @@
                                         <ImageBrush ImageSource="{Binding Fotografia, Converter={StaticResource convert}}"
                                                     Stretch="Fill"/>
                                     </Border.Background>
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Effect">
+                                                        <Setter.Value>
+                                                            <DropShadowEffect ShadowDepth="10" Color="{StaticResource Color_3}" Opacity="0.5" BlurRadius="2"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
                                 </Border>
                                 
                                 <Border Width="200" CornerRadius="10" Background="{StaticResource color3}" Grid.Row="1">
